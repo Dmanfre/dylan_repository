@@ -1,0 +1,108 @@
+---
+title: "baker_charlie"
+author: "Dylan Manfre"
+date: "2022-12-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+#libraries
+library(tidyverse)
+library(janitor)
+library(lubridate)
+
+```
+
+```{r}
+#loading in data
+baker_contribs <- read_delim("data/baker_contribs.csv")
+head(baker_contribs)
+
+baker_expenses <- read_delim("data/baker_expenses.csv")
+head(baker_expenses)
+
+```
+
+```{r}
+#cleaning
+baker_contribs <- baker_contribs %>% 
+clean_names() %>%
+mutate(date = mdy(date))
+
+#making values uppercase in certain fields.
+baker_contribs <- baker_contribs %>% 
+mutate(city = toupper(city)) %>% 
+mutate(occupation = toupper(occupation)) %>%
+mutate(state  = str_to_upper(state)) %>% 
+mutate(zip_code = str_sub(zip_code, start=1L, end=5L)) %>% 
+rename(last_name = name)
+
+baker_expenses <- baker_expenses %>% 
+clean_names() %>%
+mutate(date = mdy(date))
+```
+
+```{r}
+#Showing contribs after 2015 ... which is when Baker became Gov.
+
+baker_contribs <- baker_contribs %>% 
+filter(date >= "2015-01-08")
+#now showing 42, 534 entries.
+
+#showing his total contribs since then
+baker_contribs %>% 
+summarize(total_contribs = sum(amount))
+#outputs a table showing $16,440,851
+
+baker_contribs %>% 
+#filter(record_type_description == "Individual") %>% 
+group_by(occupation) %>% 
+count() %>% 
+arrange(desc(n))
+
+#showing out of state contribs .... maybe try to get percentage of out of state contribs for each state over the 5 year period... goal should be to have a colmn saying perc_15, Perc, 16, perc 17 up until 2022 and have each row be a state.
+
+baker_contribs %>%
+filter(state != "MA") %>% 
+group_by(state) %>% 
+summarize(total_state = sum(amount)) %>% 
+arrange(desc(total_state))
+
+
+
+baker_contribs %>%
+filter(record_type_description == "Individual") %>% 
+group_by(first_name, last_name) %>%
+summarize(amount = sum(amount)) %>% 
+arrange(desc(amount))
+baker_contribs
+
+
+
+baker_contribs %>%
+filter(state != "MA") %>% 
+group_by(first_name, last_name, state) %>% 
+  summarise(total = n(), amount = sum(amount)) %>%
+  arrange(desc(amount))
+
+
+#top contribs to Baker
+baker_contribs %>%
+filter(record_type_description == "Individual") %>% 
+summarize(amount = sum(amount)) %>% 
+arrange(desc(amount))
+
+baker_contribs %>%
+filter(record_type_description == "Individual") %>% 
+group_by(first_name, last_name, state) %>%
+summarize(amount = sum(amount)) %>% 
+arrange(desc(amount))
+
+```
+
+

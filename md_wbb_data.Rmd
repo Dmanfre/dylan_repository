@@ -1,0 +1,48 @@
+---
+title: "WBB_Rosters"
+author: "Dylan Manfre"
+date: "2022-12-01"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#libraries
+library(tidyverse)
+library(janitor)
+library(lubridate)
+```
+
+```{r}
+#load data
+
+wbb_rosters <- read_csv("~/Documents/GitHub/dylan_repository/rosters_2022-23.csv")
+
+```
+
+```{r}
+
+wbb_rosters <- wbb_rosters %>% 
+mutate(player_state = case_when(
+    str_detect(hometown, "MD") ~ "Maryland",
+    str_detect(hometown, "Md.") ~ "Maryland",
+     TRUE ~ hometown))
+
+wbb_rosters %>% 
+filter(player_state == "Maryland") %>% 
+group_by(team) %>% 
+count() %>% 
+arrange(desc(n))
+#This outputs 271 from Maryland in all Divisions. 
+# Note that the top schools are each from Maryland
+
+#What you want to do is make it proportunate to population.
+#When youre dealing with counts of people you want to make it proportonate to populatin . Maybe try it per capita.
+   
+
+
+
+
+```
+

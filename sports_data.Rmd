@@ -1,0 +1,44 @@
+```{r}
+
+install.packages("tidyverse")
+library(tidyverse)
+
+install.packages("vctrs")
+
+
+library(lubridate)
+library(janitor)
+  
+dylan <- read.csv("Downloads/dylan.csv")
+
+dylan %>% 
+clean_names()
+
+dylan %>% 
+group_by(report_year) %>% 
+count
+
+
+
+
+
+              
+
+
+```
+
+```{r}
+sports_political_donations <- sports_political_donations %>% 
+clean_names()
+
+sports_political_donations <- sports_political_donations %>% 
+mutate(amount  = str_replace_all(amount, "[$[:punct:]]", ""))
+
+sports_political_donations %>% 
+group_by(recipient) %>% 
+count() %>% 
+arrange(desc(n))
+
+
+```
+

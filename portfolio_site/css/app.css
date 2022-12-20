@@ -3923,3 +3923,76 @@ table.hover tr:nth-of-type(even):hover {
         float: right
     }
 }
+
+
+
+
+/*CSS for the bottom h2 divider bar*/
+
+
+.type-sidelines {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.type-sidelines span {
+  display: inline-block;
+  position: relative;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.type-sidelines span:before, .type-sidelines span:after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 9999px;
+  top: 50%;
+  border-top-style: solid;
+  border-top-width: 1px;
+}
+
+.type-sidelines span:before {
+  right: 100%;
+}
+
+.type-sidelines span:after {
+  left: 100%;
+}
+
+.custom-2 {
+  display: block;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.custom-2 span {
+  display: inline-block;
+  position: relative;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.custom-2 span:before, .custom-2 span:after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 9999px;
+  top: 50%;
+  border-top-style: solid;
+  border-top-width: 4px;
+  border-top-color:blue;
+  margin-top: -2px;
+}
+
+.custom-2 span:before {
+  right: 100%;
+}
+
+.custom-2 span:after {
+  left: 100%;
+}
+
