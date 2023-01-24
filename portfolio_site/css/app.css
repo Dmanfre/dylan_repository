@@ -9,9 +9,18 @@
 
 /*This is the second linked CSS*/
 h1 {
+text-align: center;
   color:black;
   font-size: 2em;
   margin: 0.67em 0; }
+
+  h3
+  {text-align: center;
+}
+
+h4
+  {text-align: center;
+}
 
 /*This changes the text of the top bar*/
 .top-bar{
@@ -142,6 +151,23 @@ h1 {
   background: #fefefe;
   border-color: #000000;
 }
+
+.rounded-social-buttons .social-button.mail {
+  background: #125688;
+}
+
+.rounded-social-buttons .social-button.mail:before {
+  font-family: "FontAwesome";
+  content: "";
+}
+
+.rounded-social-buttons .social-button.mail:hover, .rounded-social-buttons .social-button.mail:focus {
+  color: #125688;
+  background: #fefefe;
+  border-color: #125688;
+}
+
+
 
 /* end of social button css*/
 
@@ -4015,4 +4041,3 @@ table.hover tr:nth-of-type(even):hover {
 
 
 
- 
