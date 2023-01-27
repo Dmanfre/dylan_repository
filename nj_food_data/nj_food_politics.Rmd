@@ -1,0 +1,189 @@
+---
+title: "booker_expenses"
+author: "Dylan Manfre"
+date: "2023-01-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#libraries
+library(tidyverse)
+library(janitor)
+library(lubridate)
+
+```
+
+
+***This section will be about Cory Booker Data***
+
+
+```{r}
+#loading data
+
+booker_expenses <- read_csv("data/booker_expenses.csv")
+head(booker_expenses)
+
+
+```
+
+```{r}
+#counting the disbursement descripton
+booker_expenses %>%
+group_by(disbursement_description) %>% 
+count() %>% 
+arrange(desc(n))
+
+booker_expenses %>%
+filter(entity_type_desc != "IND") %>% 
+group_by(recipient_state) %>% 
+count() %>% 
+arrange(desc(n))
+
+```
+
+```{r}
+#filtering to show meals only
+booker_expenses %>% 
+filter(disbursement_description == "MEALS") %>%
+group_by(recipient_name) %>% 
+count() %>% 
+arrange(desc(n))
+#Uber eats is Number 1 with 17 and WAWA is 15... typical New Jersey vibes.
+
+
+# #catering is also food. May need to see what constitutes catering... is this catering for campaign events.
+booker_expenses %>% 
+filter(disbursement_description == "CATERING") %>% 
+group_by(recipient_name) %>% 
+count() %>% 
+arrange(desc(n))
+```
+
+```{r}
+# writing code to see how much was spent at each place
+
+booker_expenses %>% 
+filter(disbursement_description == "MEALS", entity_type != "IND") %>% 
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+booker_expenses %>% 
+filter(disbursement_description == "CATERING",  entity_type != "IND") %>% 
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+
+# distinguish where they spend money on food in any context or where Booker likes to eat at in genearl. 
+```
+
+
+
+***This section will be about Jeff Van Drew Data***
+
+
+```{r}
+vandrew_expenses <- read_csv("data/vandrew_expenses.csv")
+head(vandrew_esxpenses.csv)
+```
+
+
+```{r}
+#changing the disbursement description to just say meals
+vandrew_expenses <- vandrew_expenses %>% 
+mutate(disbursement_description = case_when(
+    str_detect(disbursement_description, "AMEX PMT [SB17.221398]: MEETING EXPENSE: MEALS") ~ "Meals",
+    str_detect(disbursement_description, "MEETING EXPENSE: MEALS") ~ "Meals",
+    str_detect(disbursement_description, "AMEX PMT [SB17.141526]: MEETING EXPENSE: MEALS") ~  "Meals",
+  str_detect(disbursement_description, "AMEX PMT [SB17.141525]: MEETING EXPENSE: MEALS") ~  "Meals",
+  str_detect(disbursement_description, "AMEX PMT [SB17.141524]: MEETING EXPENSE: MEALS") ~  "Meals",
+  str_detect(disbursement_description, "AMEX PMT [SB17.135594]: MEETING EXPENSE: MEALS") ~  "Meals", 
+ str_detect(disbursement_description, "AMEX PMT [SB17.135593]: MEETING EXPENSE: MEALS
+") ~  "Meals", 
+ str_detect(disbursement_description, "AMEX PMT [SB17.135592]: MEETING EXPENSE: MEALS") ~  "Meals",
+ str_detect(disbursement_description, "AMEX PMT [SB17.126053]: MEETING EXPENSE: MEALS") ~  "Meals",
+str_detect(disbursement_description, "AMEX PMT [SB17.126052]: MEETING EXPENSE: MEALS") ~  "Meals",
+str_detect(disbursement_description, "AMEX PMT [SB17.126051]: MEETING EXPENSE: MEALS") ~  "Meals",
+str_detect(disbursement_description, "AMERICAN EXPRESS PAYMENT: MEETING EXPENSE: MEALS") ~  "Meals",
+str_detect(disbursement_description, "AMERICAN EXPRESS PAYMENT: VENDOR CREDIT: MEETING EXPENSE: MEALS") ~  "Meals",
+    TRUE ~ disbursement_description
+  ))
+  
+```
+
+
+```{r}
+vandrew_expenses %>% 
+filter(disbursement_description == "Meals") %>% 
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+```
+```{r}
+
+```
+
+***This section will be for NJ Senator Bob Manendez***
+
+```{r}
+## loading data
+mendez_expenses <- read_csv("data/mendez_expenses.csv")
+head(mendez_expenses)
+```
+
+```{r}
+mendez_expenses %>% 
+group_by(disbursement_description) %>% 
+count() %>% 
+arrange(desc(n))
+```
+
+
+```{r}
+#What is in the food and bev category
+mendez_expenses %>% 
+filter(disbursement_description == "FOOD & BEVERAGE") %>% 
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+mendez_expenses %>% 
+filter(entity_type_desc != "IND") %>% 
+filter(disbursement_description == "FOOD & BEVERAGE") %>%
+group_by(recipient_name, recipient_state) %>% 
+count() %>% 
+arrange(desc(n))
+```
+
+
+```{r}
+#What is in the food and drink category
+mendez_expenses %>% 
+filter(disbursement_description == "FOOD & DRINK") %>% 
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+mendez_expenses %>% 
+filter(entity_type_desc != "IND") %>% 
+filter(disbursement_description == "FOOD & DRINK") %>%
+group_by(recipient_name, recipient_state) %>% 
+count() %>% 
+arrange(desc(n))
+
+
+mendez_expenses %>% 
+filter(disbursement_description == "FOOD & DRINK") %>%
+group_by(disbursement_date) %>% 
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+```
+
+```
+
