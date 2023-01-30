@@ -4040,11 +4040,3 @@ table.hover tr:nth-of-type(even):hover {
 }
 
 
-/*footer CSS*/
-
-.holy-grail-footer {
-  grid-column-start: 1;
-  grid-column-end: 1;
-  font-size: 14pt;
-}
-
