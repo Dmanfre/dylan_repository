@@ -20,7 +20,6 @@ library(lubridate)
 
 ***This section will be about Cory Booker Data***
 
-
 ```{r}
 #loading data
 
@@ -95,6 +94,7 @@ head(vandrew_esxpenses.csv)
 
 ```{r}
 #changing the disbursement description to just say meals
+
 vandrew_expenses <- vandrew_expenses %>% 
 mutate(disbursement_description = case_when(
     str_detect(disbursement_description, "AMEX PMT [SB17.221398]: MEETING EXPENSE: MEALS") ~ "Meals",
@@ -177,12 +177,20 @@ count() %>%
 arrange(desc(n))
 
 
+#Shows where he spent money on 2022-04-19 which was the day he spent the most and all the places were in Washington DC. 
 mendez_expenses %>% 
 filter(disbursement_description == "FOOD & DRINK") %>%
-group_by(disbursement_date) %>% 
-summarize(total_spent = sum(disbursement_amount)) %>% 
-arrange(desc(total_spent))
+filter(disbursement_date == "2022-04-19")
 
+mendez_expenses <- mendez_expenses %>% 
+mutate(disbursement_date = as.Date(disbursement_date))
+
+#see why I'm getting an error here.
+mendez_expenses %>% 
+filter(disbursement_date == "2022-04-19")
+
+```
+```
 ```
 
 ```
