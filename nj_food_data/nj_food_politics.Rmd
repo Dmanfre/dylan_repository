@@ -134,7 +134,7 @@ arrange(desc(total_spent))
 ## loading data
 mendez_expenses <- read_csv("data/mendez_expenses.csv")
 head(mendez_expenses)
-```
+``` 
 
 ```{r}
 mendez_expenses %>% 
@@ -185,13 +185,33 @@ filter(disbursement_date == "2022-04-19")
 mendez_expenses <- mendez_expenses %>% 
 mutate(disbursement_date = as.Date(disbursement_date))
 
-#see why I'm getting an error here.
+
 mendez_expenses %>% 
 filter(disbursement_date == "2022-04-19")
 
 ```
+***This section will be for NJ Senator Frank Pallone***
+
+```{r}
+## loading data
+pallone_expenses <- read_csv("data/pallone_expenses.csv")
+head(pallone_expenses)
 ```
+
+```{r}
+#gropuing and counting categories
+
+pallone_expenses %>% 
+group_by(disbursement_description) %>% 
+count() %>% 
+arrange(desc(n))
+
+# ask Derek what CREDIT - OVERCHARGE - FOOD & BEVERAGE	means
+
+#outputs 109 Food and Beverage enteries.
+
 ```
+
 
 ```
 
