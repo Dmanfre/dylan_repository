@@ -18,7 +18,7 @@ library(lubridate)
 ```
 
 
-***This section will be about Cory Booker Data***
+***This section will be about Cory Baooker Data***
 
 ```{r}
 #loading data
@@ -32,9 +32,10 @@ head(booker_expenses)
 ```{r}
 #counting the disbursement descripton
 booker_expenses %>%
-group_by(disbursement_description) %>% 
-count() %>% 
-arrange(desc(n))
+filter(disbursement_description == "MEALS") %>%
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
 
 booker_expenses %>%
 filter(entity_type_desc != "IND") %>% 
@@ -124,9 +125,7 @@ group_by(recipient_name, recipient_state) %>%
 summarize(total_spent = sum(disbursement_amount)) %>% 
 arrange(desc(total_spent))
 ```
-```{r}
 
-```
 
 ***This section will be for NJ Senator Bob Manendez***
 
@@ -210,7 +209,52 @@ arrange(desc(n))
 
 #outputs 109 Food and Beverage enteries.
 
+
+pallone_fb <- pallone_expenses %>% 
+filter(disbursement_description == "FOOD & BEVERAGE") %>% 
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+#try to populate the zip_codes column with zipcodes of places.
+
+write.csv(pallone_fb, file = "pallone_fb.csv", row.names = FALSE)
+
+write_csv(pallone_fb, "pallone_fb.csv")
+
+
 ```
+
+***Which NJ Politican spent most on Food***
+
+```{r}
+
+pallone_expenses %>%
+filter(disbursement_description == "FOOD & BEVERAGE") %>% 
+summarize(pallone_total = sum(disbursement_amount))
+# total = 139191.10	
+
+mendez_expenses %>%
+filter(disbursement_description == "FOOD & DRINK") %>% 
+summarize(mandez_total = sum(disbursement_amount))
+#2389.12 was his total
+
+vandrew_expenses %>%
+filter(disbursement_description == "Meals") %>% 
+summarize(vandrew_total = sum(disbursement_amount))
+#30535.79
+
+
+booker_expenses %>%
+filter(disbursement_description == "MEALS") %>% 
+summarize(booker_total = sum(disbursement_amount))
+#6759.90
+
+```
+
+```{r}
+
+
 
 
 ```
