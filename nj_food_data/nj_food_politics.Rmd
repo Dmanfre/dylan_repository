@@ -155,8 +155,8 @@ mendez_expenses %>%
 filter(entity_type_desc != "IND") %>% 
 filter(disbursement_description == "FOOD & BEVERAGE") %>%
 group_by(recipient_name, recipient_state) %>% 
-count() %>% 
-arrange(desc(n))
+summarize(total_spent = sum(disbursement_amount)) %>%
+arrange(desc(total_spent))
 ```
 
 

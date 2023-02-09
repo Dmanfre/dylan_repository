@@ -1,0 +1,96 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+#libraries
+library(tidyverse)
+library(janitor)
+library(lubridate)
+
+```
+
+
+```{r}
+# loading McCarthy
+
+new_mccarthy_expenses <- read_csv("data/new_mccarthy_expenses.csv")
+
+```
+
+```{r}
+new_mccarthy_expenses %>% 
+group_by(disbursement_description) %>% 
+count() %>% 
+arrange(desc(n))
+
+new_mccarthy_expenses %>% 
+filter(disbursement_description == "MEALS") %>% 
+group_by(recipient_state) %>% 
+count() %>% 
+arrange(desc(n))
+#mccarthy spends more time in California... which is also where he is from.
+```
+```{r}
+new_mccarthy_expenses %>% 
+filter(disbursement_description == "MEALS") %>% 
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+#had seen CAPITOL HILL CLUB	on other lists. and it seems to be a big republican establishment. 
+```
+***Palloci Expenses***
+
+
+```{r}
+
+peloci_expenses <- read_csv("data/peloci_expenses.csv")
+
+
+peloci_expenses %>% 
+group_by(disbursement_description) %>% 
+count() %>% 
+arrange(desc(n))
+
+peloci_expenses %>% 
+filter(disbursement_description == "STAFF MEALS" | 
+      disbursement_description == "MEALS" |
+      disbursement_description == "TRAVEL & MEALS") %>% 
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+
+```
+
+***Jamie Raskin Data***
+
+```{r}
+
+raskin_expenses <- read_csv("data/raskin_expenses.csv")
+view(raskin_expenses)
+
+
+raskin_expenses %>% 
+group_by(disbursement_description) %>% 
+count() %>% 
+arrange(desc(n))
+
+raskin_expenses %>% 
+filter(disbursement_description == "T-SHIRTS") %>%
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+raskin_expenses <- raskin_expenses %>%
+mutate(disbursement_description = case_when(
+    disbursement_description == "FOOD AND BEVERAGE" ~ "FOOD & BEVERAGE",
+      TRUE ~ disbursement_description
+  ))
+
+
+
+```
+
