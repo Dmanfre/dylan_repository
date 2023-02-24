@@ -1,0 +1,34 @@
+---
+title: "washington_county_data"
+author: "Dylan Manfre"
+date: "2023-02-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#libraries
+library(tidyverse)
+library(tidycensus)
+library(janitor)
+library(lubridate)
+```
+
+
+```{r}
+
+Sys.setenv(CENSUS_API_KEY = "5cb2b9c628a1d1329c5bf4d36fe4435c6501efc8", overwrite = TRUE)
+
+
+sf1 <- load_variables(2010, "sf1", cache = TRUE)
+View(sf1)
+
+p10 <- get_decennial(geography = "state", variables = "P001001", year = 2010)
+
+
+
+```
+
