@@ -29,37 +29,28 @@ rm(list = "pa_gop_contribs")
 
 Sys.setenv(CENSUS_API_KEY = "5cb2b9c628a1d1329c5bf4d36fe4435c6501efc8", overwrite = TRUE)
 
-
-sf1 <- load_variables(2010, "sf1", cache = TRUE)
-View(sf1)
-
-p10 <- get_decennial(geography = "state", variables = "P001001", year = 2010)
-
-
 ```
+
 ```{r}
 ACS <- load_variables(2020, "acs5")
 
 
-#shows the individual income in the past 12 months 
-get_acs(geography = "county",
-              variables = c(year_income = "B06010_012"),
+#Median household income in the last 12 months
+get_acs(geography = "place",
+              variables = c(household_income_12mo = "B19013_001"),
               state = "MD",
               year = 2020) %>% 
-arrange(desc(estimate))
-#Does this mean that the avg income in Washington county is 73425?
-#PLace of birth by individual income in the past 12 months in 2020 adjusted for inflation... is the variable. 
+  filter(NAME == "Hagerstown city, Maryland")
 
+rm(list = "medincome_20", "medincome_19")
 
+# median household income will have the numebr and the total household income will show the number of households. 
 
 ```
+
 ```{r}
 
-get_acs(geography = "county",
-              variables = c(year_income = "B06010_012"),
-              state = "MD",
-              year = 2020) %>% 
-arrange(desc(estimate))
+
 
 
 ```
