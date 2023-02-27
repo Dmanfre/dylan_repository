@@ -15,6 +15,13 @@ library(tidyverse)
 library(tidycensus)
 library(janitor)
 library(lubridate)
+
+#removals
+rm(list = "baker_contribs", "baker_expenses", "new_gop_expenses", "pa_dem_contribs", "pa_dem_expenses", "pa_cop contribs", "pa_gop_expenses", "wbb_rosters")
+
+rm(list = "pa_gop_contribs")
+
+
 ```
 
 
@@ -28,6 +35,31 @@ View(sf1)
 
 p10 <- get_decennial(geography = "state", variables = "P001001", year = 2010)
 
+
+```
+```{r}
+ACS <- load_variables(2020, "acs5")
+
+
+#shows the individual income in the past 12 months 
+get_acs(geography = "county",
+              variables = c(year_income = "B06010_012"),
+              state = "MD",
+              year = 2020) %>% 
+arrange(desc(estimate))
+#Does this mean that the avg income in Washington county is 73425?
+#PLace of birth by individual income in the past 12 months in 2020 adjusted for inflation... is the variable. 
+
+
+
+```
+```{r}
+
+get_acs(geography = "county",
+              variables = c(year_income = "B06010_012"),
+              state = "MD",
+              year = 2020) %>% 
+arrange(desc(estimate))
 
 
 ```
