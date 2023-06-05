@@ -1,0 +1,74 @@
+---
+title: "booker_analysis"
+author: "Dylan Manfre"
+date: "2023-06-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#libraries
+library(tidyverse)
+library(janitor)
+library(lubridate)
+
+```
+
+```{r}
+#loading data
+
+
+#downloaded 05.23.2023 and has the full year 2021-2022
+booker_21_22 <- read_csv("data/new_booker_expenses.csv")
+head(booker_21_22)
+
+# DOWNLOADED ON 06.02.2023.... HAS DATA FROM 01.01.2023 TO 03.31.2023
+booker_23_24 <- read_csv("data/booker_23_24.csv")
+head(booker_23_24)
+
+```
+
+```{r}
+
+#NOTES
+
+- #THERE IS A WAWA IN THE TRAVEL CATEGORY AND A WAWA UNDER THE MEALS CATEGORY.... NEED TO COMBINE THOSE TWO TO GET A TOTAL FOR WAWA.
+
+```
+
+```{r}
+
+#Category totals
+categories <- booker_21_22 %>% 
+group_by(disbursement_description) %>% 
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+#Category called Meals, Beverages, Catering - Officially Connected, Meals Refund
+
+#state totals meals from meals category
+total_state_meals <- booker_21_22 %>%
+filter(disbursement_description == "MEALS") %>% 
+group_by(recipient_state) %>% 
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+#showing the states totals for the meals category
+
+
+#trying to get a percentage for NJ...
+
+total_state_meals %>% 
+summarize(total = sum(total_spent))
+#total = 7252.78
+
+total_state_meals %>% 
+total_spent/7252.78*100
+
+
+```
+
+
+
+

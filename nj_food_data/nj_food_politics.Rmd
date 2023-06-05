@@ -17,42 +17,106 @@ library(lubridate)
 
 ```
 
-
-***This section will be about Cory Baooker Data***
-
 ```{r}
 #loading data
 
-booker_expenses <- read_csv("data/booker_expenses.csv")
-head(booker_expenses)
 
+#downloaded 05.23.2023 and has the full year 2021-2022
+booker_21_22 <- read_csv("data/new_booker_expenses.csv")
+head(booker_21_22)
+
+# DOWNLOADED ON 06.02.2023.... HAS DATA FROM 01.01.2023 TO 03.31.2023
+booker_23_24 <- read_csv("data/booker_23_24.csv")
+head(booker_23_24)
 
 ```
 
 ```{r}
-#counting the disbursement descripton
-booker_expenses %>%
+#NOTES
+
+- #THERE IS A WAWA IN THE TRAVEL CATEGORY AND A WAWA UNDER THE MEALS CATEGORY.... NEED TO COMBINE THOSE TWO TO GET A TOTAL FOR WAWA.
+
+  
+  
+```
+
+
+```{r}
+
+#Category totals
+categories_totals <- booker_21_22 %>% 
+group_by(disbursement_description) %>% 
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+#state totals meals from meals category
+total_state_meals <- booker_21_22 %>%
+filter(disbursement_description == "MEALS") %>% 
+group_by(recipient_state) %>% 
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+#showing where his campaign spent money in the meals category
+recipients <- booker_21_22 %>%
 filter(disbursement_description == "MEALS") %>%
 group_by(recipient_name, recipient_state) %>%
 summarize(total_spent = sum(disbursement_amount)) %>% 
 arrange(desc(total_spent))
 
-booker_expenses %>%
-filter(entity_type_desc != "IND") %>% 
-group_by(recipient_state) %>% 
-count() %>% 
-arrange(desc(n))
+
+
+#showing where he spent money in NJ in the meals category and how much was spent there
+
+nj_meals <- booker_21_22 %>%
+filter(disbursement_description == "MEALS", recipient_state == "NJ") %>%
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+
+booker_21_22 %>%
+filter(disbursement_description == "MEALS" | disbursement_description == "TRAVEL", recipient_state == "NJ") %>%
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+#In this code, WAWA has $755 and Wawa Belville has $574.48... Wawa says 755 because it's combining the Wawa in meals category and travel category.
+
+#Testing this out...
+booker_21_22 %>% 
+filter(recipient_name == "WAWA") %>%
+summarize(total_wawa = sum(disbursement_amount))
+
+booker_21_22 %>% 
+filter(recipient_name == "WAWA- BELLEVILLE") %>%
+summarize(total_wawa = sum(disbursement_amount))
 
 ```
 
+
+
+
+
+
+
+
+
+
+
 ```{r}
-#filtering to show meals only
-booker_expenses %>% 
+#Showing how many transactions there are for each place in the meals category 
+booker_21_22 %>% 
 filter(disbursement_description == "MEALS") %>%
 group_by(recipient_name) %>% 
 count() %>% 
 arrange(desc(n))
-#Uber eats is Number 1 with 17 and WAWA is 15... typical New Jersey vibes.
+#Uber eats is Number 1 with 25 and WAWA is 15 typical New Jersey vibes.
+
+booker_21_22 %>% 
+filter(disbursement_description == "MEALS") %>% 
+group_by(recipient_name) %>%
+
+count() %>% 
+arrange(desc(n))
 
 
 # #catering is also food. May need to see what constitutes catering... is this catering for campaign events.
@@ -66,7 +130,7 @@ arrange(desc(n))
 ```{r}
 # writing code to see how much was spent at each place
 
-booker_expenses %>% 
+new_booker_expenses %>% 
 filter(disbursement_description == "MEALS", entity_type != "IND") %>% 
 group_by(recipient_name, recipient_state) %>%
 summarize(total_spent = sum(disbursement_amount)) %>% 
@@ -79,8 +143,15 @@ summarize(total_spent = sum(disbursement_amount)) %>%
 arrange(desc(total_spent))
 
 
+
 # distinguish where they spend money on food in any context or where Booker likes to eat at in genearl. 
 ```
+
+
+
+
+
+
 
 
 
@@ -88,6 +159,7 @@ arrange(desc(total_spent))
 
 
 ```{r}
+#This report is from January when I got the Booker reports...
 vandrew_expenses <- read_csv("data/vandrew_expenses.csv")
 head(vandrew_esxpenses.csv)
 ```
@@ -95,6 +167,7 @@ head(vandrew_esxpenses.csv)
 
 ```{r}
 #changing the disbursement description to just say meals
+#Keep this chunk because it will help change the other enteries in the new filings.
 
 vandrew_expenses <- vandrew_expenses %>% 
 mutate(disbursement_description = case_when(
