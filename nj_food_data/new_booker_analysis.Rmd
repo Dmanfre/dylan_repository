@@ -109,9 +109,41 @@ filter(recipient_name != "BARAIE, ROBAB", disbursement_description == "MEALS") %
 group_by(recipient_name) %>% 
 count() %>% 
 arrange(desc(n))
+```
 
 
+Looking at the 23-24 section now... only has transactions from Jan to March Q!
 
+
+```{r}
+#Categories 23-24
+categories_23_23 <- booker_23_24 %>% 
+group_by(disbursement_description) %>% 
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+#Meals is 6349.59
+
+
+state_meal_23_24<- booker_23_24 %>%
+filter(entity_type != "IND", disbursement_description == "MEALS") %>% 
+group_by(recipient_state) %>% 
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+# So far New York is No. 1 in the meals category
+
+#State percentage of the meals category
+perc_state_23_24 <- state_meal_23_24 %>% 
+mutate(perc_state = total_spent/sum(total_spent)*100)
+#NJ is No. 3 at 7.1%.
+
+#NOW LOOKING AT SPECIFIC PLACES WHERE HIS CAMPAIGN SPENT MONEY
+
+booker_23_24 %>% 
+filter(entity_type != "IND", disbursement_description == "MEALS") %>%
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+#Whole Foods in Newark NJ is significant because it's right under the TAPInto office.
 
 
 
