@@ -143,8 +143,14 @@ filter(entity_type != "IND", disbursement_description == "MEALS") %>%
 group_by(recipient_name, recipient_state) %>%
 summarize(total_spent = sum(disbursement_amount)) %>% 
 arrange(desc(total_spent))
-#Whole Foods in Newark NJ is significant because it's right under the TAPInto office.
+#Whole Foods in Newark NJ is significant because it's right under the TAPInto office and also Swahili Village
 
+#counting the transactions
+booker_23_24 %>% 
+filter(disbursement_description == "MEALS") %>%
+group_by(recipient_name) %>% 
+count() %>% 
+arrange(desc(n))
 
 
 
