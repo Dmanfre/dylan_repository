@@ -100,10 +100,23 @@ wawa_perc <- (418.88/4925.67)*100
 
 
 
+```
+
+```{r}
+#Showing how many transactions are at each place in the meals category. Not limited by State.
+meals_count_21_22 <- booker_21_22 %>% 
+filter(recipient_name != "BARAIE, ROBAB", disbursement_description == "MEALS") %>%
+group_by(recipient_name) %>% 
+count() %>% 
+arrange(desc(n))
+
+
+
+
+
+
 
 
 ```
-
-
 
 
