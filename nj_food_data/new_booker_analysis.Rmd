@@ -48,9 +48,13 @@ summarize(total_spent = sum(disbursement_amount)) %>%
 arrange(desc(total_spent))
 #Category called Meals, Beverages, Catering - Officially Connected, Meals Refund
 
-#state totals meals from meals category
+
+perc_categories <- categories %>%
+mutate(percent = total_spent / sum(total_spent)*100)
+
+#state totals meals from meals category without Individuals...
 total_state_meals <- booker_21_22 %>%
-filter(disbursement_description == "MEALS") %>% 
+filter(entity_type != "IND", disbursement_description == "MEALS") %>% 
 group_by(recipient_state) %>% 
 summarize(total_spent = sum(disbursement_amount)) %>% 
 arrange(desc(total_spent))
@@ -58,13 +62,44 @@ arrange(desc(total_spent))
 
 
 #trying to get a percentage for NJ...
+perc_state <- total_state_meals %>% 
+mutate(perc_state = total_spent/sum(total_spent)*100)
+#10.1%% of money spent in the meals category came from NJ.
 
-total_state_meals %>% 
-summarize(total = sum(total_spent))
-#total = 7252.78
+#Showing Booker's meals category for 21-22
+meals_total <-  booker_21_22 %>%
+filter(entity_type != "IND", disbursement_description == "MEALS") %>%
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
 
-total_state_meals %>% 
-total_spent/7252.78*100
+#Where Booker spent money on Meals in NJ
+nj_meals <- booker_21_22 %>%
+filter(disbursement_description == "MEALS", recipient_state == "NJ") %>%
+group_by(recipient_name, recipient_state) %>%
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+#creating a perc of meals_total
+perc_meals <- meals_total %>% 
+mutate(perc_meals = total_spent/sum(total_spent))
+
+#creating a perc for wawa in NJ
+wawa_nj_meals <- nj_meals %>% 
+mutate(perc = total_spent/sum(total_spent)*100)
+#dont know why the above code is showing 100% in the perc column... should show 81.9%
+
+
+wawa_nj_meals <- (418.88/511.53)*100
+#shows that in NJ... it received 82%... but I got that number by doing free hand math.
+
+
+#this is to get a wawa_perc from adding everything in total_spent in meals_total and then isolating wawa.
+wawa_perc <- (418.88/4925.67)*100
+#shows that wawa received 8.5% of his total meals money... but in NJ alone it received 82%.
+
+
+
 
 
 ```

@@ -57,7 +57,8 @@ summarize(total_spent = sum(disbursement_amount)) %>%
 arrange(desc(total_spent))
 
 #showing where his campaign spent money in the meals category
-recipients <- booker_21_22 %>%
+#recipients <- 
+booker_21_22 %>%
 filter(disbursement_description == "MEALS") %>%
 group_by(recipient_name, recipient_state) %>%
 summarize(total_spent = sum(disbursement_amount)) %>% 
@@ -67,7 +68,8 @@ arrange(desc(total_spent))
 
 #showing where he spent money in NJ in the meals category and how much was spent there
 
-nj_meals <- booker_21_22 %>%
+#nj_meals <- 
+booker_21_22 %>%
 filter(disbursement_description == "MEALS", recipient_state == "NJ") %>%
 group_by(recipient_name, recipient_state) %>%
 summarize(total_spent = sum(disbursement_amount)) %>% 
