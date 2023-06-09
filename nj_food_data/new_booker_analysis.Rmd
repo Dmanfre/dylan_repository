@@ -21,6 +21,9 @@ library(lubridate)
 #loading data
 
 
+booker_19_20 <- read_csv("data/booker_19_20.csv")
+head(booker_19__20)
+
 #downloaded 05.23.2023 and has the full year 2021-2022
 booker_21_22 <- read_csv("data/new_booker_expenses.csv")
 head(booker_21_22)
@@ -28,6 +31,8 @@ head(booker_21_22)
 # DOWNLOADED ON 06.02.2023.... HAS DATA FROM 01.01.2023 TO 03.31.2023
 booker_23_24 <- read_csv("data/booker_23_24.csv")
 head(booker_23_24)
+
+
 
 ```
 
@@ -41,13 +46,19 @@ head(booker_23_24)
 
 ```{r}
 
+#Looking at 19-20
+booker_19_20 %>% 
+group_by(disbursement_description) %>% 
+summarize(total_spent = sum(disbursement_amount)) %>% 
+arrange(desc(total_spent))
+
+
 #Category totals
 categories <- booker_21_22 %>% 
 group_by(disbursement_description) %>% 
 summarize(total_spent = sum(disbursement_amount)) %>% 
 arrange(desc(total_spent))
 #Category called Meals, Beverages, Catering - Officially Connected, Meals Refund
-
 
 perc_categories <- categories %>%
 mutate(percent = total_spent / sum(total_spent)*100)
@@ -151,6 +162,8 @@ filter(disbursement_description == "MEALS") %>%
 group_by(recipient_name) %>% 
 count() %>% 
 arrange(desc(n))
+#All Uber Eats transactions were from California... need to find out where he orders from. 
+
 
 
 
