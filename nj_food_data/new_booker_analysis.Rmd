@@ -7,6 +7,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+options(scipen = 999)
 ```
 
 ```{r}
@@ -84,6 +86,12 @@ group_by(recipient_name, recipient_state) %>%
 summarize(total_spent = sum(disbursement_amount)) %>% 
 arrange(desc(total_spent))
 
+grand_total <- sum(meals_total_21_22$total_spent)
+#creating a perc of meals_total_21_22
+perc_meals_21_22 <- meals_total_21_22 %>% 
+mutate(perc_meals = total_spent/grand_total*100)
+#Dont know why it's showing 100% in the perc_meals column
+
 #Where Booker spent money on Meals in NJ
 nj_meals_21_22 <- booker_21_22 %>%
 filter(disbursement_description == "MEALS", recipient_state == "NJ") %>%
@@ -91,17 +99,13 @@ group_by(recipient_name, recipient_state) %>%
 summarize(total_spent = sum(disbursement_amount)) %>% 
 arrange(desc(total_spent))
 
-#creating a perc of meals_total
-perc_meals_21_22 <- meals_total_21_22 %>% 
-mutate(perc_meals = total_spent/sum(total_spent)*100)
-#Dont know why it's showing 100% in the perc_meals column
-
+nj_meals_grand_total <- sum(nj_meals_21_22$total_spent)
 #creating a perc for wawa in NJ
 wawa_nj_meals <- nj_meals_21_22 %>% 
-mutate(perc = total_spent/sum(total_spent)*100)
+mutate(perc = total_spent/sum(nj_meals_grand_total)*100)
 #dont know why the above code is showing 100% in the perc column... should show 81.9%
 
-wawa_nj_meals <- (418.88/511.53)*100
+#wawa_nj_meals <- (418.88/511.53)*100
 #shows that in NJ... it received 82%... but I got that number by doing free hand math.
 
 #this is to get a wawa_perc from adding everything in total_spent in meals_total_21_22 and then isolating wawa.
@@ -116,6 +120,7 @@ wawa_perc <- (418.88/4925.67)*100
 
 ```
 
+
 ```{r}
 #Showing how many transactions are at each place in the meals category. Not limited by State.
 meals_count_21_22 <- booker_21_22 %>% 
@@ -125,20 +130,23 @@ count() %>%
 arrange(desc(n))
 ```
 
-
 Looking at the 23-24 section now... only has transactions from Jan to March Q!
 
-
 ```{r}
-#Categories 23-24
+
+catering_23_24_grand_total <- sum(categories_23_24$total_spent)
+
 categories_23_24 <- booker_23_24 %>% 
 group_by(disbursement_description) %>% 
 summarize(total_spent = sum(disbursement_amount)) %>% 
 arrange(desc(total_spent))
 #Meals is 6349.59
+#perc_categories_23_24
+perc_categories_23_24 <- categories_23_24 %>% 
+mutate(perc_categories_23_24 = total_spent/sum(catering_23_24_grand_total)*100)
 
 
-state_meal_23_24<- booker_23_24 %>%
+state_meal_23_24 <- booker_23_24 %>%
 filter(entity_type != "IND", disbursement_description == "MEALS") %>% 
 group_by(recipient_state) %>% 
 summarize(total_spent = sum(disbursement_amount)) %>% 
@@ -176,13 +184,16 @@ summarize(total_spent = sum(disbursement_amount)) %>%
 arrange(desc(total_spent))
 #Shows only the Whole Foods in Newark and Swahili Village.
 
+nj_meals_23_24_grand <- sum(nj_meals_23_24$total_spent)
+
 perc_nj_23_24 <- nj_meals_23_24 %>% 
-mutate(percentage = total_spent/sum(total_spent)*100)
+mutate(percentage = total_spent/sum(nj_meals_23_24_grand)*100)
+
+
 #Doing this still yields 100% in the percentage column... i'm trying to see what percentage of the whole each place is.
 
 
 ```
-
 
 Looking at 2019-2020
 
@@ -196,4 +207,3 @@ arrange(desc(total_spent))
 
 
 ```
-
