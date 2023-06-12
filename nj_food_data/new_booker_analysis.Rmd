@@ -199,11 +199,14 @@ Looking at 2019-2020
 
 ```{r}
 
-booker_19_20 %>% 
+catering_19_20 <- booker_19_20 %>% 
 filter(entity_type != "IND", disbursement_description == "CATERING", recipient_state == "NJ") %>%
 group_by(recipient_name, recipient_state) %>%
 summarize(total_spent = sum(disbursement_amount)) %>% 
 arrange(desc(total_spent))
 
+catering_19_20_grand_total <-  sum(catering_19_20$total_spent)
 
+catering_19_20 <- catering_19_20 %>% 
+mutate(percentage = total_spent/sum(catering_19_20_grand_total)*100)
 ```
