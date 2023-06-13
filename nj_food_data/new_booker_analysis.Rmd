@@ -74,7 +74,7 @@ arrange(desc(total_spent))
 
 
 #trying to get a percentage for NJ...
-perc_state_21_22 <- total_state_meals_21_22 %>% 
+perc_state_meals_21_22 <- total_state_meals_21_22 %>% 
 mutate(perc_state = total_spent/sum(total_spent)*100)
 #10.1%% of money spent in the meals category came from NJ.
 
@@ -233,7 +233,12 @@ rm()
 ```{r}
 # Exporting dataframes to CSV
 
+write_csv(perc_meals_21_22, "data/perc_meals_21_22.csv")
 
+write_csv(perc_state_meals_21_22, "data/perc_state_meals_21_22.csv")
 
+write_csv(perc_nj_21_22, "data/perc_nj_21_22.csv")
+
+write_csv(wawa_breakdown_21_22, "data/wawa_breakdown_21_22.csv")
 ```
 
