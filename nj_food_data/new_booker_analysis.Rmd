@@ -122,7 +122,7 @@ select(report_year, report_type, image_number, entity_type, recipient_name, reci
 wawa_breakdown_21_22 <-  all_wawa %>% 
 group_by(disbursement_description) %>% 
 summarize(total = sum(disbursement_amount))
-
+ 
 wawa_breakdown_21_22 <- wawa_breakdown_21_22 %>%
 mutate(percent = total / sum(total)*100)
 
@@ -219,3 +219,21 @@ catering_19_20_grand_total <-  sum(catering_19_20$total_spent)
 catering_19_20 <- catering_19_20 %>% 
 mutate(percentage = total_spent/sum(catering_19_20_grand_total)*100)
 ```
+
+
+
+```{r}
+#removing certain data frames
+
+rm()
+
+```
+
+
+```{r}
+# Exporting dataframes to CSV
+
+
+
+```
+
