@@ -47,7 +47,6 @@ head(booker_23_24)
 ```
 
 ```{r}
-
 #Looking at 19-20
 booker_19_20 %>% 
 group_by(disbursement_description) %>% 
@@ -101,7 +100,7 @@ arrange(desc(total_spent))
 
 nj_meals_grand_total <- sum(nj_meals_21_22$total_spent)
 #creating a perc for wawa in NJ
-wawa_nj_meals <- nj_meals_21_22 %>% 
+perc_nj_21_22 <- nj_meals_21_22 %>% 
 mutate(perc = total_spent/sum(nj_meals_grand_total)*100)
 #dont know why the above code is showing 100% in the perc column... should show 81.9%
 
@@ -109,13 +108,23 @@ mutate(perc = total_spent/sum(nj_meals_grand_total)*100)
 #shows that in NJ... it received 82%... but I got that number by doing free hand math.
 
 #this is to get a wawa_perc from adding everything in total_spent in meals_total_21_22 and then isolating wawa.
-wawa_perc <- (418.88/4925.67)*100
+#wawa_perc <- (418.88/4925.67)*100
 #shows that wawa received 8.5% of his total meals money... but in NJ alone it received 82%
+```
 
 
+```{r}
+#gathering all wawa transactions in 21-22
+all_wawa <- booker_21_22 %>% 
+filter(recipient_name == "WAWA") %>%
+select(report_year, report_type, image_number, entity_type, recipient_name, recipient_state, disbursement_description, disbursement_date, disbursement_amount)
 
+wawa_breakdown_21_22 <-  all_wawa %>% 
+group_by(disbursement_description) %>% 
+summarize(total = sum(disbursement_amount))
 
-
+wawa_breakdown_21_22 <- wawa_breakdown_21_22 %>%
+mutate(percent = total / sum(total)*100)
 
 
 ```
