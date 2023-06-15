@@ -134,9 +134,17 @@ mutate(percent = total / sum(total)*100)
 #Showing how many transactions are at each place in the meals category. Not limited by State.
 meals_count_21_22 <- booker_21_22 %>% 
 filter(recipient_name != "BARAIE, ROBAB", disbursement_description == "MEALS") %>%
-group_by(recipient_name) %>% 
+group_by(recipient_name, recipient_state) %>% 
 count() %>% 
 arrange(desc(n))
+
+#getting ercentage
+meals_count_21_22_total <- sum(meals_count_21_22$n)
+
+
+meals_count_21_22 <- meals_count_21_22 %>% 
+mutate(percentage = n/sum(meals_count_21_22_total)*100)
+
 ```
 
 Looking at the 23-24 section now... only has transactions from Jan to March Q!
@@ -240,5 +248,9 @@ write_csv(perc_state_meals_21_22, "data/perc_state_meals_21_22.csv")
 write_csv(perc_nj_21_22, "data/perc_nj_21_22.csv")
 
 write_csv(wawa_breakdown_21_22, "data/wawa_breakdown_21_22.csv")
+
+write_csv(meals_count_21_22, "data/meals_count_21_22.csv")
+
+
 ```
 
