@@ -60,34 +60,6 @@ ACS_2007 <- load_variables(2007, "acs3")
 ```{r}
 #housing metrics for Newark
 
-  get_acs(geography = "place",
-                variables = c(medi_house_income = "B19013_001", 
-                            population = "B01003_001", 
-                            medi_home_value = "B25077_001", 
-                            housing_total = "B25002_001",
-                            housing_occupied = "B25002_002",
-                            housing_vacancies = "B25002_003", 
-                            #labor_total = "B23025_003", 
-                            #labor_employed = "B23025_004", 
-                            #labor_unemployed = "B23025_005",
-                            education_total = "B06009_001",
-                            education_hs = "B06009_003",
-                            education_bachelors = "B06009_005",
-                            public_assistance_total = "B22003_001",
-                            public_assistance_received = "B22003_002",
-                            public_assistance_not_received = "B22003_005",
-                            #poverty_total = "B17020_001",
-                            #poverty_below = "B17020_002",
-                            #poverty_above = "B17020_010",
-                            rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
-                            #real_estate_tax_aggregate = "B25090_001"),       
-              survey = "acs5",
-              place = "Newark city, New Jersey",
-              year = 2007) %>% 
-  mutate(year = 2007)
-
-
 Newark_2021 <- get_acs(geography = "place",
                 variables = c(medi_house_income = "B19013_001", 
                             population = "B01003_001", 
@@ -105,6 +77,47 @@ Newark_2021 <- get_acs(geography = "place",
               year = 2021) %>% 
   filter(NAME == "Newark city, New Jersey") %>% 
   mutate(year = 2021)
+
+
+Newark_2019 <- get_acs(geography = "place",
+                variables = c(medi_house_income = "B19013_001", 
+                            population = "B01003_001", 
+                            medi_home_value = "B25077_001", 
+                            housing_total = "B25002_001",
+                            housing_occupied = "B25002_002",
+                            housing_vacancies = "B25002_003", 
+                            labor_total = "B23025_003", 
+                            labor_employed = "B23025_004", 
+                            labor_unemployed = "B23025_005",
+                            rent = "B25064_001",
+                            real_estate_tax_median = "B25103_001"),
+              survey = "acs5",
+              state = "NJ",
+              year = 2019) %>% 
+  filter(NAME == "Newark city, New Jersey") %>% 
+  mutate(year = 2019)
+
+Newark_2015 <- get_acs(geography = "place",
+                variables = c(medi_house_income = "B19013_001", 
+                            population = "B01003_001", 
+                            medi_home_value = "B25077_001", 
+                            housing_total = "B25002_001",
+                            housing_occupied = "B25002_002",
+                            housing_vacancies = "B25002_003", 
+                            labor_total = "B23025_003", 
+                            labor_employed = "B23025_004", 
+                            labor_unemployed = "B23025_005",
+                            rent = "B25064_001",
+                            real_estate_tax_median = "B25103_001"),
+              survey = "acs5",
+              state = "NJ",
+              year = 2015) %>% 
+  filter(NAME == "Newark city, New Jersey") %>% 
+  mutate(year = 2015)
+
+
+#Set this up using the hagerstown dataset for rents
+
 
 ```
 
