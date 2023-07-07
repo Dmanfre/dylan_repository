@@ -150,5 +150,39 @@ Nrent <- bind_rows(Nrent_2021, Nrent_2017, Nrent_2011) %>%
   select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
 
 
+
+
+
 ```
+
+```{r}
+
+#Newark population
+
+npop_2021 <- Newark_2021 %>%
+  filter(variable == "population") %>%
+  select(year, estimate)
+
+npop_2017 <- Newark_2017 %>%
+  filter(variable == "population") %>%
+  select(year, estimate)
+
+npop_2011 <- Newark_2011 %>%
+  filter(variable == "population") %>%
+  select(year, estimate)
+
+Npop <- bind_rows(npop_2021, npop_2017, npop_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Newark") %>%
+  mutate(variable = "population") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+```
+
 
