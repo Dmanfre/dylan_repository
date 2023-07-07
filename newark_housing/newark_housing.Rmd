@@ -58,7 +58,7 @@ ACS_2007 <- load_variables(2007, "acs3")
 ```
 
 ```{r}
-#housing metrics for Newark
+#rent metrics for Newark
 
 Newark_2021 <- get_acs(geography = "place",
                 variables = c(medi_house_income = "B19013_001", 
@@ -79,7 +79,7 @@ Newark_2021 <- get_acs(geography = "place",
   mutate(year = 2021)
 
 
-Newark_2019 <- get_acs(geography = "place",
+Newark_2017 <- get_acs(geography = "place",
                 variables = c(medi_house_income = "B19013_001", 
                             population = "B01003_001", 
                             medi_home_value = "B25077_001", 
@@ -93,11 +93,11 @@ Newark_2019 <- get_acs(geography = "place",
                             real_estate_tax_median = "B25103_001"),
               survey = "acs5",
               state = "NJ",
-              year = 2019) %>% 
+              year = 2017) %>% 
   filter(NAME == "Newark city, New Jersey") %>% 
-  mutate(year = 2019)
+  mutate(year = 2017)
 
-Newark_2015 <- get_acs(geography = "place",
+Newark_2011 <- get_acs(geography = "place",
                 variables = c(medi_house_income = "B19013_001", 
                             population = "B01003_001", 
                             medi_home_value = "B25077_001", 
@@ -111,12 +111,43 @@ Newark_2015 <- get_acs(geography = "place",
                             real_estate_tax_median = "B25103_001"),
               survey = "acs5",
               state = "NJ",
-              year = 2015) %>% 
+              year = 2011) %>% 
   filter(NAME == "Newark city, New Jersey") %>% 
-  mutate(year = 2015)
+  mutate(year = 2011)
 
 
 #Set this up using the hagerstown dataset for rents
+
+
+```
+
+```{r}
+
+
+# Note: starting point here is ACS3 2007
+Nrent_2021 <- Newark_2021 %>%
+  filter(variable == "rent") %>%
+  select(year, estimate)
+
+Nrent_2017 <- Newark_2017 %>%
+  filter(variable == "rent") %>%
+  select(year, estimate)
+
+Nrent_2011 <- Newark_2011 %>%
+  filter(variable == "rent") %>%
+  select(year, estimate)
+
+Nrent <- bind_rows(Nrent_2021, Nrent_2017, Nrent_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Newark") %>%
+  mutate(variable = "median gross rent") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
 
 
 ```
