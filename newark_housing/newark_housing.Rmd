@@ -58,7 +58,7 @@ ACS_2007 <- load_variables(2007, "acs3")
 ```
 
 ```{r}
-#rent metrics for Newark
+# metrics for Newark
 
 Newark_2021 <- get_acs(geography = "place",
                 variables = c(medi_house_income = "B19013_001", 
@@ -214,8 +214,178 @@ nvacant <- bind_rows(nvacant_2021, nvacant_2017, nvacant_2011) %>%
   mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
   select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
 
+```
+
+```{r}
+#median household income
+#Interesting that in a 5 year span it went down and then went up
+
+nincme_2021 <- Newark_2021 %>%
+  filter(variable == "medi_house_income") %>%
+  select(year, estimate)
+
+nincme_2017 <- Newark_2017 %>%
+  filter(variable == "medi_house_income") %>%
+  select(year, estimate)
+
+nincme_2011 <- Newark_2011 %>%
+  filter(variable == "medi_house_income") %>%
+  select(year, estimate)
+
+nincome <- bind_rows(nincme_2021, nincme_2017, nincme_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Newark") %>%
+  mutate(variable = "medi_house_income") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
 
 
 ```
 
+
+Jersey City city, New Jersey
+
+```{r}
+
+JC_2021 <- get_acs(geography = "place",
+                variables = c(medi_house_income = "B19013_001", 
+                            population = "B01003_001", 
+                            medi_home_value = "B25077_001", 
+                            housing_total = "B25002_001",
+                            housing_occupied = "B25002_002",
+                            housing_vacancies = "B25002_003", 
+                            labor_total = "B23025_003", 
+                            labor_employed = "B23025_004", 
+                            labor_unemployed = "B23025_005",
+                            rent = "B25064_001",
+                            real_estate_tax_median = "B25103_001"),
+              survey = "acs5",
+              state = "NJ",
+              year = 2021) %>% 
+  filter(NAME == "Jersey City city, New Jersey") %>% 
+  mutate(year = 2021)
+
+
+JC_2017 <- get_acs(geography = "place",
+                variables = c(medi_house_income = "B19013_001", 
+                            population = "B01003_001", 
+                            medi_home_value = "B25077_001", 
+                            housing_total = "B25002_001",
+                            housing_occupied = "B25002_002",
+                            housing_vacancies = "B25002_003", 
+                            labor_total = "B23025_003", 
+                            labor_employed = "B23025_004", 
+                            labor_unemployed = "B23025_005",
+                            rent = "B25064_001",
+                            real_estate_tax_median = "B25103_001"),
+              survey = "acs5",
+              state = "NJ",
+              year = 2017) %>% 
+  filter(NAME == "Jersey City city, New Jersey") %>% 
+  mutate(year = 2017)
+
+JC_2011 <- get_acs(geography = "place",
+                variables = c(medi_house_income = "B19013_001", 
+                            population = "B01003_001", 
+                            medi_home_value = "B25077_001", 
+                            housing_total = "B25002_001",
+                            housing_occupied = "B25002_002",
+                            housing_vacancies = "B25002_003", 
+                            labor_total = "B23025_003", 
+                            labor_employed = "B23025_004", 
+                            labor_unemployed = "B23025_005",
+                            rent = "B25064_001",
+                            real_estate_tax_median = "B25103_001"),
+              survey = "acs5",
+              state = "NJ",
+              year = 2011) %>% 
+  filter(NAME == "Jersey City city, New Jersey") %>% 
+  mutate(year = 2011)
+
+
+
+```
+
+
+```{r}
+#Jersey City Median Household Income
+
+JCincme_2021 <- JC_2021 %>%
+  filter(variable == "medi_house_income") %>%
+  select(year, estimate)
+
+JCincme_2017 <- JC_2017 %>%
+  filter(variable == "medi_house_income") %>%
+  select(year, estimate)
+
+JCincme_2011 <- JC_2011 %>%
+  filter(variable == "medi_house_income") %>%
+  select(year, estimate)
+
+JCincome <- bind_rows(JCincme_2021, JCincme_2017, JCincme_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Jersey City") %>%
+  mutate(variable = "medi_house_income") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+```
+
+
+```{r}
+# Jersey City Rent
+
+JCrent_2021 <- JC_2021 %>%
+  filter(variable == "rent") %>%
+  select(year, estimate)
+
+JCrent_2017 <- JC_2017 %>%
+  filter(variable == "rent") %>%
+  select(year, estimate)
+
+JCrent_2011 <- JC_2011 %>%
+  filter(variable == "rent") %>%
+  select(year, estimate)
+
+JCrent <- bind_rows(JCrent_2021, JCrent_2017, JCrent_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Jersey City") %>%
+  mutate(variable = "median gross rent") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+```
+
+
+
+
+```{r}
+# ALL TOGETHER
+
+rent <- bind_rows(JCrent, Nrent)
+
+population <- bind_rows(JCincome, nincome)
+
+
+
+# CSV
+#write_csv(medi_home_value, file = "medi_home_value.csv")
+
+
+```
 
