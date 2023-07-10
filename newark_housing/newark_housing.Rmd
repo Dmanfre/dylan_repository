@@ -372,16 +372,77 @@ JCrent <- bind_rows(JCrent_2021, JCrent_2017, JCrent_2011) %>%
 ```
 
 
+```{r}
+#Jersey City Population
 
+JCpop_2021 <- JC_2021 %>%
+  filter(variable == "population") %>%
+  select(year, estimate)
+
+JCpop_2017 <- JC_2017 %>%
+  filter(variable == "population") %>%
+  select(year, estimate)
+
+JCpop_2011 <- JC_2011 %>%
+  filter(variable == "population") %>%
+  select(year, estimate)
+
+JCpop <- bind_rows(JCpop_2021, JCpop_2017, JCpop_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Jersey City") %>%
+  mutate(variable = "population") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+```
+
+
+```{r}
+#Vaccancies
+
+
+JCvaccant_2021 <- JC_2021 %>%
+  filter(variable == "housing_vacancies") %>%
+  select(year, estimate)
+
+JCvaccant_2017 <- JC_2017 %>%
+  filter(variable == "housing_vacancies") %>%
+  select(year, estimate)
+
+JCvaccant_2011 <- JC_2011 %>%
+  filter(variable == "housing_vacancies") %>%
+  select(year, estimate)
+
+JCvaccant <- bind_rows(JCvaccant_2021, JCvaccant_2017, JCvaccant_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Jersey City") %>%
+  mutate(variable = "housing_vacancies") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+```
 
 ```{r}
 # ALL TOGETHER
 
 rent <- bind_rows(JCrent, Nrent)
 
-population <- bind_rows(JCincome, nincome)
+income <- bind_rows(JCincome, nincome)
 
+population <- bind_rows(JCpop, Npop)
+#Jersey City saw larger increase over 10 year period
 
+vaccant <- bind_rows(JCvaccant, nvacant)
 
 # CSV
 #write_csv(medi_home_value, file = "medi_home_value.csv")
