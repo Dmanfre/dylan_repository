@@ -1,0 +1,5 @@
+variable,location,year_2011,year_2017,year_2021,pct_change_5,pct_change_10,pct_change_5_to_10
+housing_vacancies,Jersey City,14151,12120,11349,-14.4,-19.8,-6.4
+housing_vacancies,Newark,17792,16496,10996,-7.3,-38.2,-33.3
+housing_vacancies,Elizabeth,5369,4096,3472,-23.7,-35.3,-15.2
+housing_vacancies,Paterson,6024,5565,3158,-7.6,-47.6,-43.3

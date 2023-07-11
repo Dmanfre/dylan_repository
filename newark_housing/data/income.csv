@@ -1,0 +1,5 @@
+variable,location,year_2011,year_2017,year_2021,pct_change_5,pct_change_10,pct_change_5_to_10
+medi_house_income,Jersey City,57520,62739,81390,9.1,41.5,29.7
+medi_house_income,Newark,35696,34826,41335,-2.4,15.8,18.7
+medi_house_income,Elizabeth,44678,45186,54415,1.1,21.8,20.4
+medi_house_income,Paterson,34302,36106,48540,5.3,41.5,34.4
