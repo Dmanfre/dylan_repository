@@ -432,17 +432,205 @@ JCvaccant <- bind_rows(JCvaccant_2021, JCvaccant_2017, JCvaccant_2011) %>%
 
 ```
 
+
+Getting data for Elizabeth section
+
+```{r}
+
+eli_2021 <- get_acs(geography = "place",
+                variables = c(medi_house_income = "B19013_001", 
+                            population = "B01003_001", 
+                            medi_home_value = "B25077_001", 
+                            housing_total = "B25002_001",
+                            housing_occupied = "B25002_002",
+                            housing_vacancies = "B25002_003", 
+                            labor_total = "B23025_003", 
+                            labor_employed = "B23025_004", 
+                            labor_unemployed = "B23025_005",
+                            rent = "B25064_001",
+                            real_estate_tax_median = "B25103_001"),
+              survey = "acs5",
+              state = "NJ",
+              year = 2021) %>% 
+  filter(NAME == "Elizabeth city, New Jersey") %>% 
+  mutate(year = 2021)
+
+
+eli_2017 <- get_acs(geography = "place",
+                variables = c(medi_house_income = "B19013_001", 
+                            population = "B01003_001", 
+                            medi_home_value = "B25077_001", 
+                            housing_total = "B25002_001",
+                            housing_occupied = "B25002_002",
+                            housing_vacancies = "B25002_003", 
+                            labor_total = "B23025_003", 
+                            labor_employed = "B23025_004", 
+                            labor_unemployed = "B23025_005",
+                            rent = "B25064_001",
+                            real_estate_tax_median = "B25103_001"),
+              survey = "acs5",
+              state = "NJ",
+              year = 2017) %>% 
+  filter(NAME == "Elizabeth city, New Jersey") %>% 
+  mutate(year = 2017)
+
+eli_2011 <- get_acs(geography = "place",
+                variables = c(medi_house_income = "B19013_001", 
+                            population = "B01003_001", 
+                            medi_home_value = "B25077_001", 
+                            housing_total = "B25002_001",
+                            housing_occupied = "B25002_002",
+                            housing_vacancies = "B25002_003", 
+                            labor_total = "B23025_003", 
+                            labor_employed = "B23025_004", 
+                            labor_unemployed = "B23025_005",
+                            rent = "B25064_001",
+                            real_estate_tax_median = "B25103_001"),
+              survey = "acs5",
+              state = "NJ",
+              year = 2011) %>% 
+  filter(NAME == "Elizabeth city, New Jersey") %>% 
+  mutate(year = 2011)
+
+```
+
+```{r}
+#Elizabeth population
+
+
+epop_2021 <- eli_2021 %>%
+  filter(variable == "population") %>%
+  select(year, estimate)
+
+epop_2017 <- eli_2017 %>%
+  filter(variable == "population") %>%
+  select(year, estimate)
+
+epop_2011 <- eli_2011 %>%
+  filter(variable == "population") %>%
+  select(year, estimate)
+
+epop <- bind_rows(epop_2021, epop_2017, epop_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Elizabeth") %>%
+  mutate(variable = "population") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+
+```
+
+```{r}
+#elizabeth rent
+
+erent_2021 <- eli_2021 %>%
+  filter(variable == "rent") %>%
+  select(year, estimate)
+
+erent_2017 <- eli_2017 %>%
+  filter(variable == "rent") %>%
+  select(year, estimate)
+
+erent_2011 <- eli_2011 %>%
+  filter(variable == "rent") %>%
+  select(year, estimate)
+
+erent <- bind_rows(erent_2021, erent_2017, erent_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Elizabeth") %>%
+  mutate(variable = "median gross rent") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+
+
+
+```
+
+```{r}
+# Elizabeth median household income
+
+
+eincome_2021 <- eli_2021 %>%
+  filter(variable == "medi_house_income") %>%
+  select(year, estimate)
+
+eincome_2017 <- eli_2017 %>%
+  filter(variable == "medi_house_income") %>%
+  select(year, estimate)
+
+eincome_2011 <- eli_2011 %>%
+  filter(variable == "medi_house_income") %>%
+  select(year, estimate)
+
+eincome <- bind_rows(eincome_2021, eincome_2017, eincome_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Elizabeth") %>%
+  mutate(variable = "medi_house_income") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+#Elizabeth income sees huge boom
+
+```
+
+```{r}
+# Elizabeth vaccancies
+
+evaccant_2021 <- eli_2021 %>%
+  filter(variable == "housing_vacancies") %>%
+  select(year, estimate)
+
+evaccant_2017 <- eli_2017 %>%
+  filter(variable == "housing_vacancies") %>%
+  select(year, estimate)
+
+evaccant_2011 <- eli_2011 %>%
+  filter(variable == "housing_vacancies") %>%
+  select(year, estimate)
+
+evaccant <- bind_rows(evaccant_2021, evaccant_2017, evaccant_2011) %>% 
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Elizabeth") %>%
+  mutate(variable = "medi_house_income") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+
+```
+
+
 ```{r}
 # ALL TOGETHER
 
-rent <- bind_rows(JCrent, Nrent)
+rent <- bind_rows(JCrent, Nrent, erent)
 
-income <- bind_rows(JCincome, nincome)
+income <- bind_rows(JCincome, nincome, eincome)
 
-population <- bind_rows(JCpop, Npop)
+population <- bind_rows(JCpop, Npop, epop)
 #Jersey City saw larger increase over 10 year period
 
-vaccant <- bind_rows(JCvaccant, nvacant)
+vaccant <- bind_rows(JCvaccant, nvacant, )
 
 # CSV
 #write_csv(medi_home_value, file = "medi_home_value.csv")
