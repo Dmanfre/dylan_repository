@@ -697,6 +697,39 @@ evaccant <- bind_rows(evaccant_2021, evaccant_2017, evaccant_2011) %>%
 
 ```
 
+```{r}
+# Elizabeth median home value
+
+ehome_2021 <- eli_2021 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+ehome_2017 <- eli_2017 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+ehome_2011 <- eli_2011 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+ehome <- bind_rows(ehome_2021, ehome_2017, ehome_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Elizabeth") %>%
+  mutate(variable = "medi_home_value") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+
+
+
+```
+
+
 
 Section on Paterson NJ
 
@@ -901,6 +934,37 @@ patincome <- bind_rows(patincome_2021, patincome_2017, patincome_2011) %>%
 
 ```
 
+```{r}
+#Paterson home value
+
+pathome_2021 <- pat_2021 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+pathome_2017 <- pat_2017 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+pathome_2011 <- pat_2011 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+pathome <- bind_rows(pathome_2021, pathome_2017, pathome_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Paterson") %>%
+  mutate(variable = "medi_house_income") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+```
+
+
+
 
 ```{r}
 # ALL TOGETHER
@@ -913,6 +977,8 @@ population <- bind_rows(JCpop, Npop, epop, patpop)
 #Jersey City saw larger increase over 10 year period
 
 vaccant <- bind_rows(JCvaccant, nvacant, evaccant, patvaccant)
+
+home_value <- bind_rows(JChome, nhome, ehome, pathome)
 
 # CSV
 write_csv(income, file = "data/income.csv")

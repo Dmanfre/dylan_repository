@@ -1,0 +1,5 @@
+variable,location,year_2011,year_2017,year_2021,pct_change_5,pct_change_10,pct_change_5_to_10
+medi_home_value,Jersey City,353000,344200,437200,-2.5,23.9,27
+medi_home_value,Newark,282400,222800,271700,-21.1,-3.8,21.9
+medi_home_value,Elizabeth,333300,268700,314500,-19.4,-5.6,17
+medi_house_income,Paterson,318700,235500,269200,-26.1,-15.5,14.3
