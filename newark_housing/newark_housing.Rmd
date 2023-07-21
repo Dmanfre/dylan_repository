@@ -955,7 +955,7 @@ pathome <- bind_rows(pathome_2021, pathome_2017, pathome_2011) %>%
   rename("year_2017" = "2017") %>%
   rename("year_2011" = "2011") %>%
   mutate(location = "Paterson") %>%
-  mutate(variable = "medi_house_income") %>%
+  mutate(variable = "medi_home_value") %>%
   mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
   mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
   mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
@@ -985,6 +985,7 @@ write_csv(income, file = "data/income.csv")
 write_csv(rent, file = "data/rent.csv")
 write_csv(population, file = "data/population.csv")
 write_csv(vaccant, file = "data/vaccant.csv")
+write_csv(home_value, file = "data/home_value.csv")
 
 ```
 
