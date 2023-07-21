@@ -42,6 +42,8 @@ nj_cities <- get_acs(geography = "place",
 
 
 ```{r}
+# renter_occupied = "B25003_003"), means the number of people who rent in Newark. 
+
 
 
 #Reference tables
@@ -72,7 +74,8 @@ Newark_2021 <- get_acs(geography = "place",
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
                             real_estate_tax_median = "B25103_001",
-                            renter_occupied = "B25003_003"),
+                            renter_occupied = "B25003_003",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2021) %>% 
@@ -91,7 +94,8 @@ Newark_2017 <- get_acs(geography = "place",
                             labor_employed = "B23025_004", 
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
+                            real_estate_tax_median = "B25103_001",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2017) %>% 
@@ -109,7 +113,8 @@ Newark_2011 <- get_acs(geography = "place",
                             labor_employed = "B23025_004", 
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
+                            real_estate_tax_median = "B25103_001",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2011) %>% 
@@ -248,6 +253,40 @@ nincome <- bind_rows(nincme_2021, nincme_2017, nincme_2011) %>%
 
 ```
 
+```{r}
+# Newark Median Home Value 
+
+nhome_2021 <- Newark_2021 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+nhome_2017 <- Newark_2017 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+nhome_2011 <- Newark_2011 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+nhome <- bind_rows(nhome_2021, nhome_2017, nhome_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Newark") %>%
+  mutate(variable = "medi_home_value") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+# home values tanked from 2011-2017. 
+
+
+```
+
+
+
 
 Jersey City city, New Jersey
 
@@ -264,7 +303,8 @@ JC_2021 <- get_acs(geography = "place",
                             labor_employed = "B23025_004", 
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
+                            real_estate_tax_median = "B25103_001",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2021) %>% 
@@ -283,7 +323,8 @@ JC_2017 <- get_acs(geography = "place",
                             labor_employed = "B23025_004", 
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
+                            real_estate_tax_median = "B25103_001",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2017) %>% 
@@ -301,7 +342,8 @@ JC_2011 <- get_acs(geography = "place",
                             labor_employed = "B23025_004", 
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
+                            real_estate_tax_median = "B25103_001",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2011) %>% 
@@ -433,6 +475,38 @@ JCvaccant <- bind_rows(JCvaccant_2021, JCvaccant_2017, JCvaccant_2011) %>%
 
 ```
 
+```{r}
+# JC home value
+
+JChome_2021 <- JC_2021 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+JChome_2017 <- JC_2017 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+JChome_2011 <- JC_2011 %>%
+  filter(variable == "medi_home_value") %>%
+  select(year, estimate)
+
+JChome <- bind_rows(JChome_2021, JChome_2017, JChome_2011) %>%
+  spread(key = year, value = estimate) %>%
+  rename("year_2021" = "2021") %>%
+  rename("year_2017" = "2017") %>%
+  rename("year_2011" = "2011") %>%
+  mutate(location = "Jersey City") %>%
+  mutate(variable = "medi_home_value") %>%
+  mutate(pct_change_5 = round((year_2017-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_10 = round((year_2021-year_2011)/year_2011*100,1)) %>%
+  mutate(pct_change_5_to_10 = round((year_2021-year_2017)/year_2017*100,1)) %>%
+  select(variable, location, year_2011:year_2021, pct_change_5:pct_change_5_to_10)
+
+
+
+```
+
+
 
 Getting data for Elizabeth section
 
@@ -449,7 +523,8 @@ eli_2021 <- get_acs(geography = "place",
                             labor_employed = "B23025_004", 
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
+                            real_estate_tax_median = "B25103_001",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2021) %>% 
@@ -468,7 +543,8 @@ eli_2017 <- get_acs(geography = "place",
                             labor_employed = "B23025_004", 
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
+                            real_estate_tax_median = "B25103_001",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2017) %>% 
@@ -486,7 +562,8 @@ eli_2011 <- get_acs(geography = "place",
                             labor_employed = "B23025_004", 
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
+                            real_estate_tax_median = "B25103_001",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2011) %>% 
@@ -638,7 +715,8 @@ pat_2021 <- get_acs(geography = "place",
                             labor_employed = "B23025_004", 
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
+                            real_estate_tax_median = "B25103_001",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2021) %>% 
@@ -657,7 +735,8 @@ pat_2017 <- get_acs(geography = "place",
                             labor_employed = "B23025_004", 
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
+                            real_estate_tax_median = "B25103_001",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2017) %>% 
@@ -675,7 +754,8 @@ pat_2011 <- get_acs(geography = "place",
                             labor_employed = "B23025_004", 
                             labor_unemployed = "B23025_005",
                             rent = "B25064_001",
-                            real_estate_tax_median = "B25103_001"),
+                            real_estate_tax_median = "B25103_001",
+                            medi_home_value = "B25077_001"),
               survey = "acs5",
               state = "NJ",
               year = 2011) %>% 
