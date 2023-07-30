@@ -45,6 +45,9 @@ nj_cities <- get_acs(geography = "place",
 # renter_occupied = "B25003_003"), means the number of people who rent in Newark. 
 
 
+#B25008_003
+
+
 
 #Reference tables
 
@@ -75,7 +78,8 @@ Newark_2021 <- get_acs(geography = "place",
                             rent = "B25064_001",
                             real_estate_tax_median = "B25103_001",
                             renter_occupied = "B25003_003",
-                            medi_home_value = "B25077_001"),
+                            medi_home_value = "B25077_001",
+                            renter_population = "B25008_003"),
               survey = "acs5",
               state = "NJ",
               year = 2021) %>% 
