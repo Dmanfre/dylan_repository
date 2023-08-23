@@ -22,18 +22,23 @@ library(ipumsr)
 
 *** Early notes from Aug. 23 ***
 
-- Years filtered for: 17-18, 19-20, 21-22, 23-24
+- Years filtered for: 2011 to today
 - States filtered for: DC, MD, VA
 - Search terms I used in the FEC.gov site.
-  - 
+  - MEALS, CATERING, FOOD, FOOD/BEVERAGE, FOOD AND BEVERAGE EXPENSES, CATERING EVENTS, CATERING FOOD AND BEVERAGES, DRINKS/FOOD (PRODUCED 213,860 RESULTS)
+  -LINK: https://www.fec.gov/data/disbursements/?data_type=processed&two_year_transaction_period=2012&two_year_transaction_period=2014&two_year_transaction_period=2016&two_year_transaction_period=2018&two_year_transaction_period=2020&two_year_transaction_period=2022&two_year_transaction_period=2024&min_date=01%2F01%2F2011&max_date=12%2F31%2F2021&recipient_state=DC&recipient_state=MD&recipient_state=VA&disbursement_description=FOOD&disbursement_description=MEALS&disbursement_description=CATERING&disbursement_description=FOOD%2FBEVERAGE&disbursement_description=FOOD+AND+BEVERAGE+EXPENSES&disbursement_description=CATERING+EVENTS&disbursement_description=CATERING+FOOD+AND+BEVERAGES&disbursement_description=CATERING%2FEVENTS&disbursement_description=DRINKS%2FFOOD
+  
+  
 
+- We want to identify the purpose category as "Fundraising" or another term and make sure it doesn't say "travel" so we exclude those unnecessary transactions.
 
 
 
 ```{r}
 
-
-
+# loading in the campaign_food_data.csv
+campaign_food_data <- read_csv("data/campaign_food_data.csv")
+head(campaign_food_data)
 
 ```
 
