@@ -18,7 +18,5 @@ library(lubridate)
 #install.packages("ipumsr")
 library(ipumsr)
 
-
-
 ```
 
