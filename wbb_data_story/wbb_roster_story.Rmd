@@ -1,0 +1,50 @@
+---
+title: "bls_work"
+author: "Dylan Manfre"
+date: "2023-09-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#libraries
+library(tidyverse)
+library(tidycensus)
+library(janitor)
+library(lubridate)
+#install.packages("ipumsr")
+library(ipumsr)
+
+```
+
+```{r}
+
+#Loading in the data from 22-23 season
+
+wbb_rosters_22_23 <- read_csv("data/wbb_rosters_2022_23.csv")
+head(wbb_rosters_22_23)
+```
+
+
+```{r}
+#state counts
+
+wbb_rosters_22_23 %>% 
+group_by(state_clean) %>%
+filter(state_clean == "MD") %>% 
+count()
+##Maryland has 350
+
+
+wbb_rosters_22_23 %>% 
+group_by(state_clean) %>%
+count() %>% 
+arrange(desc(n))
+#1073 NAs
+
+
+```
+
