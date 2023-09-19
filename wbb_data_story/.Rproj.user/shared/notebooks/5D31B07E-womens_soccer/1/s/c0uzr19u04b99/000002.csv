@@ -1,0 +1,16 @@
+"0","```r
+t.test(matches_2022_early$total_goals, matches_2023$total_goals)
+
+```"
+"1","
+	Welch Two Sample t-test
+
+data:  matches_2022_early$total_goals and matches_2023$total_goals
+t = -2.0399, df = 4838.5, p-value = 0.04142
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.222514676 -0.004417218
+sample estimates:
+mean of x mean of y 
+ 2.864732  2.978198 
+"

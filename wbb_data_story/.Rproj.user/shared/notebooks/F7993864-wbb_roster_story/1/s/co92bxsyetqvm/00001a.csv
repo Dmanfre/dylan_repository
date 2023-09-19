@@ -1,0 +1,7 @@
+"0",""
+"0","#What I want to do here is make a value that says power_five and have that be equal to ""Big Ten"", ""Big 12"", ""ACC"", ""SEC', ""Pac-12"" so that when I filter I can say Filter to show me only players in the power_five conferences. I want to do this instead of having to filter and write a logner and/or statment"
+"0",""
+"0","power_five <- c(""SEC"", ""Big Ten"", ""Pac-12"", ""Big 12"", ""ACC"")"
+"0",""
+"0","wbb_rosters_22_23 %>%"
+"0","filter(conference == power_five)"

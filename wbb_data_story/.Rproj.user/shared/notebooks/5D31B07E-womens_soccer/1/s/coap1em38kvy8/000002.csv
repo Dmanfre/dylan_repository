@@ -1,0 +1,9 @@
+"0","```r
+matches_2022 %>% 
+  filter(team == \"Maryland Terrapins, Terps\") %>% 
+  group_by(team) %>% 
+  summarize(total_shots = sum(sh_att), total_quality_shots = sum(so_g)) %>% 
+  mutate(percentage_quality_shots = (total_quality_shots/total_shots)*100) %>% 
+  filter(total_shots > 50) %>% 
+  arrange(desc(percentage_quality_shots))
+```"

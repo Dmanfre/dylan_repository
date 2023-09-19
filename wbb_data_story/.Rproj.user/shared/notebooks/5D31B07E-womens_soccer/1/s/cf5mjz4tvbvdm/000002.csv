@@ -1,0 +1,8 @@
+"0","```r
+matches_2022 %>% 
+  filter(outcome == \"Draw\") %>%
+  group_by(team) %>%
+  summarise(total_ties = n()) %>%
+  filter(total_ties == 4 ) %>% 
+  arrange(desc(total_ties)) 
+```"

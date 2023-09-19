@@ -1,0 +1,8 @@
+"0","```r
+  
+matches_2022 %>% 
+  group_by(team) %>% 
+  summarize(total_corners = sum(corners), opp_corners = sum(defensive_corners)) %>% 
+  mutate(difference = total_corners - opp_corners) %>% 
+  arrange(desc(difference))
+```"

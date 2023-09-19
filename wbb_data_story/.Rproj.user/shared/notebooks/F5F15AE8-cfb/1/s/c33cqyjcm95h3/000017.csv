@@ -1,0 +1,12 @@
+"0","cfbd_pbp_data(
+  year = 2022,
+  season_type = ""regular"",
+  week = 1,
+  team = ""Maryland"",
+  play_type = NULL,
+  epa_wpa = FALSE,
+  ...
+)
+"
+"2","Error: '...' used in an incorrect context
+"

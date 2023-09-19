@@ -1,0 +1,17 @@
+"0","```r
+matches_2021 <- read_csv(\"https://raw.githubusercontent.com/dwillis/NCAAWomensSoccerData/main/data/ncaa_womens_soccer_matchstats_2021.csv\")
+```"
+"1","Rows: 6367 Columns: 55── Column specification ───────────────────────────────────────────────────────────────────
+Delimiter: \",\"
+chr   (6): team, opponent, home_away, outcome, goalie_min_plyd, defensive_goalie_min_plyd
+dbl  (48): team_score, opponent_score, overtime, games, goals, assists, sh_att, so_g, f...
+date  (1): date
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+"
+"0","```r
+matches_2021 %>%
+  filter(team == \"Maryland Terrapins, Terps\", date < \"2021-09-05\") %>%
+  summarize(total_shots = sum(sh_att), total_shots_on_goal = sum(so_g)) %>%
+  mutate(sh_pct = total_shots_on_goal / total_shots)
+```"
