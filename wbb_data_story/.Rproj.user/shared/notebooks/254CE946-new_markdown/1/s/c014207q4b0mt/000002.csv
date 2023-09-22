@@ -1,0 +1,15 @@
+"0","```r
+#TRACT COMP
+# Note: starting point here is ACS5 2010
+tractcomptaxes_2008 <- get_acs(geography = \"tract\",
+                variables = c(real_estate_tax_aggregate = \"B25090_001\"),
+              state = \"MD\",
+              year = 2010) %>% 
+  mutate(year = 2010) %>%
+  filter(NAME == \"Census Tract 8508.02, Charles County, Maryland\") %>%
+  select(year, estimate)
+
+```"
+"1","Getting data from the 2006-2010 5-year ACS
+Using FIPS code '24' for state 'MD'
+"

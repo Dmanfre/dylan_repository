@@ -1,0 +1,49 @@
+"0","```r
+
+#TRYING TO FIGURE OUT A ZIP CODE ALTERNATIVE
+
+# School district? Won't work because MD school districts are just counties
+mdschools_2018 <- get_acs(geography = \"school district (unified)\",
+                variables = c(medi_house_income = \"B19013_001\"),
+              state = \"MD\",
+              year = 2018) %>% 
+  mutate(year = 2018)
+```"
+"1","Getting data from the 2014-2018 5-year ACS
+Using FIPS code '24' for state 'MD'
+"
+"0","```r
+# Tracts? Available for 09 ACS5 (in addition to 13 and 18)
+# This seems to have potential if we can figure out what census tract the stadium is in
+# To figure out census tract, put in address of nearby high school into this search: https://geocoding.geo.census.gov/geocoder/geographies/address?street=5305%20Piney%20Church%20Rd&city=Waldorf&state=Maryland&zip=20602&benchmark=4&vintage=4 - says census tract is 8509.04 for 2020 and 2010
+# Charles County census tracts map: https://www.charlescountymd.gov/home/showpublishedimage/3143/637679134245270000
+
+mdtracts_2009 <- get_acs(geography = \"tract\",
+                variables = c(medi_house_income = \"B19013_001\"),
+              state = \"MD\",
+              year = 2009) %>% 
+  mutate(year = 2009)
+```"
+"1","Getting data from the 2005-2009 5-year ACS
+Using FIPS code '24' for state 'MD'
+"
+"0","```r
+mdtracts_2013 <- get_acs(geography = \"tract\",
+                variables = c(medi_house_income = \"B19013_001\"),
+              state = \"MD\",
+              year = 2013) %>% 
+  mutate(year = 2013)
+```"
+"1","Getting data from the 2009-2013 5-year ACS
+Using FIPS code '24' for state 'MD'
+"
+"0","```r
+mdtracts_2018 <- get_acs(geography = \"tract\",
+                variables = c(medi_house_income = \"B19013_001\"),
+              state = \"MD\",
+              year = 2018) %>% 
+  mutate(year = 2018)
+```"
+"1","Getting data from the 2014-2018 5-year ACS
+Using FIPS code '24' for state 'MD'
+"

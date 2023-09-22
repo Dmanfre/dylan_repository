@@ -1,0 +1,14 @@
+"0","```r
+charlestracts_rent_2009 <- get_acs(geography = \"tract\",
+                             variables = c(rent = \"B25064_001\"),
+                             state = \"MD\",
+                             year = 2009) %>%
+  filter(NAME == \"Census Tract 8509.04, Charles County, Maryland\" | NAME == \"Census Tract 8510.02, Charles County, Maryland\" | NAME == \"Census Tract 8509.02, Charles County, Maryland\" | NAME == \"Census Tract 8509.06, Charles County, Maryland\" | NAME == \"Census Tract 8509.05, Charles County, Maryland\" | NAME == \"Census Tract 8508.02, Charles County, Maryland\" | NAME == \"Census Tract 8513, Charles County, Maryland\") %>% 
+  mutate(year = 2009) %>%
+  arrange(desc(estimate)) %>%
+    mutate(comp_to_stadium = round(estimate*100/first(estimate[NAME == \"Census Tract 8509.04, Charles County, Maryland\"]),1))
+
+```"
+"1","Getting data from the 2005-2009 5-year ACS
+Using FIPS code '24' for state 'MD'
+"

@@ -1,0 +1,102 @@
+"0","```r
+
+#CODE BLOCKS FOR CITY
+
+#2007
+#04/30 update: revised codes for education based on https://api.census.gov/data/2007/acs/acs3/variables.html
+w_2007 <- get_acs(geography = \"place\",
+                variables = c(medi_house_income = \"B19013_001\", 
+                            population = \"B01003_001\", 
+                            medi_home_value = \"B25077_001\", 
+                            housing_total = \"B25002_001\",
+                            housing_occupied = \"B25002_002\",
+                            housing_vacancies = \"B25002_003\", 
+                            #labor_total = \"B23025_003\", 
+                            #labor_employed = \"B23025_004\", 
+                            #labor_unemployed = \"B23025_005\",
+                            education_total = \"B06009_001\",
+                            education_hs = \"B06009_003\",
+                            education_bachelors = \"B06009_005\",
+                            public_assistance_total = \"B22003_001\",
+                            public_assistance_received = \"B22003_002\",
+                            public_assistance_not_received = \"B22003_005\",
+                            #poverty_total = \"B17020_001\",
+                            #poverty_below = \"B17020_002\",
+                            #poverty_above = \"B17020_010\",
+                            rent = \"B25064_001\",
+                            real_estate_tax_median = \"B25103_001\"),
+                            #real_estate_tax_aggregate = \"B25090_001\"),        
+              survey = \"acs3\",
+              state = \"MD\",
+              year = 2007) %>% 
+  filter(NAME == \"Waldorf CDP, Maryland\") %>% 
+  mutate(year = 2007)
+```"
+"1","Getting data from the 2005-2007 3-year ACS
+The 3-year ACS provides data for geographies with populations of 20,000 and greater.
+Using FIPS code '24' for state 'MD'
+"
+"0","```r
+#2013
+w_2013 <- get_acs(geography = \"place\",
+                variables = c(medi_house_income = \"B19013_001\", 
+                            population = \"B01003_001\", 
+                            medi_home_value = \"B25077_001\", 
+                            housing_total = \"B25002_001\",
+                            housing_occupied = \"B25002_002\",
+                            housing_vacancies = \"B25002_003\", 
+                            labor_total = \"B23025_003\", 
+                            labor_employed = \"B23025_004\", 
+                            labor_unemployed = \"B23025_005\",
+                            education_total = \"B15003_001\",
+                            education_hs = \"B15003_017\",
+                            education_bachelors = \"B15003_022\",
+                            public_assistance_total = \"B22003_001\",
+                            public_assistance_received = \"B22003_002\",
+                            public_assistance_not_received = \"B22003_005\",
+                            poverty_total = \"B17020_001\",
+                            poverty_below = \"B17020_002\",
+                            poverty_above = \"B17020_010\",
+                            rent = \"B25064_001\",
+                            real_estate_tax_median = \"B25103_001\",
+                            real_estate_tax_aggregate = \"B25090_001\"),        
+              state = \"MD\",
+              year = 2013) %>% 
+  filter(NAME == \"Waldorf CDP, Maryland\") %>% 
+  mutate(year = 2013)
+```"
+"1","Getting data from the 2009-2013 5-year ACS
+Using FIPS code '24' for state 'MD'
+"
+"0","```r
+#2018
+w_2018 <- get_acs(geography = \"place\",
+                variables = c(medi_house_income = \"B19013_001\", 
+                            population = \"B01003_001\", 
+                            medi_home_value = \"B25077_001\", 
+                            housing_total = \"B25002_001\",
+                            housing_occupied = \"B25002_002\",
+                            housing_vacancies = \"B25002_003\", 
+                            labor_total = \"B23025_003\", 
+                            labor_employed = \"B23025_004\", 
+                            labor_unemployed = \"B23025_005\",
+                            education_total = \"B15003_001\",
+                            education_hs = \"B15003_017\",
+                            education_bachelors = \"B15003_022\",
+                            public_assistance_total = \"B22003_001\",
+                            public_assistance_received = \"B22003_002\",
+                            public_assistance_not_received = \"B22003_005\",
+                            poverty_total = \"B17020_001\",
+                            poverty_below = \"B17020_002\",
+                            poverty_above = \"B17020_010\",
+                            rent = \"B25064_001\",
+                            real_estate_tax_median = \"B25103_001\",
+                            real_estate_tax_aggregate = \"B25090_001\"),        
+              state = \"MD\",
+              year = 2018) %>% 
+  filter(NAME == \"Waldorf CDP, Maryland\") %>% 
+  mutate(year = 2018)
+```"
+"1","Getting data from the 2014-2018 5-year ACS
+Using FIPS code '24' for state 'MD'
+"

@@ -16,12 +16,33 @@ Establishing my steps
 # What are my steps here and can I create a loop from it?
 # import the dataset wbb_rosters_22_23
 # establish the power_five list power_five <- c("SEC", "Big Ten", "Pac-12", "Big 12", "ACC")
-# 
 
 
+
+#Try to set this up so that the code is underneith a sentence that I would write in the story. 
 
 
 ```
+
+*** Genearl notes *****
+
+Thinking of making this story more of a listical piece where I provide a graphic that answers questions I have when writing the code and analyzing the data. Each section of the story would be an answered question about the women's basketball data. And all of them will be relating back to Maryland or Power 5 at large.
+
+
+General questions
+- Do I start national and work down to a more local level?
+- Do I include schools that are moving into the Big Ten in the latest 23-24 data?
+- 
+
+Story questions to be analyzed by the data
+- Where to women's basketball players in Maryland come from
+
+
+Steps
+- Generate the numbers per capita for the state and then the local towns
+- Get state populations by using Census API 
+- 
+
 
 
 ```{r}
@@ -41,7 +62,20 @@ library(ipumsr)
 
 wbb_rosters_22_23 <- read_csv("data/wbb_rosters_2022_23.csv")
 head(wbb_rosters_22_23)
+
+#Loading in 23-24 data when I have it
+#wbb_rosters_22_23 <- read_csv("data/wbb_rosters_2022_23.csv")
+#head(wbb_rosters_22_23)
+
+
+
 ```
+
+
+
+
+
+
 
 ** Running some basic analysis **
 
@@ -97,7 +131,7 @@ count()
 #Is the story here that Maryland, a big ten state, doesn't produce players to Power 5?
 
 # 8 players are in the ACC and Big Ten
-from_maryland_p5 %>% 
+conference_md <-from_maryland_p5 %>% 
 group_by(conference) %>% 
 count()
 # One is in the pac-12. UCLA is the school and they are moving to the Big Ten.
@@ -116,8 +150,37 @@ count() %>%
 arrange(desc(n))
 # Maryland produces more D3 players than D1... D1 is more because it includes all conferences and not limited to P5 schools.... in genearl there are more D3 players because it's less competitive and no athletic scholarships.
 
+
+
+```
+
+```{r}
+
+
+
 ```
 
 
+
+
+
+*** Beginning to work on the section with Census Data ***
+
+```{r}
+#API key
+Sys.setenv(CENSUS_API_KEY = "5cb2b9c628a1d1329c5bf4d36fe4435c6501efc8", overwrite = TRUE)
+
+#2021 ACS
+ACS_2021 <- load_variables(2021, "acs5")
+
+
+#Get this to show the population data of all the Maryland towns
+md_2021 <- get_acs(geography = "state",
+                variables = c(population = "B01003_001"),      
+              state = "MD",
+              year = 2021) %>% 
+  mutate(year = 2021)
+
+```
 
 

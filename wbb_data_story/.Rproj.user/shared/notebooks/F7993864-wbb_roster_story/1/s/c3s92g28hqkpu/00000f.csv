@@ -1,0 +1,11 @@
+"0","#Get this to show the population data of all the Maryland towns
+md_2021 <- get_acs(geography = ""state"",
+                variables = c(population = ""B01003_001""),      
+              state = ""MD"",
+              year = 2021) %>% 
+  mutate(year = 2021)
+"
+"2","Getting data from the 2017-2021 5-year ACS
+"
+"2","Using FIPS code '24' for state 'MD'
+"

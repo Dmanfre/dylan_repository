@@ -1,6 +1,0 @@
-"0","#Is the story here that Maryland, a big ten state, doesn't produce players to Power 5?"
-"0",""
-"0","# 8 players are in the ACC and Big Ten"
-"0","from_maryland_p5 %>% "
-"0","group_by(conference) %>% "
-"0","count()"
