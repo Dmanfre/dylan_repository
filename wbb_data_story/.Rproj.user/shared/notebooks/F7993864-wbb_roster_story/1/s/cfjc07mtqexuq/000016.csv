@@ -1,0 +1,9 @@
+"0","wbb_rosters_22_23 %>% 
+filter(conference %in% power_five, state_clean == ""MD"") %>% 
+#Produces 24 names
+
+md_p5_perc <-  (24 / 350)*100
+"
+"2","Error in wbb_rosters_22_23 %>% filter(conference %in% power_five, state_clean ==  : 
+  could not find function ""%>%<-""
+"

@@ -87,38 +87,10 @@ head(wbb_rosters_22_23)
 
 ```
 
-*** Organized section
+*** Organized section ****
 
-
-```{r}
-#What I want to do here is make a value that says power_five and have that be equal to "Big Ten", "Big 12", "ACC", "SEC', "Pac-12" so that when I filter I can say Filter to show me only players in the power_five conferences.
-
-power_five <- c("SEC", "Big Ten", "Pac-12", "Big 12", "ACC")
-
-wbb_rosters_22_23 %>%
-filter(conference == power_five)
-#174 players are from Power 5 schools
-#Question: should I include the new incoming Big Ten teams into this code block?
-
-
-```
 
 Working Lede: With women's basketball season approaching, let's see where players come form within the US and abroad. While Maryland lost a plethora of talent, including three of its starters, the Terps have a good crop of experience and newcomers to work with.
-
-** Running some basic analysis unorganized**
-
-
-```{r}
-#Question: How many women's basketball players are from Maryland?
-#Answer: Maryland has 350 WBB players?
-
-#state counts
-wbb_rosters_22_23 %>% 
-group_by(state_clean) %>%
-filter(state_clean == "MD") %>% 
-count()
-##Maryland has 350
-```
 
 
 ```{r}
@@ -137,26 +109,71 @@ filter(is.na(state_clean))
 ```
 
 
+```{r}
+#Question: Which power 5 conference produces the most WBB players?
+#Answer: There are 875 power 5 wbb players and 196 of them are from the ACC, the mos of the fiv econferneces.
+#Sentence: It's pretty hard to land a scholarship offer. (Insert stat about college athletes)/ Getting a spot in one of the five conferences (soon to be 4?) is even harder. Only 875 women's basektball players attend Power 5 institutions. The ACC is most likely to take you. They have 196 players, but not much in front of the Big Ten with 194.
 
+power_five <- c("SEC", "Big Ten", "Pac-12", "Big 12", "ACC")
+
+wbb_rosters_22_23 %>%
+filter(conference == power_five)
+
+#What I want to do here is make a value that says power_five and have that be equal to "Big Ten", "Big 12", "ACC", "SEC', "Pac-12" so that when I filter I can say Filter to show me only players in the power_five conferences.
+
+# Issue: These numbers seem too low. Im trying to view how many players there are in the power 5 conferneces
+# Why doesn't every roster show up?
+
+#Second attempt
+# ChatGPT says to use in%in instead of %> %>% 
+
+p5_players <- wbb_rosters_22_23 %>%
+filter(conference %in% power_five)
+#This produces 875 results which is much cleaner and seems to be more accurate. 
+
+#Conference counts with percentages
+conf_player_counts <- p5_players %>% 
+group_by(conference) %>%
+summarize(total = n()) %>% 
+arrange(desc(total)) %>% 
+mutate(perc = round(total/sum(total)*100,1))
+
+
+```
 
 
 ```{r}
-#Question: Which power 5 conference produces the most WBB players?
-#Answer:
-#Sentence:
+#Question: How many WBB players are from Maryland?
+#Answer: 350 are from Maryland and 24 of them attend Power 5 schools
+#Sentence: Roughly 7% of all Maryland wbb players attend power five schools.
 
-wbb_rosters_22_23 %>%
-filter(conference == power_five) %>% 
-group_by(conference) %>% 
-count() %>% 
-arrange(desc(n))
-#Issue: These numbers seem too low. Im trying to view how many players there are in the power 5 conferneces
+wbb_rosters_22_23 %>% 
+filter (state_clean == "MD")
+#produces 350 names
+
+wbb_rosters_22_23 %>% 
+filter(conference %in% power_five, state_clean == "MD") %>% 
+#Produces 24 names
+
+md_p5_perc <-  (24 / 350)*100
+  
+```
 
 
 
 
-#What I want to do here is make a value that says power_five and have that be equal to "Big Ten", "Big 12", "ACC", "SEC', "Pac-12" so that when I filter I can say Filter to show me only players in the power_five conferences. I want to do this instead of having to filter and write a logner and/or statment
 
+
+
+
+
+
+
+
+
+*** Unorganized section ***
+
+```{r}
 #Why does this not show everyone in p5 from maryland? Many people missing? What I want to happen is show players who are in p5 and from Maryland as a home state.
 
 #how many players in P5 are from Maryland?      
