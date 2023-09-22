@@ -36,23 +36,25 @@ General questions
 Steps
 - Generate the numbers per capita for the state and then the local towns
 - Get state populations by using Census API 
+- Begin writing the questions for the story
 - Start national and then work down
 
 
 
 
-
-Story questions to be analyzed by the data
+Story questions to be analyzed by the data (In no particular order)
 - Where to women's basketball players in Maryland come from
 - Where do Big 10 players come from in Maryland?
 - Which county or state produces the most women's basketball players?
+- How many Power 5 players are there in Maryland?
+- Which state has the most WBB players per capita?
+- How many DI, II and III players are there. 
 
 
-Story Structure
-- 
+Story Structure (Start wide and work your way in)
 - National numbers
 - Maryland state numbers
-- Basketball centric numbers.
+- Basketball centric numbers: ie: Big 10, Division I etc.
 
 
 
@@ -81,55 +83,79 @@ wbb_rosters_22_23 <- read_csv("data/wbb_rosters_2022_23.csv")
 head(wbb_rosters_22_23)
 
 #Loading in 23-24 data when I have it
-#wbb_rosters_22_23 <- read_csv("data/wbb_rosters_2022_23.csv")
-#head(wbb_rosters_22_23)
 
 
+```
 
+*** Organized section
+
+
+```{r}
+#What I want to do here is make a value that says power_five and have that be equal to "Big Ten", "Big 12", "ACC", "SEC', "Pac-12" so that when I filter I can say Filter to show me only players in the power_five conferences.
+
+power_five <- c("SEC", "Big Ten", "Pac-12", "Big 12", "ACC")
+
+wbb_rosters_22_23 %>%
+filter(conference == power_five)
+#174 players are from Power 5 schools
+#Question: should I include the new incoming Big Ten teams into this code block?
+
+
+```
+
+Working Lede: With women's basketball season approaching, let's see where players come form within the US and abroad. While Maryland lost a plethora of talent, including three of its starters, the Terps have a good crop of experience and newcomers to work with.
+
+** Running some basic analysis unorganized**
+
+
+```{r}
+#Question: How many women's basketball players are from Maryland?
+#Answer: Maryland has 350 WBB players?
+
+#state counts
+wbb_rosters_22_23 %>% 
+group_by(state_clean) %>%
+filter(state_clean == "MD") %>% 
+count()
+##Maryland has 350
+```
+
+
+```{r}
+#Question: What state has the most WBB players
+#Answer: PA has the most with 915
+#Sentence: There are over 1,000 players who hail from overseas (say some of the best international names), but Pennsylvania, New York and Texas dominate the domestic states with 915, 900 and 992 players respectively.
+
+state_counts <- wbb_rosters_22_23 %>% 
+group_by(state_clean) %>%
+count() %>% 
+arrange(desc(n))
+#1073 NAs
+
+international_players <- wbb_rosters_22_23 %>% 
+filter(is.na(state_clean))
 ```
 
 
 
 
 
-
-
-** Running some basic analysis **
-
-
 ```{r}
-#state counts
+#Question: Which power 5 conference produces the most WBB players?
+#Answer:
+#Sentence:
 
-wbb_rosters_22_23 %>% 
-group_by(state_clean) %>%
-filter(state_clean == "MD") %>% 
-count()
-##Maryland has 350
-
-
-wbb_rosters_22_23 %>% 
-group_by(state_clean) %>%
-count() %>% 
-arrange(desc(n))
-#1073 NAs
-
-wbb_rosters_22_23 %>% 
-filter(is.na(state_clean))
-
-wbb_rosters_22_23 %>% 
+wbb_rosters_22_23 %>%
+filter(conference == power_five) %>% 
 group_by(conference) %>% 
 count() %>% 
 arrange(desc(n))
+#Issue: These numbers seem too low. Im trying to view how many players there are in the power 5 conferneces
+
+
+
 
 #What I want to do here is make a value that says power_five and have that be equal to "Big Ten", "Big 12", "ACC", "SEC', "Pac-12" so that when I filter I can say Filter to show me only players in the power_five conferences. I want to do this instead of having to filter and write a logner and/or statment
-
-power_five <- c("SEC", "Big Ten", "Pac-12", "Big 12", "ACC")
-
-wbb_rosters_22_23 %>%
-filter(conference == power_five)
-
-
-#Question: should I include the new incoming Big Ten teams into this code block?
 
 #Why does this not show everyone in p5 from maryland? Many people missing? What I want to happen is show players who are in p5 and from Maryland as a home state.
 
@@ -178,6 +204,8 @@ arrange(desc(n))
 
 
 
+
+
 *** Beginning to work on the section with Census Data ***
 
 ```{r}
@@ -206,7 +234,7 @@ states_2022 <- get_acs(geography = "state",
 
 #I think I need to join the populations to the state_counts dataframe to then do a mutate and identify number of WBB players per capita in each state.  
 
-
+# Would I need to change the city names to be accurate with the census stuff
 
 
 ```
