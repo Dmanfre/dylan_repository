@@ -1,0 +1,27 @@
+{
+    "id": "E8877EA7",
+    "path": "~/Documents/GitHub/enterprise_capstone/washington_county_data/new_markdown.Rmd",
+    "project_path": null,
+    "type": "r_markdown",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1695395025759.0,
+    "source_on_save": false,
+    "relative_order": 8,
+    "properties": {
+        "chunk_output_type": "inline",
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "44,0",
+        "scrollLine": "19"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1695328910,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1695328910,
+    "read_only": false,
+    "read_only_alternatives": []
+}

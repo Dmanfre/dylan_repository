@@ -17,8 +17,6 @@ Establishing my steps
 # import the dataset wbb_rosters_22_23
 # establish the power_five list power_five <- c("SEC", "Big Ten", "Pac-12", "Big 12", "ACC")
 
-
-
 #Try to set this up so that the code is underneith a sentence that I would write in the story. 
 
 
@@ -32,16 +30,35 @@ Thinking of making this story more of a listical piece where I provide a graphic
 General questions
 - Do I start national and work down to a more local level?
 - Do I include schools that are moving into the Big Ten in the latest 23-24 data?
-- 
-
-Story questions to be analyzed by the data
-- Where to women's basketball players in Maryland come from
+- How do I work in the census data to get per capita numbers (look back at the textbook and previous labs)
 
 
 Steps
 - Generate the numbers per capita for the state and then the local towns
 - Get state populations by using Census API 
+- Start national and then work down
+
+
+
+
+
+Story questions to be analyzed by the data
+- Where to women's basketball players in Maryland come from
+- Where do Big 10 players come from in Maryland?
+- Which county or state produces the most women's basketball players?
+
+
+Story Structure
 - 
+- National numbers
+- Maryland state numbers
+- Basketball centric numbers.
+
+
+
+
+Presentation ideas
+- Vision is tha you click on a part of the map and then it zooms in on an area and you're able to or click on a filter like the first graphic in the Ramaswamy story
 
 
 
@@ -154,15 +171,8 @@ arrange(desc(n))
 
 ```
 
-```{r}
 
 
-
-```
-
-
-** Steps for the census data **
-- Get dataframe of Maryland populations
 
 
 
@@ -176,14 +186,28 @@ Sys.setenv(CENSUS_API_KEY = "5cb2b9c628a1d1329c5bf4d36fe4435c6501efc8", overwrit
 
 #2021 ACS
 ACS_2021 <- load_variables(2021, "acs5")
+#2022 ACS
+ACS_2022 <- load_variables(2022, "acs1") #Figured that ACS 2022 would be best for this project because im only comparing 2022-2023 and 23-24
 
 #Get this to show the population data of all the Maryland towns
-md_2021 <- get_acs(geography = "place",
+md_2022 <- get_acs(geography = "place",
                 variables = c(population = "B01003_001"),      
               state = "MD",
-              year = 2021) %>% 
-  mutate(year = 2021)
+              survey = "acs1",
+              year = 2022) %>% 
+  mutate(year = 2022)
 #GEOID will be key to matching the places up together. 
+
+states_2022 <- get_acs(geography = "state",
+                variables = c(population = "B01003_001"),
+                survey = "acs1",
+                year = 2022) %>% 
+  mutate(year = 2022)
+
+#I think I need to join the populations to the state_counts dataframe to then do a mutate and identify number of WBB players per capita in each state.  
+
+
+
 
 ```
 
