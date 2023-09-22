@@ -1,5 +1,4 @@
-"0","#Get this to show the population data of all the Maryland towns
-md_2021 <- get_acs(geography = ""state"",
+"0","md_2021 <- get_acs(geography = ""place"",
                 variables = c(population = ""B01003_001""),      
               state = ""MD"",
               year = 2021) %>% 
