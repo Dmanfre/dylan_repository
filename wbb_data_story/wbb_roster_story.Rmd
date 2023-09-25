@@ -263,4 +263,3 @@ states_2022 <- get_acs(geography = "state",
 ```
 
 
-
