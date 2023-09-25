@@ -153,10 +153,9 @@ filter(conference %in% power_five)
 #Conference counts with percentages
 conf_player_counts <- total_p5_players %>% 
 group_by(conference) %>%
-summarize(total = n()) %>% 
-arrange(desc(total)) %>% 
-mutate(perc = round(total/sum(total)*100,1))
-#Error in summarize(., total = n()) :argument "by" is missing, with no default
+summarize(total_players = n()) %>% 
+arrange(desc(total_players)) %>% 
+mutate(perc = round(total_players/sum(total_players)*100,1))
 
 ```
 
@@ -169,7 +168,8 @@ Note: Decide what to do with conference realignment teams here.
 
 conference_md <- from_maryland_p5 %>% 
 group_by(conference) %>% 
-count()
+count() %>% 
+rename(players_from_md = n)
 
 #Remember to factor in conference realignment...
 
@@ -186,14 +186,16 @@ Note: Decide which is more focused for the story
 md_p5_hometown <- from_maryland_p5 %>% 
 group_by(hometown_clean) %>% 
 count() %>% 
-arrange(desc(n))
+arrange(desc(n)) %>% 
+rename(players_from_md = n)
 
 #All Players from Maryland
 all_md_players_hometown <-  wbb_rosters_22_23 %>% 
 filter(state_clean == "MD") %>% 
 group_by(hometown_clean) %>% 
 count() %>% 
-arrange(desc(n))
+arrange(desc(n)) %>% 
+rename(players_from_md = n)
 view(all_md_players_hometown)
 
 
@@ -209,7 +211,8 @@ md_division_breakdown <- wbb_rosters_22_23 %>%
 filter(state_clean == "MD") %>% 
 group_by(division) %>% 
 count() %>% 
-arrange(desc(n))
+arrange(desc(n)) %>% 
+rename(players_from_md = n)
 
 #Note: Putting here Percentage of D I players at Power 5 schools.
 #There are 24 P5 players at Division I schools
@@ -234,6 +237,9 @@ arrange(desc(n))
 #API key
 Sys.setenv(CENSUS_API_KEY = "5cb2b9c628a1d1329c5bf4d36fe4435c6501efc8", overwrite = TRUE)
 
+#2021 ACS
+ACS_2021 <- load_variables(2021, "acs5")
+
 #2022 ACS
 ACS_2022 <- load_variables(2022, "acs1") #Figured that ACS 2022 would be best for this project because im only comparing 2022-2023 and 23-24
 
@@ -245,6 +251,7 @@ md_2022 <- get_acs(geography = "place",
               year = 2022) %>% 
   mutate(year = 2022)
 #Why does this only show 12 places?
+# Per Derek: "Using 2022 1-year values will only get you the largest places in the state. Probably need to dial it back to an earlier year"
 
 #GEOID will be key to matching the places up together. 
 
@@ -254,12 +261,36 @@ usa_2022 <- get_acs(geography = "state",
                 year = 2022) %>% 
   mutate(year = 2022)
 
+#Notes
 #I think I need to join the populations to the state_counts dataframe to then do a mutate and identify number of WBB players per capita in each state.  
-
 # Would I need to change the city names to be accurate with the census stuff
-
 
 
 ```
 
+Using 2021 data for Maryland and the 50 states.
+
+```{r}
+
+md_2021 <- get_acs(geography = "place",
+                variables = c(population = "B01003_001"),      
+              state = "MD",
+              survey = "acs5",
+              year = 2021) %>% 
+  mutate(year = 2021)
+#Why does this only show 12 places?
+# Per Derek: "Using 2022 1-year values will only get you the largest places in the state. Probably need to dial it back to an earlier year"
+
+#GEOID will be key to matching the places up together. 
+
+usa_2021 <- get_acs(geography = "state",
+                variables = c(population = "B01003_001"),
+                survey = "acs5",
+                year = 2021) %>% 
+  mutate(year = 2021)
+
+#Explain that these are 5-year rolling averages in the story
+
+
+```
 
