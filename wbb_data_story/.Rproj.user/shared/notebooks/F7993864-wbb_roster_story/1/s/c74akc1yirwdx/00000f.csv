@@ -1,8 +1,0 @@
-"0","usa_2021 <- get_acs(geography = ""state"",
-                variables = c(population = ""B01003_001""),
-                survey = ""acs5"",
-                year = 2021) %>% 
-  mutate(year = 2021)
-"
-"2","Getting data from the 2017-2021 5-year ACS
-"

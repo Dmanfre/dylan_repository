@@ -294,3 +294,10 @@ usa_2021 <- get_acs(geography = "state",
 
 ```
 
+Next Steps
+- Join the Census data to the appropreate dataframes
+- Run code to genearte per capita numbers
+- Write sentences to see what the data tells me
+- Think of how I want to visualize the story and what my lede, body and structure will look like
+
+
