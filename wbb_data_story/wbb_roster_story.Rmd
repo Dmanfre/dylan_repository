@@ -93,10 +93,11 @@ head(wbb_rosters_22_23)
 Working Lede: With women's basketball season approaching, let's see where players come form within the US and abroad. While Maryland lost a plethora of talent, including three of its starters, the Terps have a good crop of experience and newcomers to work with.
 
 
+Question: What state has the most WBB players
+Answer: PA has the most with 915
+Sentence: There are over 1,000 players who hail from overseas (say some of the best international names), but Pennsylvania, New York and Texas dominate the domestic states with 915, 900 and 992 players respectively.
 ```{r}
-#Question: What state has the most WBB players
-#Answer: PA has the most with 915
-#Sentence: There are over 1,000 players who hail from overseas (say some of the best international names), but Pennsylvania, New York and Texas dominate the domestic states with 915, 900 and 992 players respectively.
+
 
 state_counts <- wbb_rosters_22_23 %>% 
 group_by(state_clean) %>%
@@ -109,10 +110,11 @@ filter(is.na(state_clean))
 ```
 
 
+Question: Which power 5 conference produces the most WBB players?
+Answer: There are 875 power 5 wbb players and 196 of them are from the ACC, the mos of the fiv econferneces.
+Sentence: It's pretty hard to land a scholarship offer. (Insert stat about college athletes)/ Getting a spot in one of the five conferences (soon to be 4?) is even harder. Only 875 women's basektball players attend Power 5 institutions. The ACC is most likely to take you. They have 196 players, but not much in front of the Big Ten with 194.
 ```{r}
-#Question: Which power 5 conference produces the most WBB players?
-#Answer: There are 875 power 5 wbb players and 196 of them are from the ACC, the mos of the fiv econferneces.
-#Sentence: It's pretty hard to land a scholarship offer. (Insert stat about college athletes)/ Getting a spot in one of the five conferences (soon to be 4?) is even harder. Only 875 women's basektball players attend Power 5 institutions. The ACC is most likely to take you. They have 196 players, but not much in front of the Big Ten with 194.
+
 
 power_five <- c("SEC", "Big Ten", "Pac-12", "Big 12", "ACC")
 
@@ -142,21 +144,33 @@ mutate(perc = round(total/sum(total)*100,1))
 ```
 
 
+Question: How many WBB players are from Maryland?
+Answer: 350 are from Maryland and 24 of them attend Power 5 schools
+Sentence: Roughly 7% of all Maryland wbb players attend power five schools.
 ```{r}
-#Question: How many WBB players are from Maryland?
-#Answer: 350 are from Maryland and 24 of them attend Power 5 schools
-#Sentence: Roughly 7% of all Maryland wbb players attend power five schools.
+
 
 wbb_rosters_22_23 %>% 
 filter (state_clean == "MD")
 #produces 350 names
 
-wbb_rosters_22_23 %>% 
-filter(conference %in% power_five, state_clean == "MD") %>% 
+from_maryland_p5 <-  wbb_rosters_22_23 %>% 
+filter(conference %in% power_five, state_clean == "MD")
 #Produces 24 names
 
 md_p5_perc <-  (24 / 350)*100
   
+```
+
+#Question: How many players does each power 5 confernece have?
+#Answer: ACC and Big Ten each have 8
+#Sentence: 
+```{r}
+
+conference_md <-from_maryland_p5 %>% 
+group_by(conference) %>% 
+count()
+
 ```
 
 
@@ -174,14 +188,6 @@ md_p5_perc <-  (24 / 350)*100
 *** Unorganized section ***
 
 ```{r}
-#Why does this not show everyone in p5 from maryland? Many people missing? What I want to happen is show players who are in p5 and from Maryland as a home state.
-
-#how many players in P5 are from Maryland?      
-#The %in% works with filtering on the list.
-
-from_maryland_p5 <-  wbb_rosters_22_23 %>%
-filter(conference %in% power_five) %>% 
-filter (state_clean == "MD")
 
 #compare to other states per capita... 
 
@@ -190,13 +196,6 @@ group_by(hometown_clean) %>%
 count()
 #Is the story here that Maryland, a big ten state, doesn't produce players to Power 5?
 
-# 8 players are in the ACC and Big Ten
-conference_md <-from_maryland_p5 %>% 
-group_by(conference) %>% 
-count()
-# One is in the pac-12. UCLA is the school and they are moving to the Big Ten.
-
-#Showing a breakdown of the divisions?
 
 
 ```
@@ -213,6 +212,8 @@ arrange(desc(n))
 
 
 ```
+
+
 
 
 
@@ -253,7 +254,7 @@ states_2022 <- get_acs(geography = "state",
 
 # Would I need to change the city names to be accurate with the census stuff
 
-
 ```
+
 
 
