@@ -165,61 +165,66 @@ md_p5_perc <-  (24 / 350)*100
 #Question: How many players does each power 5 confernece have?
 #Answer: ACC and Big Ten each have 8 and there are no players from the Big 12
 #Sentence: The lone Pac-12 player from Maryland will soon jump to the Big Ten as UCLA is set to join in Aug. 2024
+
+Note: Decide what to do with conference realignment teams here.
 ```{r}
 
-conference_md <-from_maryland_p5 %>% 
+conference_md <- from_maryland_p5 %>% 
 group_by(conference) %>% 
 count()
 
+#Remember to factor in conference realignment...
 
 ```
 
+Question: Where do the Power 5 Players come from in Maryland specifically?
+Answer: Baltimore has the most with 6 players on P5 tems. It also has the most players of any division.
+Sentence:
 
 
-
-
-
-
-
-
-
-
-
-
-*** Unorganized section ***
-
+Note: Decide which is more focused for the story
 ```{r}
-
-#compare to other states per capita... 
-
-from_maryland_p5 %>% 
+# Power 5 players from Maryland
+md_p5_hometown <- from_maryland_p5 %>% 
 group_by(hometown_clean) %>% 
-count()
-#Is the story here that Maryland, a big ten state, doesn't produce players to Power 5?
+count() %>% 
+arrange(desc(n))
 
+#All Players from Maryland
+all_md_players_hometown <-  wbb_rosters_22_23 %>% 
+filter(state_clean == "MD") %>% 
+group_by(hometown_clean) %>% 
+count() %>% 
+arrange(desc(n))
+view(all_md_players_hometown)
 
 
 ```
-*** For the story: Do I start larger and then work my way down in terms of scope and make this more of a list story? ***
+
+Question: Show me a division breakdown of the players in the dataset that are from Maryland
+Answer: There are only 133 D I players from Maryland and 140 who are in D III.
+Sentence: 18% of players from Maryland play at P5 institutions. UMD has the most with 3 players but Arkansas is a surprise with 2 players since geographically it's further away. 
+
 
 ```{r}
-divison_breakdown <- wbb_rosters_22_23 %>% 
+md_division_breakdown <- wbb_rosters_22_23 %>% 
 filter(state_clean == "MD") %>% 
 group_by(division) %>% 
 count() %>% 
 arrange(desc(n))
-# Maryland produces more D3 players than D1... D1 is more because it includes all conferences and not limited to P5 schools.... in genearl there are more D3 players because it's less competitive and no athletic scholarships.
 
+#Note: Putting here Percentage of D I players at Power 5 schools.
+#There are 24 P5 players at Division I schools
 
+md_d1_p5_perc = (24/133)*100
+#18% of division I players from Maryland attend P5 schools.
+
+from_maryland_p5 %>% 
+group_by(team) %>% 
+count() %>% 
+arrange(desc(n))
 
 ```
-
-
-
-
-
-
-
 
 
 
