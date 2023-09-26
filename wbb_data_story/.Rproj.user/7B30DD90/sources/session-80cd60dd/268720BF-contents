@@ -40,8 +40,6 @@ Steps
 - Start national and then work down
 
 
-
-
 Story questions to be analyzed by the data (In no particular order)
 - Where to women's basketball players in Maryland come from
 - Where do Big 10 players come from in Maryland?
@@ -116,6 +114,25 @@ arrange(desc(n))
 
 ```
 
+Question: Where are D-I players from in Maryland
+Sentece: Maryland has 133 Division I women's basketball players and they come from all over the state. 18% of them are at power 5 institutions. 
+
+Notes
+#Note: Putting here Percentage of D I players at Power 5 schools.
+#There are 24 P5 players at Division I schools
+#18% of division I players from Maryland attend P5 schools.
+
+```{r}
+division_one_md <- wbb_rosters_22_23 %>% 
+filter(state_clean == "MD", division == "I")
+md_d1_p5_perc = (24/133)*100
+
+
+#Do I do per capita numbers on this to see how many DI players there are Per Capita?
+
+```
+
+
 Question: How many WBB players are from Maryland? How many of those players attend power 5 schools.?
 Answer: 350 are from Maryland and 24 of them attend Power 5 schools
 Sentence: Roughly 7% of all Maryland wbb players attend power five schools.
@@ -134,6 +151,7 @@ filter(conference %in% power_five, state_clean == "MD")
 Notes
 - Should I try to compare this to other staes?
 ```{r}
+
 #Percentage of MD players at P5 institutions
 md_p5_perc <-  (24 / 350)*100
   
@@ -143,6 +161,7 @@ md_p5_perc <-  (24 / 350)*100
 Question: Which power 5 conference produces the most WBB players?
 Answer: There are 875 power 5 wbb players and 196 of them are from the ACC, the mos of the fiv econferneces.
 Sentence: It's pretty hard to land a scholarship offer. (Insert stat about college athletes)/ Getting a spot in one of the five conferences (soon to be 4?) is even harder. Only 875 women's basektball players attend Power 5 institutions. The ACC is most likely to take you. They have 196 players, but not much in front of the Big Ten with 194.
+
 ```{r}
 
 wbb_rosters_22_23 %>%
@@ -168,6 +187,7 @@ arrange(desc(total_players)) %>%
 mutate(perc = round(total_players/sum(total_players)*100,1))
 
 ```
+
 
 #Question: How many players from Maryland does each power 5 confernece have?
 #Answer: ACC and Big Ten each have 8 and there are no players from the Big 12
@@ -217,23 +237,6 @@ write_csv(md_2021, "data/md_2021.csv")
 
 ```
 
-Question: Where are D-I players from in Maryland
-Sentece: Maryland has 133 Division I women's basketball players and they come from all over the state. 18% of them are at power 5 institutions. 
-
-Notes
-#Note: Putting here Percentage of D I players at Power 5 schools.
-#There are 24 P5 players at Division I schools
-#18% of division I players from Maryland attend P5 schools.
-
-```{r}
-division_one_md <- wbb_rosters_22_23 %>% 
-filter(state_clean == "MD", division == "I")
-md_d1_p5_perc = (24/133)*100
-
-
-#Do I do per capita numbers on this to see hwo many DI players there are Per Capita?
-
-```
 
 Question: What teams do the Power 5 players from Maryland play for?
 Answer: UMD has 3 players from Maryland. Surprised to see Arkansas have 2 players 
@@ -323,11 +326,13 @@ Next Steps
 - Think of how I want to visualize the story and what my lede, body and structure will look like
 
 
-
 ```{r}
 #Maybe do per capita numbers on state_counts to say how this is how many players there are in Maryland per capita? Or do the 
 
 
+Get census data with abbreviation s for states. and then join it to the states_clean column within the WBB players data to show the per capita numbers for each state. and say there are x players per capita in each state. Multiply that by 100,000
+
+https://walker-data.com/tidycensus/reference/fips_codes.html
 
 ```
 
