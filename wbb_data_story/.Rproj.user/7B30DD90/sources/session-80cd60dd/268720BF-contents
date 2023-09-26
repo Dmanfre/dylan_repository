@@ -97,15 +97,22 @@ Question: What state has the most WBB players
 Answer: PA has the most with 915
 Sentence: There are over 1,000 players who hail from overseas (say some of the best international names), but Pennsylvania, New York and Texas dominate the domestic states with 915, 900 and 992 players respectively.
 ```{r}
-
 state_counts <- wbb_rosters_22_23 %>% 
 group_by(state_clean) %>%
 count() %>% 
 arrange(desc(n))
 #1073 NAs
+```
 
+Sentence: 1073 players representing 87 countries are playing division I women's basketball.
+```{r}
 international_players <- wbb_rosters_22_23 %>% 
 filter(is.na(state_clean))
+
+countries <- international_players %>% 
+group_by(country_clean) %>% 
+count() %>% 
+arrange(desc(n))
 
 ```
 
@@ -113,7 +120,6 @@ Question: How many WBB players are from Maryland? How many of those players atte
 Answer: 350 are from Maryland and 24 of them attend Power 5 schools
 Sentence: Roughly 7% of all Maryland wbb players attend power five schools.
 ```{r}
-
 power_five <- c("SEC", "Big Ten", "Pac-12", "Big 12", "ACC")
 
 wbb_rosters_22_23 %>% 
@@ -123,7 +129,11 @@ filter (state_clean == "MD")
 from_maryland_p5 <-  wbb_rosters_22_23 %>% 
 filter(conference %in% power_five, state_clean == "MD")
 #Produces 24 names
+```
 
+Notes
+- Should I try to compare this to other staes?
+```{r}
 #Percentage of MD players at P5 institutions
 md_p5_perc <-  (24 / 350)*100
   
@@ -198,28 +208,32 @@ arrange(desc(n)) %>%
 rename(players_from_md = n)
 view(all_md_players_hometown)
 
+#exporting these to csv
+
+write_csv(md_p5_hometown, "data/md_p5_hometown.csv")
+
+write_csv(md_2021, "data/md_2021.csv")
+
 
 ```
 
-Question: Show me a division breakdown of the players in the dataset that are from Maryland
-Answer: There are only 133 D I players from Maryland and 140 who are in D III.
-Sentence: 18% of players from Maryland play at P5 institutions. UMD has the most with 3 players but Arkansas is a surprise with 2 players since geographically it's further away. 
-
-
+Question: Where are D-I players from in Maryland
+Sentece: Maryland has 133 Division I women's basketball players and they come from all over the state. 18% of them are at power 5 institutions. 
 ```{r}
-md_division_breakdown <- wbb_rosters_22_23 %>% 
-filter(state_clean == "MD") %>% 
-group_by(division) %>% 
-count() %>% 
-arrange(desc(n)) %>% 
-rename(players_from_md = n)
+division_one_md <- wbb_rosters_22_23 %>% 
+filter(state_clean == "MD", division == "I")
 
 #Note: Putting here Percentage of D I players at Power 5 schools.
 #There are 24 P5 players at Division I schools
-
 md_d1_p5_perc = (24/133)*100
 #18% of division I players from Maryland attend P5 schools.
+```
 
+Question: What teams do the Power 5 players from Maryland play for?
+Answer: UMD has 3 players from Maryland. Surprised to see Arkansas have 2 players 
+Sentence: Power five players from Maryland represent 17 teams. Maryland has the most with three players (name them). Other schools that have Maryland-orginated players are actually not that close to the state at all. University of Arkansas, Boston College and University of Kentucky each have two players.  
+
+```{r}
 from_maryland_p5 %>% 
 group_by(team) %>% 
 count() %>% 
@@ -241,7 +255,7 @@ Sys.setenv(CENSUS_API_KEY = "5cb2b9c628a1d1329c5bf4d36fe4435c6501efc8", overwrit
 ACS_2021 <- load_variables(2021, "acs5")
 
 #2022 ACS
-ACS_2022 <- load_variables(2022, "acs1") #Figured that ACS 2022 would be best for this project because im only comparing 2022-2023 and 23-24
+ACS_2022 <- load_variables(2022, "acs1")
 
 #Get this to show the population data of all the Maryland towns
 md_2022 <- get_acs(geography = "place",
@@ -260,27 +274,29 @@ usa_2022 <- get_acs(geography = "state",
                 survey = "acs1",
                 year = 2022) %>% 
   mutate(year = 2022)
-
-#Notes
-#I think I need to join the populations to the state_counts dataframe to then do a mutate and identify number of WBB players per capita in each state.  
+```
+Notes
+I think I need to join the populations to the state_counts dataframe to then do a mutate and identify number of WBB players per capita in each state.  
 # Would I need to change the city names to be accurate with the census stuff
 
 
-```
 
 Using 2021 data for Maryland and the 50 states.
 
 ```{r}
-
 md_2021 <- get_acs(geography = "place",
                 variables = c(population = "B01003_001"),      
               state = "MD",
               survey = "acs5",
               year = 2021) %>% 
   mutate(year = 2021)
-#Why does this only show 12 places?
+```
+
+Notes
+Why does this only show 12 places?
 # Per Derek: "Using 2022 1-year values will only get you the largest places in the state. Probably need to dial it back to an earlier year"
 
+```{r}
 #GEOID will be key to matching the places up together. 
 
 usa_2021 <- get_acs(geography = "state",
@@ -290,8 +306,6 @@ usa_2021 <- get_acs(geography = "state",
   mutate(year = 2021)
 
 #Explain that these are 5-year rolling averages in the story
-
-
 ```
 
 Next Steps
@@ -299,5 +313,15 @@ Next Steps
 - Run code to genearte per capita numbers
 - Write sentences to see what the data tells me
 - Think of how I want to visualize the story and what my lede, body and structure will look like
+
+```{r}
+#working on the joins
+# reimporting the data
+
+
+
+
+
+```
 
 

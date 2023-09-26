@@ -1,0 +1,537 @@
+GEOID,NAME,variable,estimate,moe,year
+2400125,"Aberdeen city, Maryland",population,16176,37,2021
+2400175,"Aberdeen Proving Ground CDP, Maryland",population,2862,602,2021
+2400200,"Abingdon CDP, Maryland",population,5320,696,2021
+2400225,"Accident town, Maryland",population,342,78,2021
+2400250,"Accokeek CDP, Maryland",population,12241,1456,2021
+2400350,"Adamstown CDP, Maryland",population,2212,560,2021
+2400400,"Adelphi CDP, Maryland",population,16977,1504,2021
+2400712,"Algonquin CDP, Maryland",population,1010,256,2021
+2400800,"Allen CDP, Maryland",population,433,310,2021
+2401450,"Andrews AFB CDP, Maryland",population,3419,516,2021
+2401600,"Annapolis city, Maryland",population,40581,40,2021
+2401635,"Annapolis Neck CDP, Maryland",population,13059,1420,2021
+2401750,"Antietam CDP, Maryland",population,67,55,2021
+2401925,"Aquasco CDP, Maryland",population,806,225,2021
+2401975,"Arbutus CDP, Maryland",population,19662,1256,2021
+2402025,"Arden on the Severn CDP, Maryland",population,1386,295,2021
+2402275,"Arnold CDP, Maryland",population,25056,1502,2021
+2402762,"Ashton-Sandy Spring CDP, Maryland",population,6230,741,2021
+2402825,"Aspen Hill CDP, Maryland",population,53850,2965,2021
+2403500,"Baden CDP, Maryland",population,1832,373,2021
+2403514,"Bagtown CDP, Maryland",population,498,173,2021
+2403575,"Bakersville CDP, Maryland",population,0,13,2021
+2403800,"Ballenger Creek CDP, Maryland",population,23114,1256,2021
+2404000,"Baltimore city, Maryland",population,592211,NA,2021
+2404050,"Baltimore Highlands CDP, Maryland",population,7506,986,2021
+2404250,"Barclay town, Maryland",population,181,106,2021
+2404475,"Barnesville town, Maryland",population,169,121,2021
+2404525,"Barrelville CDP, Maryland",population,43,25,2021
+2404625,"Barton town, Maryland",population,550,193,2021
+2404650,"Bartonsville CDP, Maryland",population,2176,413,2021
+2405250,"Beaver Creek CDP, Maryland",population,550,176,2021
+2405525,"Bel Air CDP, Maryland",population,1540,466,2021
+2405550,"Bel Air town, Maryland",population,10663,34,2021
+2405825,"Bel Air North CDP, Maryland",population,30969,1398,2021
+2405950,"Bel Air South CDP, Maryland",population,56928,2177,2021
+2406400,"Beltsville CDP, Maryland",population,18769,1428,2021
+2406550,"Benedict CDP, Maryland",population,132,97,2021
+2406662,"Bensville CDP, Maryland",population,14483,1336,2021
+2406800,"Berlin town, Maryland",population,4950,18,2021
+2406925,"Berwyn Heights town, Maryland",population,3317,37,2021
+2407125,"Bethesda CDP, Maryland",population,66294,2719,2021
+2407200,"Betterton town, Maryland",population,410,119,2021
+2407285,"Bier CDP, Maryland",population,169,130,2021
+2407375,"Big Pool CDP, Maryland",population,60,53,2021
+2407400,"Big Spring CDP, Maryland",population,43,56,2021
+2407625,"Bishopville CDP, Maryland",population,550,295,2021
+2407675,"Bivalve CDP, Maryland",population,85,108,2021
+2407850,"Bladensburg town, Maryland",population,9591,26,2021
+2408050,"Bloomington CDP, Maryland",population,201,116,2021
+2408625,"Boonsboro town, Maryland",population,3757,15,2021
+2408775,"Bowie city, Maryland",population,58113,80,2021
+2408800,"Bowleys Quarters CDP, Maryland",population,6447,859,2021
+2408850,"Bowling Green CDP, Maryland",population,1282,248,2021
+2408862,"Bowmans Addition CDP, Maryland",population,821,351,2021
+2409100,"Braddock Heights CDP, Maryland",population,2984,737,2021
+2409325,"Brandywine CDP, Maryland",population,9852,702,2021
+2409400,"Breathedsville CDP, Maryland",population,234,253,2021
+2409500,"Brentwood town, Maryland",population,3775,24,2021
+2410150,"Brock Hall CDP, Maryland",population,12764,1236,2021
+2410225,"Brookeville town, Maryland",population,158,53,2021
+2410475,"Brooklyn Park CDP, Maryland",population,15541,1038,2021
+2410500,"Brookmont CDP, Maryland",population,3841,562,2021
+2410575,"Brookview town, Maryland",population,49,23,2021
+2410650,"Broomes Island CDP, Maryland",population,583,225,2021
+2410737,"Brown Station CDP, Maryland",population,3463,993,2021
+2410800,"Brownsville CDP, Maryland",population,34,60,2021
+2410900,"Brunswick city, Maryland",population,7578,25,2021
+2410925,"Bryans Road CDP, Maryland",population,8502,1083,2021
+2410950,"Bryantown CDP, Maryland",population,495,206,2021
+2411050,"Buckeystown CDP, Maryland",population,1397,365,2021
+2411400,"Burkittsville town, Maryland",population,131,37,2021
+2411550,"Burnt Mills CDP, Maryland",population,4215,1202,2021
+2411750,"Burtonsville CDP, Maryland",population,10457,1434,2021
+2411900,"Butlertown CDP, Maryland",population,505,214,2021
+2412075,"Cabin John CDP, Maryland",population,2335,391,2021
+2412150,"California CDP, Maryland",population,14129,1142,2021
+2412175,"Callaway CDP, Maryland",population,1363,325,2021
+2412300,"Calvert Beach CDP, Maryland",population,850,289,2021
+2412350,"Calverton CDP, Maryland",population,17772,1288,2021
+2412400,"Cambridge city, Maryland",population,13026,27,2021
+2412600,"Camp Springs CDP, Maryland",population,22903,1933,2021
+2412912,"Cape St. Claire CDP, Maryland",population,8762,702,2021
+2413000,"Capitol Heights town, Maryland",population,4083,22,2021
+2413225,"Carlos CDP, Maryland",population,54,29,2021
+2413325,"Carney CDP, Maryland",population,29873,1649,2021
+2414125,"Catonsville CDP, Maryland",population,42789,2561,2021
+2414225,"Cavetown CDP, Maryland",population,973,324,2021
+2414300,"Cearfoss CDP, Maryland",population,145,144,2021
+2414325,"Cecilton town, Maryland",population,808,262,2021
+2414550,"Cedar Heights CDP, Maryland",population,2145,986,2021
+2414800,"Cedarville CDP, Maryland",population,653,242,2021
+2414950,"Centreville town, Maryland",population,4640,19,2021
+2415075,"Chance CDP, Maryland",population,344,115,2021
+2415400,"Charlestown town, Maryland",population,1819,403,2021
+2415475,"Charlotte Hall CDP, Maryland",population,1447,448,2021
+2415500,"Charlton CDP, Maryland",population,442,270,2021
+2415925,"Chesapeake Beach town, Maryland",population,6303,21,2021
+2415950,"Chesapeake City town, Maryland",population,788,211,2021
+2416025,"Chesapeake Landing CDP, Maryland",population,160,115,2021
+2416050,"Chesapeake Ranch Estates CDP, Maryland",population,9387,840,2021
+2416125,"Chester CDP, Maryland",population,4371,542,2021
+2416225,"Chestertown town, Maryland",population,5557,21,2021
+2416550,"Cheverly town, Maryland",population,6191,51,2021
+2416620,"Chevy Chase town, Maryland",population,2913,27,2021
+2416625,"Chevy Chase CDP, Maryland",population,9889,640,2021
+2416720,"Chevy Chase Section Five village, Maryland",population,797,171,2021
+2416730,"Chevy Chase Section Three village, Maryland",population,982,177,2021
+2416775,"Chevy Chase View town, Maryland",population,1103,229,2021
+2416787,"Chevy Chase Village town, Maryland",population,1858,167,2021
+2416800,"Chewsville CDP, Maryland",population,343,188,2021
+2416875,"Chillum CDP, Maryland",population,36428,1874,2021
+2417000,"Choptank CDP, Maryland",population,99,74,2021
+2417050,"Church Creek town, Maryland",population,78,31,2021
+2417100,"Church Hill town, Maryland",population,1123,249,2021
+2417350,"Clarksburg CDP, Maryland",population,27354,1842,2021
+2417475,"Clarysville CDP, Maryland",population,42,55,2021
+2417600,"Clear Spring town, Maryland",population,443,179,2021
+2417900,"Clinton CDP, Maryland",population,39925,1499,2021
+2418150,"Cloverly CDP, Maryland",population,16473,1325,2021
+2418200,"Cobb Island CDP, Maryland",population,1262,473,2021
+2418250,"Cockeysville CDP, Maryland",population,23803,1521,2021
+2418475,"Colesville CDP, Maryland",population,14468,1385,2021
+2418750,"College Park city, Maryland",population,34961,40,2021
+2418850,"Colmar Manor town, Maryland",population,1544,353,2021
+2419125,"Columbia CDP, Maryland",population,105086,2575,2021
+2419825,"Coral Hills CDP, Maryland",population,9169,870,2021
+2419900,"Cordova CDP, Maryland",population,318,211,2021
+2419975,"Corriganville CDP, Maryland",population,760,253,2021
+2420050,"Cottage City town, Maryland",population,1089,196,2021
+2420500,"Crellin CDP, Maryland",population,49,50,2021
+2420525,"Cresaptown CDP, Maryland",population,5575,658,2021
+2420775,"Crisfield city, Maryland",population,2533,491,2021
+2420875,"Crofton CDP, Maryland",population,29812,1742,2021
+2420925,"Croom CDP, Maryland",population,2756,522,2021
+2421075,"Crownsville CDP, Maryland",population,1273,375,2021
+2421150,"Crumpton CDP, Maryland",population,402,157,2021
+2421325,"Cumberland city, Maryland",population,19028,31,2021
+2421475,"Damascus CDP, Maryland",population,16945,1315,2021
+2421550,"Dames Quarter CDP, Maryland",population,109,119,2021
+2421675,"Danville CDP, Maryland",population,449,353,2021
+2421750,"Dargan CDP, Maryland",population,189,126,2021
+2421800,"Darlington CDP, Maryland",population,524,177,2021
+2421825,"Darnestown CDP, Maryland",population,6647,665,2021
+2421925,"Dawson CDP, Maryland",population,46,38,2021
+2422050,"Deale CDP, Maryland",population,4710,631,2021
+2422100,"Deal Island CDP, Maryland",population,279,80,2021
+2422275,"Deer Park town, Maryland",population,341,99,2021
+2422600,"Delmar town, Maryland",population,3748,13,2021
+2422725,"Denton town, Maryland",population,4712,23,2021
+2422775,"Derwood CDP, Maryland",population,1700,332,2021
+2422825,"Detmold CDP, Maryland",population,243,112,2021
+2423025,"District Heights city, Maryland",population,5927,38,2021
+2423500,"Downsville CDP, Maryland",population,776,709,2021
+2423700,"Drum Point CDP, Maryland",population,3007,775,2021
+2423975,"Dundalk CDP, Maryland",population,66426,2687,2021
+2424050,"Dunkirk CDP, Maryland",population,2299,356,2021
+2424200,"Eagle Harbor town, Maryland",population,46,40,2021
+2424250,"Eakles Mill CDP, Maryland",population,0,13,2021
+2424450,"East New Market town, Maryland",population,392,186,2021
+2424475,"Easton town, Maryland",population,16912,47,2021
+2424650,"East Riverdale CDP, Maryland",population,17136,1416,2021
+2424825,"Eckhart Mines CDP, Maryland",population,373,197,2021
+2424850,"Eden CDP, Maryland",population,855,294,2021
+2424925,"Edesville CDP, Maryland",population,108,74,2021
+2424950,"Edgemere CDP, Maryland",population,8915,995,2021
+2425000,"Edgemont CDP, Maryland",population,250,84,2021
+2425050,"Edgewater CDP, Maryland",population,9075,888,2021
+2425150,"Edgewood CDP, Maryland",population,25004,1650,2021
+2425425,"Edmonston town, Maryland",population,1577,406,2021
+2425575,"Eldersburg CDP, Maryland",population,30418,1099,2021
+2425600,"Eldorado town, Maryland",population,71,38,2021
+2425750,"Elkridge CDP, Maryland",population,24115,1811,2021
+2425800,"Elkton town, Maryland",population,15724,28,2021
+2425925,"Ellerslie CDP, Maryland",population,557,170,2021
+2426000,"Ellicott City CDP, Maryland",population,74432,2246,2021
+2426025,"Elliott CDP, Maryland",population,10,15,2021
+2426200,"Emmitsburg town, Maryland",population,2769,23,2021
+2426550,"Ernstville CDP, Maryland",population,20,31,2021
+2426600,"Essex CDP, Maryland",population,40710,2131,2021
+2427250,"Fairland CDP, Maryland",population,25324,2128,2021
+2427325,"Fairlee CDP, Maryland",population,478,191,2021
+2427375,"Fairmount CDP, Maryland",population,402,177,2021
+2427400,"Fairmount Heights town, Maryland",population,1455,355,2021
+2427425,"Fairplay CDP, Maryland",population,418,124,2021
+2427500,"Fairview CDP, Maryland",population,17,28,2021
+2427580,"Fairwood CDP, Maryland",population,7453,1090,2021
+2427700,"Fallston CDP, Maryland",population,9696,1035,2021
+2427900,"Federalsburg town, Maryland",population,2824,28,2021
+2428075,"Ferndale CDP, Maryland",population,17113,1476,2021
+2428275,"Finzel CDP, Maryland",population,878,376,2021
+2428300,"Fishing Creek CDP, Maryland",population,239,129,2021
+2428425,"Flintstone CDP, Maryland",population,283,162,2021
+2428512,"Flower Hill CDP, Maryland",population,14213,1295,2021
+2428640,"Forest Glen CDP, Maryland",population,6942,1089,2021
+2428725,"Forest Heights town, Maryland",population,2652,42,2021
+2429000,"Forestville CDP, Maryland",population,10575,902,2021
+2429400,"Fort Meade CDP, Maryland",population,11253,1436,2021
+2429450,"Fort Ritchie CDP, Maryland",population,0,13,2021
+2429525,"Fort Washington CDP, Maryland",population,25840,1818,2021
+2429712,"Fountainhead-Orchard Hills CDP, Maryland",population,6113,933,2021
+2429790,"Four Corners CDP, Maryland",population,8131,884,2021
+2430100,"Franklin CDP, Maryland",population,172,94,2021
+2430325,"Frederick city, Maryland",population,76376,58,2021
+2430567,"Frenchtown-Rumbly CDP, Maryland",population,24,38,2021
+2430575,"Friendly CDP, Maryland",population,10192,904,2021
+2430650,"Friendship CDP, Maryland",population,390,158,2021
+2430800,"Friendship Heights Village CDP, Maryland",population,4595,377,2021
+2430850,"Friendsville town, Maryland",population,436,123,2021
+2430900,"Frostburg city, Maryland",population,7282,17,2021
+2430950,"Fruitland city, Maryland",population,5455,24,2021
+2431025,"Fulton CDP, Maryland",population,5230,531,2021
+2431100,"Funkstown town, Maryland",population,889,241,2021
+2431175,"Gaithersburg city, Maryland",population,68827,103,2021
+2431225,"Galena town, Maryland",population,716,249,2021
+2431250,"Galestown town, Maryland",population,75,46,2021
+2431275,"Galesville CDP, Maryland",population,1267,607,2021
+2431350,"Gambrills CDP, Maryland",population,3185,359,2021
+2431400,"Gapland CDP, Maryland",population,70,98,2021
+2431525,"Garrett Park town, Maryland",population,864,143,2021
+2431575,"Garretts Mill CDP, Maryland",population,299,170,2021
+2431625,"Garrison CDP, Maryland",population,9727,1107,2021
+2431875,"Georgetown CDP, Maryland",population,42,56,2021
+2432025,"Germantown CDP, Maryland",population,90235,3030,2021
+2432175,"Gilmore CDP, Maryland",population,332,286,2021
+2432250,"Girdletree CDP, Maryland",population,106,62,2021
+2432350,"Glassmanor CDP, Maryland",population,17426,1454,2021
+2432500,"Glenarden city, Maryland",population,6341,32,2021
+2432650,"Glen Burnie CDP, Maryland",population,69739,2492,2021
+2432900,"Glen Echo town, Maryland",population,291,83,2021
+2433250,"Glenmont CDP, Maryland",population,15795,1077,2021
+2433400,"Glenn Dale CDP, Maryland",population,15426,1652,2021
+2433850,"Golden Beach CDP, Maryland",population,3755,881,2021
+2433950,"Goldsboro town, Maryland",population,215,98,2021
+2434150,"Gorman CDP, Maryland",population,189,202,2021
+2434350,"Graceham CDP, Maryland",population,268,123,2021
+2434425,"Grahamtown CDP, Maryland",population,190,142,2021
+2434525,"Grantsville town, Maryland",population,752,188,2021
+2434550,"Grasonville CDP, Maryland",population,3388,559,2021
+2434775,"Greenbelt city, Maryland",population,24602,59,2021
+2435200,"Greensboro town, Maryland",population,2590,495,2021
+2435225,"Greensburg CDP, Maryland",population,115,64,2021
+2435412,"Green Valley CDP, Maryland",population,12999,1265,2021
+2436075,"Hagerstown city, Maryland",population,43015,44,2021
+2436125,"Halfway CDP, Maryland",population,10259,910,2021
+2436500,"Hampstead town, Maryland",population,6273,29,2021
+2436512,"Hampton CDP, Maryland",population,5055,510,2021
+2436600,"Hancock town, Maryland",population,1622,379,2021
+2437600,"Havre de Grace city, Maryland",population,14625,29,2021
+2437875,"Hebron town, Maryland",population,1108,335,2021
+2437925,"Henderson town, Maryland",population,178,135,2021
+2438025,"Herald Harbor CDP, Maryland",population,2590,500,2021
+2438437,"Highfield-Cascade CDP, Maryland",population,880,273,2021
+2438475,"Highland CDP, Maryland",population,1017,215,2021
+2438500,"Highland Beach town, Maryland",population,70,36,2021
+2438850,"Hillandale CDP, Maryland",population,4844,719,2021
+2438975,"Hillcrest Heights CDP, Maryland",population,17090,1774,2021
+2439175,"Hillsboro town, Maryland",population,122,51,2021
+2440200,"Honeygo CDP, Maryland",population,12169,832,2021
+2440700,"Hughesville CDP, Maryland",population,2475,524,2021
+2441025,"Huntingtown CDP, Maryland",population,3065,615,2021
+2441125,"Hurlock town, Maryland",population,2239,417,2021
+2441175,"Hutton CDP, Maryland",population,99,200,2021
+2441250,"Hyattsville city, Maryland",population,20790,57,2021
+2441475,"Ilchester CDP, Maryland",population,27513,1312,2021
+2441500,"Indian Head town, Maryland",population,3909,22,2021
+2441700,"Indian Springs CDP, Maryland",population,16,26,2021
+2442325,"Jarrettsville CDP, Maryland",population,2751,430,2021
+2442350,"Jefferson CDP, Maryland",population,2556,344,2021
+2442450,"Jennings CDP, Maryland",population,108,98,2021
+2442550,"Jessup CDP, Maryland",population,10516,1144,2021
+2442575,"Jesterville CDP, Maryland",population,217,195,2021
+2442875,"Joppatowne CDP, Maryland",population,12992,1066,2021
+2442950,"Jugtown CDP, Maryland",population,131,86,2021
+2443100,"Keedysville town, Maryland",population,1126,243,2021
+2443200,"Kemp Mill CDP, Maryland",population,14509,1352,2021
+2443280,"Kemps Mill CDP, Maryland",population,0,13,2021
+2443475,"Kennedyville CDP, Maryland",population,311,273,2021
+2443500,"Kensington town, Maryland",population,2336,331,2021
+2443725,"Kent Narrows CDP, Maryland",population,509,119,2021
+2443900,"Kettering CDP, Maryland",population,13924,1176,2021
+2444325,"Kingstown CDP, Maryland",population,1745,478,2021
+2444350,"Kingsville CDP, Maryland",population,4681,450,2021
+2444450,"Kitzmiller town, Maryland",population,229,60,2021
+2444525,"Klondike CDP, Maryland",population,162,196,2021
+2444715,"Konterra CDP, Maryland",population,2231,498,2021
+2444817,"Lake Arbor CDP, Maryland",population,14376,1578,2021
+2444975,"Lake Shore CDP, Maryland",population,19388,1226,2021
+2445325,"Landover CDP, Maryland",population,24508,1722,2021
+2445400,"Landover Hills town, Maryland",population,2075,382,2021
+2445525,"Langley Park CDP, Maryland",population,20769,1700,2021
+2445550,"Lanham CDP, Maryland",population,11460,1432,2021
+2445650,"Lansdowne CDP, Maryland",population,9310,1022,2021
+2445750,"La Plata town, Maryland",population,10054,38,2021
+2445825,"Largo CDP, Maryland",population,12003,1703,2021
+2445900,"Laurel city, Maryland",population,29438,68,2021
+2446075,"La Vale CDP, Maryland",population,4388,400,2021
+2446150,"Layhill CDP, Maryland",population,5119,689,2021
+2446250,"Laytonsville town, Maryland",population,580,100,2021
+2446375,"Leisure World CDP, Maryland",population,9291,790,2021
+2446400,"Leitersburg CDP, Maryland",population,358,145,2021
+2446475,"Leonardtown town, Maryland",population,4445,21,2021
+2446650,"Lewistown CDP, Maryland",population,252,93,2021
+2446725,"Lexington Park CDP, Maryland",population,12681,1177,2021
+2446800,"Libertytown CDP, Maryland",population,843,254,2021
+2447040,"Linganore CDP, Maryland",population,10959,908,2021
+2447125,"Linthicum CDP, Maryland",population,10270,1017,2021
+2447250,"Lisbon CDP, Maryland",population,35,84,2021
+2447275,"Little Orleans CDP, Maryland",population,48,47,2021
+2447450,"Lochearn CDP, Maryland",population,26995,1579,2021
+2447525,"Loch Lynn Heights town, Maryland",population,449,146,2021
+2447875,"Lonaconing town, Maryland",population,1160,237,2021
+2448025,"Long Beach CDP, Maryland",population,2126,481,2021
+2448775,"Luke town, Maryland",population,71,41,2021
+2448800,"Lusby CDP, Maryland",population,2457,753,2021
+2448875,"Lutherville CDP, Maryland",population,6755,782,2021
+2449325,"McCoole CDP, Maryland",population,439,164,2021
+2449700,"Madison CDP, Maryland",population,145,67,2021
+2449950,"Manchester town, Maryland",population,5350,33,2021
+2450375,"Mapleville CDP, Maryland",population,252,227,2021
+2450525,"Mardela Springs town, Maryland",population,480,175,2021
+2450680,"Marlboro Meadows CDP, Maryland",population,3773,549,2021
+2450685,"Marlboro Village CDP, Maryland",population,9786,1061,2021
+2450750,"Marlow Heights CDP, Maryland",population,5913,646,2021
+2450775,"Marlton CDP, Maryland",population,10153,1221,2021
+2450965,"Martin's Additions village, Maryland",population,1045,173,2021
+2451025,"Marydel town, Maryland",population,191,97,2021
+2451075,"Maryland City CDP, Maryland",population,18059,1636,2021
+2451125,"Maryland Park CDP, Maryland",population,646,314,2021
+2451425,"Maugansville CDP, Maryland",population,2549,361,2021
+2451575,"Mayo CDP, Maryland",population,8197,977,2021
+2451587,"Mays Chapel CDP, Maryland",population,12428,1106,2021
+2451800,"Mechanicsville CDP, Maryland",population,1857,458,2021
+2451940,"Melwood CDP, Maryland",population,3935,618,2021
+2451945,"Mercersville CDP, Maryland",population,240,179,2021
+2452225,"Middleburg CDP, Maryland",population,0,13,2021
+2452300,"Middle River CDP, Maryland",population,30606,1894,2021
+2452425,"Middletown town, Maryland",population,4893,21,2021
+2452475,"Midland town, Maryland",population,665,159,2021
+2452525,"Midlothian CDP, Maryland",population,367,175,2021
+2452562,"Milford Mill CDP, Maryland",population,30685,2008,2021
+2452825,"Millington town, Maryland",population,680,177,2021
+2452975,"Mitchellville CDP, Maryland",population,12160,1127,2021
+2453100,"Monrovia CDP, Maryland",population,2306,637,2021
+2453325,"Montgomery Village CDP, Maryland",population,34489,2205,2021
+2453625,"Morningside town, Maryland",population,1119,256,2021
+2453700,"Moscow CDP, Maryland",population,302,191,2021
+2453750,"Mount Aetna CDP, Maryland",population,579,208,2021
+2453800,"Mountain Lake Park town, Maryland",population,2116,339,2021
+2453875,"Mount Airy town, Maryland",population,9621,47,2021
+2453925,"Mount Briar CDP, Maryland",population,150,148,2021
+2454125,"Mount Lena CDP, Maryland",population,375,218,2021
+2454275,"Mount Rainier city, Maryland",population,8290,23,2021
+2454325,"Mount Savage CDP, Maryland",population,639,190,2021
+2454375,"Mount Vernon CDP, Maryland",population,1067,332,2021
+2454875,"Myersville town, Maryland",population,2427,562,2021
+2454925,"Nanticoke CDP, Maryland",population,359,299,2021
+2454930,"Nanticoke Acres CDP, Maryland",population,32,29,2021
+2455000,"National CDP, Maryland",population,83,98,2021
+2455018,"National Harbor CDP, Maryland",population,4355,676,2021
+2455050,"Naval Academy CDP, Maryland",population,4729,2617,2021
+2455325,"Newark CDP, Maryland",population,402,190,2021
+2455400,"New Carrollton city, Maryland",population,13574,34,2021
+2455650,"New Market town, Maryland",population,1598,302,2021
+2455925,"New Windsor town, Maryland",population,1267,228,2021
+2455950,"Nikep CDP, Maryland",population,0,13,2021
+2456300,"North Beach town, Maryland",population,2611,487,2021
+2456337,"North Bethesda CDP, Maryland",population,50695,2258,2021
+2456375,"North Brentwood town, Maryland",population,734,145,2021
+2456400,"North Chevy Chase village, Maryland",population,587,110,2021
+2456450,"North East town, Maryland",population,4015,23,2021
+2456712,"North Kensington CDP, Maryland",population,8771,815,2021
+2456725,"North Laurel CDP, Maryland",population,24233,1686,2021
+2456875,"North Potomac CDP, Maryland",population,24449,1238,2021
+2457650,"Oakland town, Maryland",population,2187,430,2021
+2458215,"Ocean CDP, Maryland",population,0,13,2021
+2458225,"Ocean City town, Maryland",population,6869,17,2021
+2458275,"Ocean Pines CDP, Maryland",population,12266,616,2021
+2458300,"Odenton CDP, Maryland",population,43488,2512,2021
+2458775,"Oldtown CDP, Maryland",population,67,46,2021
+2458900,"Olney CDP, Maryland",population,35815,1588,2021
+2459325,"Overlea CDP, Maryland",population,12959,1056,2021
+2459375,"Owings CDP, Maryland",population,2393,643,2021
+2459425,"Owings Mills CDP, Maryland",population,35170,2161,2021
+2459450,"Oxford town, Maryland",population,862,194,2021
+2459500,"Oxon Hill CDP, Maryland",population,18763,1818,2021
+2459787,"Paramount-Long Meadow CDP, Maryland",population,2860,661,2021
+2460275,"Parkville CDP, Maryland",population,30783,1778,2021
+2460325,"Parole CDP, Maryland",population,18488,1151,2021
+2460425,"Parsonsburg CDP, Maryland",population,313,211,2021
+2460475,"Pasadena CDP, Maryland",population,31583,1926,2021
+2460770,"Pecktonville CDP, Maryland",population,269,207,2021
+2460950,"Peppermill Village CDP, Maryland",population,5314,702,2021
+2460975,"Perry Hall CDP, Maryland",population,29165,1707,2021
+2461075,"Perryman CDP, Maryland",population,2767,454,2021
+2461150,"Perryville town, Maryland",population,4391,21,2021
+2461400,"Pikesville CDP, Maryland",population,33549,1635,2021
+2461700,"Pinesburg CDP, Maryland",population,447,249,2021
+2461875,"Piney Point CDP, Maryland",population,939,325,2021
+2462025,"Pittsville town, Maryland",population,1994,337,2021
+2462100,"Pleasant Grove CDP, Maryland",population,252,116,2021
+2462175,"Pleasant Hills CDP, Maryland",population,4104,415,2021
+2462475,"Pocomoke City city, Maryland",population,4276,17,2021
+2462575,"Point of Rocks CDP, Maryland",population,2277,392,2021
+2462675,"Pomfret CDP, Maryland",population,462,209,2021
+2462775,"Pondsville CDP, Maryland",population,71,54,2021
+2462850,"Poolesville town, Maryland",population,5666,29,2021
+2463075,"Port Deposit town, Maryland",population,586,164,2021
+2463225,"Port Tobacco Village town, Maryland",population,2,4,2021
+2463300,"Potomac CDP, Maryland",population,46891,1824,2021
+2463375,"Potomac Heights CDP, Maryland",population,1115,359,2021
+2463425,"Potomac Park CDP, Maryland",population,771,140,2021
+2463725,"Powellville CDP, Maryland",population,134,93,2021
+2463825,"Preston town, Maryland",population,951,248,2021
+2463950,"Prince Frederick CDP, Maryland",population,2350,519,2021
+2464000,"Princess Anne town, Maryland",population,3415,16,2021
+2464375,"Pylesville CDP, Maryland",population,969,473,2021
+2464475,"Quantico CDP, Maryland",population,224,242,2021
+2464495,"Queen Anne CDP, Maryland",population,1360,417,2021
+2464500,"Queen Anne town, Maryland",population,197,100,2021
+2464568,"Queensland CDP, Maryland",population,1950,434,2021
+2464600,"Queenstown town, Maryland",population,777,249,2021
+2464950,"Randallstown CDP, Maryland",population,35641,2110,2021
+2465150,"Rawlings CDP, Maryland",population,403,266,2021
+2465312,"Redland CDP, Maryland",population,17965,1279,2021
+2465550,"Reid CDP, Maryland",population,17,28,2021
+2465600,"Reisterstown CDP, Maryland",population,27917,2028,2021
+2466000,"Ridgely town, Maryland",population,1868,292,2021
+2466150,"Ringgold CDP, Maryland",population,91,66,2021
+2466275,"Rising Sun town, Maryland",population,2749,19,2021
+2466400,"Riva CDP, Maryland",population,4477,498,2021
+2466635,"Riverdale Park town, Maryland",population,7321,27,2021
+2466762,"Riverside CDP, Maryland",population,6193,460,2021
+2466850,"Riviera Beach CDP, Maryland",population,12012,1340,2021
+2467000,"Robinwood CDP, Maryland",population,7662,1142,2021
+2467400,"Rock Hall town, Maryland",population,1397,293,2021
+2467500,"Rock Point CDP, Maryland",population,135,72,2021
+2467675,"Rockville city, Maryland",population,67095,51,2021
+2467950,"Rohrersville CDP, Maryland",population,224,207,2021
+2468265,"Romancoke CDP, Maryland",population,1667,273,2021
+2468300,"Rosaryville CDP, Maryland",population,11881,1489,2021
+2468400,"Rosedale CDP, Maryland",population,20296,1377,2021
+2468600,"Rosemont village, Maryland",population,319,86,2021
+2468700,"Rossville CDP, Maryland",population,15633,1420,2021
+2469200,"Sabillasville CDP, Maryland",population,390,179,2021
+2469425,"St. George Island CDP, Maryland",population,516,482,2021
+2469550,"St. James CDP, Maryland",population,4051,713,2021
+2469675,"St. Leonard CDP, Maryland",population,454,127,2021
+2469825,"St. Michaels town, Maryland",population,1483,307,2021
+2469925,"Salisbury city, Maryland",population,32583,52,2021
+2470175,"Sandy Hook CDP, Maryland",population,228,131,2021
+2470300,"San Mar CDP, Maryland",population,318,145,2021
+2470475,"Savage CDP, Maryland",population,7841,1036,2021
+2470525,"Scaggsville CDP, Maryland",population,10658,1273,2021
+2470775,"Seabrook CDP, Maryland",population,19558,1797,2021
+2470850,"Seat Pleasant city, Maryland",population,4537,23,2021
+2470900,"Secretary town, Maryland",population,648,236,2021
+2471150,"Severn CDP, Maryland",population,53955,2602,2021
+2471200,"Severna Park CDP, Maryland",population,39108,2288,2021
+2471450,"Shady Side CDP, Maryland",population,4813,562,2021
+2471460,"Shaft CDP, Maryland",population,371,136,2021
+2471600,"Sharpsburg town, Maryland",population,671,163,2021
+2471650,"Sharptown town, Maryland",population,719,153,2021
+2472350,"Silver Hill CDP, Maryland",population,5717,865,2021
+2472450,"Silver Spring CDP, Maryland",population,82472,2321,2021
+2472887,"Smith Island CDP, Maryland",population,238,118,2021
+2472900,"Smithsburg town, Maryland",population,2986,30,2021
+2473075,"Snow Hill town, Maryland",population,2442,436,2021
+2473325,"Solomons CDP, Maryland",population,2254,591,2021
+2473350,"Somerset town, Maryland",population,1031,166,2021
+2473600,"South Kensington CDP, Maryland",population,8566,669,2021
+2473650,"South Laurel CDP, Maryland",population,27998,1752,2021
+2474050,"Spencerville CDP, Maryland",population,1489,448,2021
+2474282,"Springdale CDP, Maryland",population,5055,664,2021
+2474350,"Spring Gap CDP, Maryland",population,49,46,2021
+2474560,"Spring Ridge CDP, Maryland",population,5827,544,2021
+2475025,"Stevensville CDP, Maryland",population,8359,848,2021
+2475150,"Still Pond CDP, Maryland",population,110,91,2021
+2475200,"Stockton CDP, Maryland",population,36,37,2021
+2475650,"Sudlersville town, Maryland",population,420,148,2021
+2475725,"Suitland CDP, Maryland",population,26375,1807,2021
+2475810,"Summerfield CDP, Maryland",population,16002,1520,2021
+2476450,"Swanton CDP, Maryland",population,0,13,2021
+2476550,"Sykesville town, Maryland",population,4260,24,2021
+2476650,"Takoma Park city, Maryland",population,17610,32,2021
+2476675,"Tall Timbers CDP, Maryland",population,559,298,2021
+2476725,"Taneytown city, Maryland",population,7183,28,2021
+2476925,"Taylors Island CDP, Maryland",population,86,56,2021
+2477100,"Temple Hills CDP, Maryland",population,9037,1068,2021
+2477200,"Templeville town, Maryland",population,154,113,2021
+2477262,"Ten Mile Creek CDP, Maryland",population,1255,347,2021
+2477825,"Thurmont town, Maryland",population,6247,24,2021
+2477912,"Tilghman Island CDP, Maryland",population,837,238,2021
+2477925,"Tilghmanton CDP, Maryland",population,312,192,2021
+2478050,"Timonium CDP, Maryland",population,11136,1149,2021
+2478120,"Tolchester CDP, Maryland",population,487,226,2021
+2478425,"Towson CDP, Maryland",population,59014,2112,2021
+2478575,"Trappe town, Maryland",population,1098,243,2021
+2478650,"Travilah CDP, Maryland",population,11052,756,2021
+2478705,"Trego-Rohrersville Station CDP, Maryland",population,254,243,2021
+2479225,"Tyaskin CDP, Maryland",population,98,71,2021
+2479350,"Union Bridge town, Maryland",population,962,216,2021
+2479675,"University Park town, Maryland",population,2701,338,2021
+2479875,"Upper Marlboro town, Maryland",population,621,150,2021
+2479900,"Urbana CDP, Maryland",population,12841,1037,2021
+2480075,"Vale Summit CDP, Maryland",population,72,37,2021
+2480600,"Vienna town, Maryland",population,424,128,2021
+2481175,"Waldorf CDP, Maryland",population,79190,1928,2021
+2481250,"Walker Mill CDP, Maryland",population,10596,1054,2021
+2481275,"Walkersville town, Maryland",population,6134,31,2021
+2481675,"Washington Grove town, Maryland",population,700,149,2021
+2481925,"Waterview CDP, Maryland",population,19,31,2021
+2482625,"West Denton CDP, Maryland",population,75,79,2021
+2482750,"Westernport town, Maryland",population,1785,376,2021
+2483025,"West Laurel CDP, Maryland",population,4627,586,2021
+2483100,"Westminster city, Maryland",population,19783,36,2021
+2483225,"West Ocean City CDP, Maryland",population,5287,506,2021
+2483290,"Westphalia CDP, Maryland",population,10578,1049,2021
+2483337,"West Pocomoke CDP, Maryland",population,494,223,2021
+2483746,"Whaleyville CDP, Maryland",population,40,66,2021
+2483775,"Wheaton CDP, Maryland",population,51836,2397,2021
+2484225,"Whitehaven CDP, Maryland",population,170,183,2021
+2484350,"White Marsh CDP, Maryland",population,9663,738,2021
+2484375,"White Oak CDP, Maryland",population,14711,1512,2021
+2484784,"Wildewood CDP, Maryland",population,6805,755,2021
+2484950,"Willards town, Maryland",population,1104,246,2021
+2485100,"Williamsport town, Maryland",population,1952,396,2021
+2485175,"Williston CDP, Maryland",population,137,72,2021
+2485395,"Wilson-Conococheague CDP, Maryland",population,2069,490,2021
+2486275,"Woodland CDP, Maryland",population,17,25,2021
+2486475,"Woodlawn CDP (Baltimore County), Maryland",population,42053,2301,2021
+2486525,"Woodlawn CDP (Prince George's County), Maryland",population,7819,1160,2021
+2486710,"Woodmore CDP, Maryland",population,4742,644,2021
+2486750,"Woodsboro town, Maryland",population,1242,400,2021
+2487000,"Worton CDP, Maryland",population,108,71,2021
+2487150,"Yarrowsburg CDP, Maryland",population,228,246,2021
+2487275,"Zihlman CDP, Maryland",population,373,101,2021

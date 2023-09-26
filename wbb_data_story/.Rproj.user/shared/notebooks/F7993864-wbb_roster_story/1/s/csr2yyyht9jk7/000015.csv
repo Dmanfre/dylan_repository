@@ -1,0 +1,10 @@
+"0","# Perform a left join
+population_data <- left_join(md_2021, md_p5_hometown, by = ""name"")
+"
+"1","[1m[33mError[39m in `left_join()`:[22m
+[38;5;253m[33m![38;5;253m Join columns must be present in data.
+[31m✖[38;5;253m Problem with `name`.[39m
+Backtrace:
+[90m 1. [39m[1mdplyr[22m::left_join(md_2021, md_p5_hometown, by = ""name"")
+[90m 2. [39m[1m[94mdplyr:::left_join.data.frame([39m[22mmd_2021, md_p5_hometown, by = ""name""[1m[94m)[39m[22m
+"
