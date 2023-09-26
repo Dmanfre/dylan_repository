@@ -219,14 +219,20 @@ write_csv(md_2021, "data/md_2021.csv")
 
 Question: Where are D-I players from in Maryland
 Sentece: Maryland has 133 Division I women's basketball players and they come from all over the state. 18% of them are at power 5 institutions. 
+
+Notes
+#Note: Putting here Percentage of D I players at Power 5 schools.
+#There are 24 P5 players at Division I schools
+#18% of division I players from Maryland attend P5 schools.
+
 ```{r}
 division_one_md <- wbb_rosters_22_23 %>% 
 filter(state_clean == "MD", division == "I")
-
-#Note: Putting here Percentage of D I players at Power 5 schools.
-#There are 24 P5 players at Division I schools
 md_d1_p5_perc = (24/133)*100
-#18% of division I players from Maryland attend P5 schools.
+
+
+#Do I do per capita numbers on this to see hwo many DI players there are Per Capita?
+
 ```
 
 Question: What teams do the Power 5 players from Maryland play for?
@@ -306,6 +312,8 @@ usa_2021 <- get_acs(geography = "state",
   mutate(year = 2021)
 
 #Explain that these are 5-year rolling averages in the story
+
+
 ```
 
 Next Steps
@@ -314,14 +322,15 @@ Next Steps
 - Write sentences to see what the data tells me
 - Think of how I want to visualize the story and what my lede, body and structure will look like
 
+
+
 ```{r}
-#working on the joins
-# reimporting the data
-
-
+#Maybe do per capita numbers on state_counts to say how this is how many players there are in Maryland per capita? Or do the 
 
 
 
 ```
+
+
 
 

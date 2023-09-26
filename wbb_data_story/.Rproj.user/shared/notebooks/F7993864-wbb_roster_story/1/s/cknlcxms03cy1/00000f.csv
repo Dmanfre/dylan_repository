@@ -1,0 +1,8 @@
+"0","#libraries"
+"0","library(tidyverse)"
+"0","library(tidycensus)"
+"0","library(janitor)"
+"0","library(lubridate)"
+"0","#install.packages(""ipumsr"")"
+"0","library(ipumsr)"
+"0",""

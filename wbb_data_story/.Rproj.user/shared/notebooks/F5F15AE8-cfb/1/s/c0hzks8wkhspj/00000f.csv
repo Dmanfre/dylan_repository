@@ -1,0 +1,5 @@
+"0","#Create a new column for point differential between the TeamScore and OpponentScore using mutate. You can use the same `logs` variable."
+"0",""
+"0","logs <- logs %>% "
+"0","mutate(differential = TeamScore - OpponentScore )"
+"0",""
