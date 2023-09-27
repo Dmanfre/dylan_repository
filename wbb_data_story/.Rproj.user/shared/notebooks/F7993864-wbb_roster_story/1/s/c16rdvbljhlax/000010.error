@@ -1,1 +1,0 @@
-{"frames":[],"message":"Error in write_csv(md_p5_hometown, \"data/md_p5_hometown.csv\") : \n  could not find function \"write_csv\"\n"}
