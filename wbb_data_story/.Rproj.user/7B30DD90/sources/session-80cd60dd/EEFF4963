@@ -1,24 +1,24 @@
 {
-    "id": "67D3FF5F",
+    "id": "EEFF4963",
     "path": null,
     "project_path": null,
     "type": "r_dataframe",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1695778587457.0,
+    "created": 1695779261152.0,
     "source_on_save": false,
-    "relative_order": 3,
+    "relative_order": 2,
     "properties": {
         "expression": "fips_codes",
         "caption": "fips_codes",
         "totalObservations": 3247,
         "displayedObservations": 3247,
         "variables": 5,
-        "cacheKey": "672A29ED",
+        "cacheKey": "917A1877",
         "object": "fips_codes",
         "environment": "",
-        "contentUrl": "grid_resource/gridviewer.html?env=&obj=fips_codes&cache_key=672A29ED&max_display_columns=50",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=fips_codes&cache_key=917A1877&max_display_columns=50",
         "preview": 0,
         "source_window_id": "",
         "Source": "Source"
@@ -28,7 +28,7 @@
     "encoding": "",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1695778587457,
+    "last_content_update": 1695779261152,
     "read_only": false,
     "read_only_alternatives": []
 }

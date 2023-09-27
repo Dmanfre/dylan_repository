@@ -282,7 +282,8 @@ usa_2022 <- get_acs(geography = "state",
                 variables = c(population = "B01003_001"),
                 survey = "acs1",
                 year = 2022) %>% 
-  mutate(year = 2022)
+  mutate(year = 2022) %>% 
+  rename(state = NAME)
 ```
 Notes
 I think I need to join the populations to the state_counts dataframe to then do a mutate and identify number of WBB players per capita in each state.  
@@ -312,24 +313,33 @@ usa_2021 <- get_acs(geography = "state",
                 variables = c(population = "B01003_001"),
                 survey = "acs5",
                 year = 2021) %>% 
-  mutate(year = 2021)
+  mutate(year = 2021) %>% 
+  rename(state = NAME)
 
 #Explain that these are 5-year rolling averages in the story
 
 
 ```
 
-Get census data with abbreviation s for states. and then join it to the states_clean column within the WBB players data to show the per capita numbers for each state. and say there are x players per capita in each state. Multiply that by 100,000
+Get census data with abbreviations for states. and then join it to the states_clean column within the WBB players data to show the per capita numbers for each state. and say there are x players per capita in each state. Multiply that by 100,000
 
 Next Steps
 - Import data(fips_codes) ... DONE (This gives abbreviated state column)
-- Join the abbreviated state column called "state"
+- 
+
+join fips_code to usa_2022 to get the abbreviated states. 
+Then join that to the state_counts so that the state_counts has the population of each state.
 
 ```{r}
 #Maybe do per capita numbers on state_counts to say how this is how many players there are in Maryland per capita? Or do the 
 
  data(fips_codes)
+#first attempt
+joined_states <- inner_join(usa_2022, fips_codes, by = "state")
 
+#second attempt
+joined_states <- usa_2022 %>%
+  left_join(fips_codes, by = c("states" = "state"))
 
 
 ```

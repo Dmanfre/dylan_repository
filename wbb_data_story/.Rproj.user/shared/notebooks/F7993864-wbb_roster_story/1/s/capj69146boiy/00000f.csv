@@ -1,6 +1,0 @@
-"0","data(fips_codes) %>% 
-group_by(state)
-"
-"2","Error in UseMethod(""group_by"") : 
-  no applicable method for 'group_by' applied to an object of class ""character""
-"
