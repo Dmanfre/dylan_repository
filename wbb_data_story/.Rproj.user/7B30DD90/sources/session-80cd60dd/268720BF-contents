@@ -319,20 +319,18 @@ usa_2021 <- get_acs(geography = "state",
 
 ```
 
-Next Steps
-- Join the Census data to the appropreate dataframes
-- Run code to genearte per capita numbers
-- Write sentences to see what the data tells me
-- Think of how I want to visualize the story and what my lede, body and structure will look like
+Get census data with abbreviation s for states. and then join it to the states_clean column within the WBB players data to show the per capita numbers for each state. and say there are x players per capita in each state. Multiply that by 100,000
 
+Next Steps
+- Import data(fips_codes) ... DONE (This gives abbreviated state column)
+- Join the abbreviated state column called "state"
 
 ```{r}
 #Maybe do per capita numbers on state_counts to say how this is how many players there are in Maryland per capita? Or do the 
 
+ data(fips_codes)
 
-Get census data with abbreviation s for states. and then join it to the states_clean column within the WBB players data to show the per capita numbers for each state. and say there are x players per capita in each state. Multiply that by 100,000
 
-https://walker-data.com/tidycensus/reference/fips_codes.html
 
 ```
 
