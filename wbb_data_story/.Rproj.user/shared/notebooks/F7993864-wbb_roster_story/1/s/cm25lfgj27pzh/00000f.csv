@@ -1,0 +1,9 @@
+"0","md_d1_hometown <- division_one_md %>% 
+group_by(hometown_clean) %>% 
+count() %>% 
+arrange(desc(n)) %>% 
+rename(players_from_md = n)
+"
+"2","Error in division_one_md %>% group_by(hometown_clean) %>% count() %>%  : 
+  could not find function ""%>%""
+"
