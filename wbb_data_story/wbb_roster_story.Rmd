@@ -89,6 +89,18 @@ rename(state_abbrev = state_clean)
 #1073 NAs
 ```
 
+Division I state counts
+```{r}
+
+d1_state_counts <- wbb_rosters_22_23 %>% 
+filter(division == "I") %>% 
+group_by(state_clean) %>% 
+count() %>% 
+rename(number_of_players = n) %>% 
+arrange(desc(number_of_players))
+
+```
+
 Sentence: 1073 players representing 87 countries are playing division I women's basketball.
 ```{r}
 international_players <- wbb_rosters_22_23 %>% 
@@ -98,6 +110,13 @@ countries <- international_players %>%
 group_by(country_clean) %>% 
 count() %>% 
 arrange(desc(n))
+```
+
+
+```{r}
+#Why are there two playrs from Hawaii in the international players dataset? Their country says USA which is not international.
+international_players %>% 
+filter(country_clean == "USA")
 
 ```
 
@@ -382,10 +401,15 @@ Section with 2023-2024 datat
 wbb_rosters_23_24 <-  read_csv("data/wbb_rosters_2023_24.csv")
 view(wbb_rosters_23_24)
 
-
-
 ```
 
+
+
+```{r}
+#removing variables that are duplicates or unneeded
+
+rm(list = "md_2021", "md_division_breakdown", "state.center", "md_p5_hometown", "ACS_2021")
+```
 
 
 

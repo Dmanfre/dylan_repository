@@ -1,0 +1,17 @@
+"0","d1_state_counts <- wbb_rosters_22_23 %>% 
+filter(division == ""I"") %>% 
+group_by(state_clean) %>% 
+count() %>% 
+rename(number_of_players = n) %>% 
+arrange(desn(number_of_players))
+"
+"1","[1m[33mError[39m in `arrange()`:[22m
+[38;5;253m[33m![38;5;253m Problem with the implicit `transmute()` step.
+[31m✖[38;5;253m Problem while computing `..1 = desn(number_of_players)`.[39m
+[1mCaused by error in `desn()`:[22m
+[33m![39m could not find function ""desn""
+Backtrace:
+[90m  1. [39m... %>% arrange(desn(number_of_players))
+[90m 11. [39m[1mbase[22m::.handleSimpleError(...)
+[90m 12. [39m[1mdplyr[22m (local) h(simpleError(msg, call))
+"
