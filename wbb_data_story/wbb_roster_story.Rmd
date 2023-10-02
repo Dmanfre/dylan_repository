@@ -79,6 +79,7 @@ Working Lede: With women's basketball season approaching, let's see where player
 Question: What state has the most WBB players
 Answer: PA has the most with 915
 Sentence: There are over 1,000 players who hail from overseas (say some of the best international names), but Pennsylvania, New York and Texas dominate the domestic states with 915, 900 and 992 players respectively.
+
 ```{r}
 state_counts <- wbb_rosters_22_23 %>% 
 group_by(state_clean) %>%
@@ -104,21 +105,16 @@ arrange(desc(number_of_players))
 Sentence: 1073 players representing 87 countries are playing division I women's basketball.
 ```{r}
 international_players <- wbb_rosters_22_23 %>% 
-filter(is.na(state_clean))
+filter(country_clean != "USA")
 
 countries <- international_players %>% 
 group_by(country_clean) %>% 
 count() %>% 
 arrange(desc(n))
+view(countries)
 ```
 
 
-```{r}
-#Why are there two playrs from Hawaii in the international players dataset? Their country says USA which is not international.
-international_players %>% 
-filter(country_clean == "USA")
-
-```
 
 Question: Where are D-I players from in Maryland
 Sentece: Maryland has 133 Division I women's basketball players and they come from all over the state. 18% of them are at power 5 institutions. 
@@ -129,14 +125,13 @@ Notes
 #18% of division I players from Maryland attend P5 schools.
 
 ```{r}
+
 division_one_md <- wbb_rosters_22_23 %>% 
 filter(state_clean == "MD", division == "I")
 md_d1_p5_perc = (24/133)*100
 
 division_one_usa <- wbb_rosters_22_23 %>% 
 filter(division == "I")
-
-
 
 ```
 
@@ -147,7 +142,7 @@ Sentence: Roughly 7% of all Maryland wbb players attend power five schools.
 ```{r}
 power_five <- c("SEC", "Big Ten", "Pac-12", "Big 12", "ACC")
 
-wbb_rosters_22_23 %>% 
+wbb_rosters_22_23 %>%
 filter (state_clean == "MD")
 #produces 350 names
 
@@ -189,7 +184,7 @@ filter(conference %in% power_five)
 #This produces 875 results which is much cleaner and seems to be more accurate. 
 
 #Conference counts with percentages
-d1_player_counts <- wbb_rosters_22_23 %>% 
+d1_conf_counts <- wbb_rosters_22_23 %>% 
 filter(division == "I", state_clean == "MD") %>% 
 group_by(conference) %>%
 summarize(total_players = n()) %>% 
@@ -210,7 +205,6 @@ Sentence: The lone Pac-12 player from Maryland will soon jump to the Big Ten as 
 
 Note: Decide what to do with conference realignment teams here.
 ```{r}
-
 conference_md <- from_maryland_p5 %>% 
 group_by(conference) %>% 
 count() %>% 
@@ -395,22 +389,47 @@ D1_usa_2022_with_state_counts <- D1_usa_2022_with_state_counts %>%
 ```
 
 
+
 Section with 2023-2024 datat
+
 ```{r}
 
-wbb_rosters_23_24 <-  read_csv("data/wbb_rosters_2023_24.csv")
+wbb_rosters_23_24 <- read_csv("data/wbb_rosters_2023_24.csv")
+)
+
+```
+
+Cleaning the datat
+
+```{r}
+
+
+
+wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
+  mutate(copy = hometown) %>% 
+  separate(hometown, into = c("town", "state"), sep = ", ")
+
+view(wbb_rosters_23_24)
+#seperate that into two columns based on the comma using seperate and then find a package to abbreviate the states
+
+```
+
+
+
+
+```{r}
+#Find a package that abbrevaites the state column
+
+wbb_rosters_23_24 <-  wbb_rosters_23_24 %>% 
+
+
 view(wbb_rosters_23_24)
 
 ```
 
 
 
+
+
+
 ```{r}
-#removing variables that are duplicates or unneeded
-
-rm(list = "md_2021", "md_division_breakdown", "state.center", "md_p5_hometown", "ACS_2021")
-```
-
-
-
-

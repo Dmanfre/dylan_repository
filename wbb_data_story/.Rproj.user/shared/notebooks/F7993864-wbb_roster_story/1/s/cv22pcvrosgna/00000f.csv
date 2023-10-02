@@ -1,6 +1,0 @@
-"0","onlybigten <- from_maryland_p5 %>% 
-filter(conference == ""Big Ten"")
-"
-"2","Error in from_maryland_p5 %>% filter(conference == ""Big Ten"") : 
-  could not find function ""%>%""
-"
