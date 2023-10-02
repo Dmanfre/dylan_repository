@@ -403,15 +403,12 @@ Cleaning the datat
 
 ```{r}
 
-
-
 wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
   mutate(copy = hometown) %>% 
   separate(hometown, into = c("town", "state"), sep = ", ")
 
 view(wbb_rosters_23_24)
 #seperate that into two columns based on the comma using seperate and then find a package to abbreviate the states
-
 ```
 
 

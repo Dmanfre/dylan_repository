@@ -402,7 +402,8 @@ wbb_rosters_23_24 <- read_csv("data/wbb_rosters_2023_24.csv")
 Cleaning the datat
 
 ```{r}
-
+hometown_distinct <- wbb_rosters_22_23 %>% 
+distinct(hometown)
 
 
 wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
@@ -411,6 +412,9 @@ wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
 
 view(wbb_rosters_23_24)
 #seperate that into two columns based on the comma using seperate and then find a package to abbreviate the states
+
+hometown_distinct <- hometown_distinct %>%
+  separate(hometown, into = c("town", "state"), sep = ", ")
 
 ```
 
