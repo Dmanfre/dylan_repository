@@ -1,8 +1,0 @@
-"0","wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
-  mutate(state = state.abb[match(state, state.name)]
-          TRUE ~ state)
-"
-"2","Error: unexpected numeric constant in:
-""  mutate(state = state.abb[match(state, state.name)]
-          TRUE""
-"

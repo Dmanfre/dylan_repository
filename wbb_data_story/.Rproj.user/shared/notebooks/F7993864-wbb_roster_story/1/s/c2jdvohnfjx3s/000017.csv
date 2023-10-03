@@ -1,6 +1,7 @@
-"0","wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
+"0","#attempt 2
+wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
   mutate(copy = hometown) %>% 
-  separate(hometown, into = c(""town"", ""state""), sep = "", "")
+  separate(hometown, into = c(""town"", ""state""), sep = "", "") 
 "
 "2","Warning: Expected 2 pieces. Additional pieces discarded in 83 rows [4, 123, 164, 278, 293, 298, 335, 348, 434, 613, 622, 744, 773, 968, 992, 1033, 1070, 1071, 1090, 1094, ...]."
 "2","Warning: Expected 2 pieces. Missing pieces filled with `NA` in 183 rows [94, 98, 387, 597, 743, 1032, 1217, 1402, 1404, 1406, 1407, 1410, 1411, 1412, 1518, 1644, 2364, 2521, 3173, 3364, ...]."

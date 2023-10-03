@@ -56,6 +56,10 @@ library(lubridate)
 #install.packages("ipumsr")
 library(ipumsr)
 
+install.packages("usdata")
+
+library(usdata)
+
 ```
 
 ```{r}
@@ -388,43 +392,99 @@ D1_usa_2022_with_state_counts <- D1_usa_2022_with_state_counts %>%
 
 ```
 
-
-
 Section with 2023-2024 datat
 
 ```{r}
 
 wbb_rosters_23_24 <- read_csv("data/wbb_rosters_2023_24.csv")
-)
 
 ```
 
 Cleaning the datat
 
 ```{r}
-hometown_distinct <- wbb_rosters_22_23 %>% 
-distinct(hometown)
-
-
+#attempt 2
 wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
   mutate(copy = hometown) %>% 
-  separate(hometown, into = c("town", "state"), sep = ", ")
+  separate(hometown, into = c("town", "state"), sep = ", ") 
 
-view(wbb_rosters_23_24)
-#seperate that into two columns based on the comma using seperate and then find a package to abbreviate the states
-
-hometown_distinct <- hometown_distinct %>%
-  separate(hometown, into = c("town", "state"), sep = ", ")
 
 ```
 
 
+```{r}
+#Attempt 1
+wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
+  mutate(copy = hometown) %>% 
+  separate(hometown, into = c("town", "state"), sep = ", ") %>% 
+  mutate(state = case_when(
+    str_detect(state, "NJ") ~ "NJ",
+    str_detect(state, "N.J.") ~ "NJ",
+    str_detect(state, "NM") ~ "NM",
+    str_detect(state, "NY") ~  "NY",
+    str_detect(state, "NC") ~ "NC",
+    str_detect(state, "ND") ~ "ND",
+    str_detect(state, "OH") ~ "OH",
+    str_detect(state, "OK") ~ "OK",
+    str_detect(state, "OR") ~ "OR",
+    str_detect(state, "PA") ~ "PA",
+    str_detect(state, "RI") ~ "RI",
+    str_detect(state, "SC") ~ "SC",
+    str_detect(state, "SD") ~ "SD",
+    str_detect(state, "TN") ~ "TN",
+    str_detect(state, "TX") ~ "TX",
+    str_detect(state, "UT") ~ "UT",
+    str_detect(state, "VT") ~ "VT",
+    str_detect(state, "VA") ~ "VA",
+    str_detect(state, "WA") ~ "WA",
+    str_detect(state, "WV") ~ "WV",
+    str_detect(state, "WI") ~ "WI",
+    str_detect(state, "WY") ~ "WY",
+    str_detect(state, "AL") ~ "AL",
+    str_detect(state, "AK") ~  "AK",
+    str_detect(state, "AZ") ~  "AZ",
+    str_detect(state, "AR") ~  "AR",
+    str_detect(state, "CA") ~  "CA",
+    str_detect(state, "CO") ~ "CO",
+    str_detect(state, "CT") ~  "CT",
+    str_detect(state, "DE") ~  "DE",
+    str_detect(state, "FL") ~  "FL",
+    str_detect(state, "GA") ~  "GA",
+    str_detect(state, "HI") ~ "HI",
+    str_detect(state, "ID") ~  "ID",
+    str_detect(state, "IL") ~  "IL",
+    str_detect(state, "IN") ~  "IN",
+    str_detect(state, "IA") ~  "IA",
+    str_detect(state, "KS") ~ "KS",
+    str_detect(state, "KY") ~  "KY",
+    str_detect(state, "LA") ~  "LA",
+    str_detect(state, "ME") ~  "ME",
+    str_detect(state, "MD") ~  "MD",
+    str_detect(state, "MA") ~  "MA",
+    str_detect(state, "MI") ~  "MI",
+    str_detect(state, "MN") ~ "MN",
+    str_detect(state, "MS") ~  "MS",
+    str_detect(state, "MO") ~  "MO",
+    str_detect(state, "NE") ~  "NE",
+    str_detect(state, "NV") ~ "NV",
+    str_detect(state, "NH") ~ "NH",
+    str_detect(state, "DC") ~ "DC",
+    str_detect(state, "MT") ~ "MT",
+    str_detect(state, "PR") ~ "PR",
+    TRUE ~ state
+  ))
+
+view(wbb_rosters_23_24)
+#seperate that into two columns based on the comma using seperate and then find a package to abbreviate the states
+```
 
 
 ```{r}
 #Find a package that abbrevaites the state column
 
-wbb_rosters_23_24 <-  wbb_rosters_23_24 %>% 
+wbb_rosters_23_24 %>% 
+distinct(state)
+
 
 
 view(wbb_rosters_23_24)

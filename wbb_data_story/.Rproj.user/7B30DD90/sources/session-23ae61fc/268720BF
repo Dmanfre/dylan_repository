@@ -3,25 +3,25 @@
     "path": "~/Documents/GitHub/dylan_repository/wbb_data_story/wbb_roster_story.Rmd",
     "project_path": "wbb_roster_story.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "3053921303",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1695344274494.0,
     "source_on_save": false,
-    "relative_order": 1,
+    "relative_order": 2,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
         "last_setup_crc32": "23ae61fcbb338d19",
-        "cursorPosition": "410,0",
-        "scrollLine": "400"
+        "cursorPosition": "433,33",
+        "scrollLine": "413"
     },
     "folds": "",
-    "lastKnownWriteTime": 1696282099,
+    "lastKnownWriteTime": 1696300449,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1696282194304,
+    "last_content_update": 1696300449705,
     "read_only": false,
     "read_only_alternatives": []
 }
