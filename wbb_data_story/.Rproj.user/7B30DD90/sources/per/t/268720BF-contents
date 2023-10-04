@@ -407,8 +407,10 @@ Exporting data for graphs
 #D1 players from Maryland
 
 view(division_one_md)
-
 division_one_md <- write_csv(division_one_md, "data/division_one_md.csv")
+
+#us state totals with d1 players
+D1_usa_2022_with_state_counts <- write_csv(D1_usa_2022_with_state_counts, "data/D1_usa_2022_with_state_counts.csv")
 
 
 ```
@@ -416,7 +418,8 @@ division_one_md <- write_csv(division_one_md, "data/division_one_md.csv")
 
 
 
-Section with 2023-2024 datat
+
+Section with 2023-2024 data
 
 ```{r}
 
@@ -439,7 +442,7 @@ wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
 # I have state column with actual abbreviations - just put those in clean_state
 # I have state column with periods - remove those and repeat above step
 
-wbb_rosters_23_24$state <- gsub("\\.", "", wbb_rosters_23_24$state)
+wbb_rosters_23_24$clean_state <- gsub(".", "", wbb_rosters_23_24$clean_state)
 
 # I have state column with longer abbrevs like "Ill." - convert those somehow
 # state column with non-states (foreign countries) - clean_state should be NA
@@ -449,6 +452,7 @@ wbb_rosters_23_24$state <- gsub("\\.", "", wbb_rosters_23_24$state)
 
 # if_else look up how to use 
 
+wbb_rosters_23_24 <- write_csv(wbb_rosters_23_24, "data/wbb_rosters_23_24.csv")
 
 
   
@@ -457,13 +461,15 @@ wbb_rosters_23_24$state <- gsub("\\.", "", wbb_rosters_23_24$state)
 
 ```{r}
 
-state_distinct
 
 
 #Attempt 1
 wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
   mutate(copy = hometown) %>% 
-  separate(hometown, into = c("town", "state"), sep = ", ") %>% 
+  separate(hometown, into = c("town", "state"), sep = ", ")
+
+
+%>% 
   mutate(clean_state = case_when(
     str_detect(state, "NJ") ~ "NJ",
     str_detect(state, "N.J.") ~ "NJ",
@@ -472,6 +478,7 @@ wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
     str_detect(state, "NC") ~ "NC",
     str_detect(state, "ND") ~ "ND",
     str_detect(state, "OH") ~ "OH",
+    str_detect(state, "Ohio") ~ "OH",
     str_detect(state, "OK") ~ "OK",
     str_detect(state, "OR") ~ "OR",
     str_detect(state, "PA") ~ "PA",
@@ -489,15 +496,19 @@ wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
     str_detect(state, "WI") ~ "WI",
     str_detect(state, "WY") ~ "WY",
     str_detect(state, "AL") ~ "AL",
-     str_detect(state, "Al.") ~ "AL",
-     str_detect(state, "Ala.") ~ "AL",
+    str_detect(state, "Al.") ~ "AL",
+    str_detect(state, "Ala.") ~ "AL",
     str_detect(state, "Alabama") ~ "AL",
     str_detect(state, "Ak") ~ "AK",
     str_detect(state, "Alaska") ~ "AK",
     str_detect(state, "AK.") ~ "AK",
     str_detect(state, "AZ") ~  "AZ",
+    str_detect(state, "Ariz.") ~ "AZ",
     str_detect(state, "AR") ~  "AR",
+    str_detect(state, "Ark.") ~  "AR",
+    str_detect(state, "Arkansas") ~  "AR",
     str_detect(state, "CA") ~  "CA",
+    str_detect(state, "Calif.") ~  "CA",
     str_detect(state, "CO") ~ "CO",
     str_detect(state, "CT") ~  "CT",
     str_detect(state, "DE") ~  "DE",
