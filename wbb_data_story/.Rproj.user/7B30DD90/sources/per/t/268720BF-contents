@@ -56,10 +56,10 @@ library(lubridate)
 #install.packages("ipumsr")
 library(ipumsr)
 
-install.packages("usdata")
+#install.packages("usdata")
 
 library(usdata)
-help(state2abbr)
+
 
 ```
 
@@ -416,6 +416,19 @@ D1_usa_2022_with_state_counts <- write_csv(D1_usa_2022_with_state_counts, "data/
 ```
 
 
+Question: Which High School has the most players? Is there a pipeline between any school?
+```{r}
+
+division_one_md %>% 
+group_by(hs_clean) %>%
+count() %>% 
+arrange(desc(n))
+
+division_one_md %>% 
+filter(hs_clean == "New Hope Academy")
+
+```
+
 
 
 
@@ -547,9 +560,8 @@ view(wbb_rosters_23_24)
 ```{r}
 #Find a package that abbrevaites the state column
 
-wbb_rosters_23_24 %>% 
-distinct(state)
 
+ 
 
 
 view(wbb_rosters_23_24)
