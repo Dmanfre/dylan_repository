@@ -405,7 +405,7 @@ filter(hs_clean == "Oxon Hill HS")
 
 ```
 
-#all divisions with Maryland players
+all divisions with Maryland players
 ```{r}
 all_divison_md_players <-  wbb_rosters_22_23 %>% 
 filter(state_clean == "MD") %>% 
