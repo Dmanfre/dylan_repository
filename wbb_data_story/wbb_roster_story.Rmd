@@ -62,8 +62,8 @@ library(usdata)
 
 #install.packages("postmastr")
 
-install.packages("remotes")
-remotes::install_github("slu-openGIS/postmastr")
+#install.packages("remotes")
+#remotes::install_github("slu-openGIS/postmastr")
 library(postmastr)
 ```
 
@@ -403,6 +403,18 @@ arrange(desc(n))
 division_one_md %>% 
 filter(hs_clean == "Oxon Hill HS")
 
+```
+
+#all divisions with Maryland players
+```{r}
+all_divison_md_players <-  wbb_rosters_22_23 %>% 
+filter(state_clean == "MD") %>% 
+select(team, name, year_clean, position_clean, height_clean, hometown_clean, hs_clean, division, conference)
+
+all_divison_md_players <- write_csv(all_divison_md_players, "data/all_divison_md_players.csv")
+
+
+view(all_divison_md_players)
 ```
 
 _______________________________________________________________
