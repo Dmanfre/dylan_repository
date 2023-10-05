@@ -60,8 +60,13 @@ library(ipumsr)
 
 library(usdata)
 
+#install.packages("postmastr")
 
+install.packages("remotes")
+remotes::install_github("slu-openGIS/postmastr")
+library(postmastr)
 ```
+
 
 ```{r}
 
@@ -419,11 +424,12 @@ D1_usa_2022_with_state_counts <- write_csv(D1_usa_2022_with_state_counts, "data/
 Question: Which High School has the most players? Is there a pipeline between any school?
 ```{r}
 
-division_one_md %>% 
+high_schools <- division_one_md %>% 
 group_by(hs_clean) %>%
 count() %>% 
 arrange(desc(n))
 
+#players at HS
 division_one_md %>% 
 filter(hs_clean == "New Hope Academy")
 
@@ -440,137 +446,52 @@ wbb_rosters_23_24 <- read_csv("data/wbb_rosters_2023_24.csv")
 
 ```
 
-Cleaning the datat
+Cleaning the data based on what is in the wbb_1129 rmd.file
 
 ```{r}
-#attempt 2
-wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
-  mutate(copy = hometown) %>% 
-  separate(hometown, into = c("town", "state"), sep = ", ") 
+wbb_rosters_23_24 <- wbb_rosters_23_24 %>% 
+  mutate(hometown_cleaned = str_to_upper(str_replace(hometown, "\\.",""))) %>% 
+  mutate(hometown_cleaned = str_replace(hometown_cleaned,"\\.","")) %>%
+  mutate(hometown_cleaned = str_replace(hometown_cleaned,"/.*","")) %>%
+  mutate(hometown_cleaned = str_replace(hometown_cleaned,"\\.$","")) %>%
+  mutate(hometown_cleaned = str_replace(hometown_cleaned,",",", ")) %>%
+  mutate(hometown_cleaned = str_replace(hometown_cleaned,"-"," ")) %>% 
+  mutate(hometown_cleaned = str_squish(hometown_cleaned))
+
+states_non_standard <- pm_append(type = "state", input = c("SD.", "MASS", "CALIF", "MICH", "NEB", "IND", "MINN", "ORE", "OHIO", "FLA", "MISS", "TENN", "ARIZ", "KAN", "ALA", "OKLA", "WIS", "ILL", " WASH", "ARK", "COLO", "NEV", "CONN", "WISC", "WVA", "DEL", "WYO", "CALI", "LOUIS", "VIRG", "MONT", "PENN", "TEX", "KANS", "NEBR", "IDA", "COL"), output = c("SD", "MA", "CA", "MI", "NE", "IN", "MN", "OR", "OH", "FL", "MS", "TN", "AZ", "KS", "AL", "OK", "WI", "IL", "WA", "AR", "CO", "NV", "CT", "WI", "WV", "DE", "WY", "CA", "LA", "VA", "MT", "PA", "TX", "KS", "NE", "ID", "CO"), locale = "us")
+
+dict <- pm_dictionary(type='state', case = c("title", "upper", "lower"), append = states_non_standard)
+
+wbb_rosters_23_24 <- wbb_rosters_23_24 %>% pm_identify(var="hometown_cleaned")
+
+parsed <- wbb_rosters_23_24 %>% 
+  pm_identify(var="hometown_cleaned") %>% 
+  pm_prep(var="hometown_cleaned", type="street") %>% 
+  pm_state_parse(dict)
+
+wbb_rosters_23_24 <- left_join(wbb_rosters_23_24, parsed, by="pm.uid")
+
+wbb_rosters_23_24 %>%
+  filter(is.na(hometown_cleaned))
+
+wbb_rosters_23_24 <- wbb_rosters_23_24 %>% separate(hometown, c('hometown', 'homestate'), sep=',', extra='merge')
+
+wbb_rosters_23_24 <- wbb_rosters_23_24 %>% mutate(homestate=str_trim(homestate), homestate=str_replace(homestate, '\\.', '')) %>%
+  mutate(homestate = case_when(is.na(abbr2state(homestate)) ~ homestate, TRUE ~ (abbr2state(homestate))))
 
 wbb_rosters_23_24 <- wbb_rosters_23_24 %>% 
-  mutate(clean_state = state2abbr(state))
+rename(cleaned_city = pm.address,
+        cleaned_state = pm.state)
 
 
-# I have state column with actual abbreviations - just put those in clean_state
-# I have state column with periods - remove those and repeat above step
-
-wbb_rosters_23_24$clean_state <- gsub(".", "", wbb_rosters_23_24$clean_state)
-
-# I have state column with longer abbrevs like "Ill." - convert those somehow
-# state column with non-states (foreign countries) - clean_state should be NA
-
-
-
-
-# if_else look up how to use 
-
-wbb_rosters_23_24 <- write_csv(wbb_rosters_23_24, "data/wbb_rosters_23_24.csv")
-
-
-  
 ```
 
 
-```{r}
-
-
-
-#Attempt 1
-wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
-  mutate(copy = hometown) %>% 
-  separate(hometown, into = c("town", "state"), sep = ", ")
-
-
-%>% 
-  mutate(clean_state = case_when(
-    str_detect(state, "NJ") ~ "NJ",
-    str_detect(state, "N.J.") ~ "NJ",
-    str_detect(state, "N.M.") ~ "NM",
-    str_detect(state, "N.Y.") ~  "NY",
-    str_detect(state, "NC") ~ "NC",
-    str_detect(state, "ND") ~ "ND",
-    str_detect(state, "OH") ~ "OH",
-    str_detect(state, "Ohio") ~ "OH",
-    str_detect(state, "OK") ~ "OK",
-    str_detect(state, "OR") ~ "OR",
-    str_detect(state, "PA") ~ "PA",
-    str_detect(state, "RI") ~ "RI",
-    str_detect(state, "SC") ~ "SC",
-    str_detect(state, "SD") ~ "SD",
-    str_detect(state, "TN") ~ "TN",
-    str_detect(state, "TX") ~ "TX",
-    str_detect(state, "Texas") ~  "TX",
-    str_detect(state, "UT") ~ "UT",
-    str_detect(state, "VT") ~ "VT",
-    str_detect(state, "VA") ~ "VA",
-    str_detect(state, "WA") ~ "WA",
-    str_detect(state, "WV") ~ "WV",
-    str_detect(state, "WI") ~ "WI",
-    str_detect(state, "WY") ~ "WY",
-    str_detect(state, "AL") ~ "AL",
-    str_detect(state, "Al.") ~ "AL",
-    str_detect(state, "Ala.") ~ "AL",
-    str_detect(state, "Alabama") ~ "AL",
-    str_detect(state, "Ak") ~ "AK",
-    str_detect(state, "Alaska") ~ "AK",
-    str_detect(state, "AK.") ~ "AK",
-    str_detect(state, "AZ") ~  "AZ",
-    str_detect(state, "Ariz.") ~ "AZ",
-    str_detect(state, "AR") ~  "AR",
-    str_detect(state, "Ark.") ~  "AR",
-    str_detect(state, "Arkansas") ~  "AR",
-    str_detect(state, "CA") ~  "CA",
-    str_detect(state, "Calif.") ~  "CA",
-    str_detect(state, "CO") ~ "CO",
-    str_detect(state, "CT") ~  "CT",
-    str_detect(state, "DE") ~  "DE",
-    str_detect(state, "FL") ~  "FL",
-    str_detect(state, "GA") ~  "GA",
-    str_detect(state, "HI") ~ "HI",
-    str_detect(state, "ID") ~  "ID",
-    str_detect(state, "IL") ~  "IL",   
-    str_detect(state, "Ill") ~  "IL",
-    str_detect(state, "IN") ~  "IN",
-    str_detect(state, "IA") ~  "IA",
-    str_detect(state, "KS") ~ "KS",
-    str_detect(state, "KY") ~  "KY",
-    str_detect(state, "LA") ~  "LA",
-    str_detect(state, "ME") ~  "ME",
-    str_detect(state, "MD") ~  "MD",
-    str_detect(state, "MA") ~  "MA",
-    str_detect(state, "MI") ~  "MI",
-    str_detect(state, "MN") ~ "MN",
-    str_detect(state, "MS") ~  "MS",
-    str_detect(state, "MO") ~  "MO",
-    str_detect(state, "NE") ~  "NE",
-    str_detect(state, "NV") ~ "NV",
-    str_detect(state, "NH") ~ "NH",
-    str_detect(state, "DC") ~ "DC",
-    str_detect(state, "MT") ~ "MT",
-    str_detect(state, "PR") ~ "PR",
-    TRUE ~ state
-  ))
-
-view(wbb_rosters_23_24)
-#seperate that into two columns based on the comma using seperate and then find a package to abbreviate the states
-```
-
 
 ```{r}
-#Find a package that abbrevaites the state column
-
-
- 
-
-
-view(wbb_rosters_23_24)
-
 ```
 
 
 
 
 
-
-```{r}
