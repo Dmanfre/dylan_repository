@@ -324,12 +324,8 @@ mutate(state_abbrev = case_when(
     state == "Puerto Rico" ~ "PR",
     TRUE ~ state_abbrev
   ))
-
 ```
 
-
-joining state_counts of wbb players to usa_2022
-Or should I go the other way around?
 
 ```{r}
 #joining with state_counts
@@ -376,6 +372,7 @@ D1_usa_2022_with_state_counts <- D1_usa_2022_with_state_counts %>%
 
 ```
 
+
 Exporting data for graphs
 
 ```{r}
@@ -393,7 +390,6 @@ D1_usa_2022_with_state_counts <- write_csv(D1_usa_2022_with_state_counts, "data/
 
 Question: Which High School has the most players? Is there a pipeline between any school?
 ```{r}
-
 high_schools <- division_one_md %>% 
 group_by(hs_clean) %>%
 count() %>% 
@@ -401,7 +397,7 @@ arrange(desc(n))
 
 #players at HS
 division_one_md %>% 
-filter(hs_clean == "Oxon Hill HS")
+filter(hs_clean == "Bishop McNamara")
 
 ```
 
@@ -465,15 +461,16 @@ wbb_rosters_23_24 <- wbb_rosters_23_24 %>%
 rename(cleaned_city = pm.address,
         cleaned_state = pm.state)
 
-
+view(wbb_rosters_23_24)
+view(wbb_rosters_22_23)
 ```
 
-
 Data exploration
+I want to move the division column in 22-23 to the 23-24 dataframe.
 ```{r}
 #putting the divisions into 23-24
 
-wbb_rosters_23_24 <- inner_join(wbb_rosters_23_24, divisions_and_teams, by = "team")
+wbb_rosters_23_24 <- left_join(wbb_rosters_23_24, divisions_and_teams, by = "division")
 
 ```
 
