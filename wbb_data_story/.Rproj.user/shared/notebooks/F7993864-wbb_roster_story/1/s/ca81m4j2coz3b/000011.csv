@@ -4,3 +4,8 @@
 "0","wbb_rosters_23_24 <- wbb_rosters_23_24 %>% mutate(homestate=str_trim(homestate), homestate=str_replace(homestate, '\\.', '')) %>%"
 "0","  mutate(homestate = case_when(is.na(abbr2state(homestate)) ~ homestate, TRUE ~ (abbr2state(homestate))))"
 "0",""
+"0","wbb_rosters_23_24 <- wbb_rosters_23_24 %>% "
+"0","rename(cleaned_city = pm.address,"
+"0","        cleaned_state = pm.state)"
+"0",""
+"0",""

@@ -85,25 +85,9 @@ head(wbb_rosters_22_23)
 
 Working Lede: With women's basketball season approaching, let's see where players come form within the US and abroad. While Maryland lost a plethora of talent, including three of its starters, the Terps have a good crop of experience and newcomers to work with.
 
-
-Question: What state has the most WBB players
-Answer: PA has the most with 915
-Sentence: There are over 1,000 players who hail from overseas (say some of the best international names), but Pennsylvania, New York and Texas dominate the domestic states with 915, 900 and 992 players respectively.
-
-```{r}
-state_counts <- wbb_rosters_22_23 %>% 
-group_by(state_clean) %>%
-count() %>% 
-arrange(desc(n)) %>% 
-rename(players = n) %>% 
-rename(state_abbrev = state_clean)
-#1073 NAs
-```
-
 Division I state counts
 ```{r}
-
-d1_state_counts <- wbb_rosters_22_23 %>% 
+d1_state_counts_22_23 <- wbb_rosters_22_23 %>% 
 filter(division == "I") %>% 
 group_by(state_clean) %>% 
 count() %>% 
@@ -143,8 +127,13 @@ md_d1_p5_perc = (24/133)*100
 division_one_usa <- wbb_rosters_22_23 %>% 
 filter(division == "I")
 
-```
+teams_md_players_22_23 <- division_one_md %>% 
+group_by(team) %>% 
+count() %>% 
+arrange(desc(n))
 
+
+```
 
 Question: How many WBB players are from Maryland? How many of those players attend power 5 schools.?
 Answer: 350 are from Maryland and 24 of them attend Power 5 schools
@@ -176,22 +165,6 @@ Answer: There are 875 power 5 wbb players and 196 of them are from the ACC, the 
 Sentence: It's pretty hard to land a scholarship offer. (Insert stat about college athletes)/ Getting a spot in one of the five conferences (soon to be 4?) is even harder. Only 875 women's basektball players attend Power 5 institutions. The ACC is most likely to take you. They have 196 players, but not much in front of the Big Ten with 194.
 
 ```{r}
-wbb_rosters_22_23 %>%
-filter(conference == power_five)
-
-#What I want to do here is make a value that says power_five and have that be equal to "Big Ten", "Big 12", "ACC", "SEC', "Pac-12" so that when I filter I can say Filter to show me only players in the power_five conferences.
-```
-
-# Issue: These numbers seem too low. Im trying to view how many players there are in the power 5 conferneces
-# Why doesn't every roster show up?
-
-```{r}
-#Second attempt
-# ChatGPT says to use in%in instead of %> %>% 
-
-total_p5_players <- wbb_rosters_22_23 %>%
-filter(conference %in% power_five)
-#This produces 875 results which is much cleaner and seems to be more accurate. 
 
 #Conference counts with percentages
 d1_conf_counts <- wbb_rosters_22_23 %>% 
@@ -203,7 +176,6 @@ mutate(perc = round(total_players/sum(total_players)*100,1))
 
 onlybigten <- from_maryland_p5 %>% 
 filter(conference == "Big Ten")
-
 
 
 ```
@@ -228,7 +200,7 @@ Question: Where do the Power 5 Players come from in Maryland specifically?
 Answer: Baltimore has the most with 6 players on P5 tems. It also has the most players of any division.
 Sentence:
 
-Note: Decide which is more focused for the story
+
 ```{r}
 
 division_one_md %>% 
@@ -268,6 +240,7 @@ write_csv(md_p5_hometown, "data/md_p5_hometown.csv")
 
 write_csv(md_2021, "data/md_2021.csv")
 
+divisions_and_teams <- wbb_rosters_22_23 %>% select(team, division)
 
 ```
 
@@ -288,9 +261,6 @@ arrange(desc(n))
 ```{r}
 #API key
 Sys.setenv(CENSUS_API_KEY = "5cb2b9c628a1d1329c5bf4d36fe4435c6501efc8", overwrite = TRUE)
-
-#2021 ACS
-ACS_2021 <- load_variables(2021, "acs5")
 
 #2022 ACS
 ACS_2022 <- load_variables(2022, "acs1")
@@ -431,11 +401,11 @@ arrange(desc(n))
 
 #players at HS
 division_one_md %>% 
-filter(hs_clean == "New Hope Academy")
+filter(hs_clean == "Oxon Hill HS")
 
 ```
 
-
+_______________________________________________________________
 
 
 Section with 2023-2024 data
@@ -487,8 +457,24 @@ rename(cleaned_city = pm.address,
 ```
 
 
-
+Data exploration
 ```{r}
+#putting the divisions into 23-24
+
+wbb_rosters_23_24 <- inner_join(wbb_rosters_23_24, divisions_and_teams, by = "team")
+
+```
+
+D1 state counts:
+How many D1 players are from each state
+```{r}
+
+#wbb_rosters_23_24 %>% 
+filter(division == "I", cleaned_state == "MD") %>% 
+count() %>% 
+arrange(desc(n)) %>% 
+rename(players = n)
+
 ```
 
 

@@ -3,24 +3,24 @@
     "path": "~/Documents/GitHub/sports_data_journalism/assignments/wbb_1129.Rmd",
     "project_path": null,
     "type": "r_markdown",
-    "hash": "1184495725",
+    "hash": "4093343707",
     "contents": "",
     "dirty": false,
     "created": 1696511559111.0,
     "source_on_save": false,
-    "relative_order": 5,
+    "relative_order": 10,
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "197,0",
-        "scrollLine": "176"
+        "cursorPosition": "271,33",
+        "scrollLine": "260"
     },
     "folds": "",
-    "lastKnownWriteTime": 1693333849,
+    "lastKnownWriteTime": 1696514073,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1696513415984,
+    "last_content_update": 1696514073288,
     "read_only": false,
     "read_only_alternatives": []
 }
