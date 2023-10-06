@@ -470,13 +470,16 @@ I want to move the division column in 22-23 to the 23-24 dataframe.
 ```{r}
 #putting the divisions into 23-24
 
-wbb_rosters_23_24 <- left_join(wbb_rosters_23_24, divisions_and_teams, by = "division")
+wbb_rosters_23_24 <- inner_join(wbb_rosters_23_24, divisions_and_teams, by = "team")
 
 ```
 
 D1 state counts:
 How many D1 players are from each state
 ```{r}
+
+divisions_and_teams <-divisions_and_teams %>% 
+distinct()
 
 #wbb_rosters_23_24 %>% 
 filter(division == "I", cleaned_state == "MD") %>% 
@@ -486,6 +489,12 @@ rename(players = n)
 
 ```
 
+
+```{r}
+#removing form enviornment
+rm(list= "wbb_rosters_23_24_with_divisions")
+
+```
 
 
 
