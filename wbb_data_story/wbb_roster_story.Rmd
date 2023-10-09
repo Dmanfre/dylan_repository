@@ -477,17 +477,32 @@ wbb_rosters_23_24 <- inner_join(wbb_rosters_23_24, divisions_and_teams, by = "te
 D1 state counts:
 How many D1 players are from each state
 ```{r}
-
 divisions_and_teams <-divisions_and_teams %>% 
 distinct()
 
-#wbb_rosters_23_24 %>% 
-filter(division == "I", cleaned_state == "MD") %>% 
-count() %>% 
-arrange(desc(n)) %>% 
-rename(players = n)
+d1_state_counts_23_24 <- wbb_rosters_23_24 %>%
+  filter(division == "I") %>%
+  group_by(cleaned_state) %>%
+  count() %>%
+  rename(number_of_players = n) %>%
+  arrange(desc(number_of_players))
 
 ```
+
+D1 from Maryland counts
+How many D1 players are from Maryland?
+114 Division 1 players are from Maryland.
+
+Reason could be because of graduation
+```{r}
+division_one_md_23_24 <- wbb_rosters_23_24 %>% 
+filter(cleaned_state == "MD", division == "I")
+```
+
+
+
+
+
 
 
 ```{r}
