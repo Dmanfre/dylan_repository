@@ -1,0 +1,158 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+
+# Create data frame for R packages and their descriptions
+r_packages_data <- data.frame(
+  Package = c("data.table", "lubridate", "magrittr", "ggplot2", "dplyr", "tidyr", "purrr", "stringr", "forcats", "readr",
+              "dtplyr", "shiny", "leaflet", "sf", "rvest", "plotly", "caret", "shinydashboard", "tm", "sparklyr", "RODBC"),
+  Description = c("Provides a fast and efficient way to manipulate large data sets. It is particularly useful for data wrangling and aggregation tasks.",
+                  "Helps with handling date-time data, making it easier to parse, format, and perform calculations on dates and times.",
+                  "Facilitates a more readable and expressive code with the pipe operator (%>%) for chaining operations.",
+                  "Offers a powerful and flexible system for creating data visualizations and graphics using the Grammar of Graphics approach.",
+                  "Provides a set of functions for data manipulation and transformation, such as filtering, grouping, and summarizing data.",
+                  "Helps in tidying data by converting between wide and long formats, which is often necessary for data analysis and visualization.",
+                  "Simplifies working with lists and functional programming, making it easier to apply functions to data and iterate over data structures.",
+                  "Offers tools for working with strings, including functions for pattern matching, splitting, and manipulation.",
+                  "Specializes in working with categorical (factor) data, allowing you to reorder and manipulate factor levels.",
+                  "Provides fast and efficient functions for reading and writing rectangular data files, including CSV and TSV formats.",
+                  "Combines the efficiency of data.table with the ease of dplyr for data manipulation tasks, making it suitable for large datasets.",
+                  "Allows you to create interactive web applications directly from R, enabling data visualization and exploration through web interfaces.",
+                  "Offers an R interface to the Leaflet JavaScript library for creating interactive maps and web-based geospatial visualizations.",
+                  "Provides tools for working with spatial data, including reading, writing, and manipulating vector data in geographic information system (GIS) formats.",
+                  "A web scraping package that enables you to extract data from websites, making it useful for collecting data from online sources.",
+                  "Offers interactive and dynamic data visualization capabilities, allowing users to create interactive plots and dashboards.",
+                  "Aids in building and evaluating predictive models by providing a unified interface for various machine learning algorithms.",
+                  "Extends the capabilities of Shiny for creating interactive dashboards and data applications with a more structured layout.",
+                  "A package for text mining and natural language processing, which includes functions for text preprocessing and analysis.",
+                  "Allows R users to interface with Apache Spark, a distributed data processing framework, for big data analysis.",
+                  "Provides a connection to relational databases, allowing you to interact with and retrieve data from databases like MySQL and SQL Server."),
+  ExampleFunction = c("data.table::data.table()", "lubridate::ymd()", "magrittr::%>%()", "ggplot2::ggplot()", "dplyr::filter()",
+                      "tidyr::gather()", "purrr::map()", "stringr::str_detect()", "forcats::fct_reorder()", "readr::read_csv()",
+                      "dtplyr::tbl_dt()", "shiny::shinyApp()", "leaflet::leaflet()", "sf::st_read()", "rvest::html_nodes()",
+                      "plotly::plot_ly()", "caret::train()", "shinydashboard::dashboardPage()", "tm::Corpus()", "sparklyr::spark_connect()",
+                      "RODBC::odbcConnect()")
+)
+
+# Create data frame for tidyverse functions and their descriptions
+tidyverse_functions_data <- data.frame(
+  Function = c("select()", "filter()", "mutate()", "group_by()", "summarize()", "arrange()", "pivot_longer()", "pivot_wider()",
+               "left_join()", "inner_join()", "anti_join()", "semi_join()", "slice()", "distinct()", "rename()", "transmute()",
+               "count()", "filter_at()", "group_vars()", "sample_n()", "mutate_all()"),
+  Description = c("Allows you to pick the columns you want in a dataset.", "Filters rows based on a specified condition.",
+                  "Adds new variables or modifies existing ones.", "Groups data by one or more variables.", 
+                  "Computes summary statistics for grouped data.", "Sorts rows based on one or more columns.", 
+                  "Converts data from wide to long format.", "Converts data from long to wide format.", 
+                  "Joins two data frames by matching keys from the left dataframe.", 
+                  "Joins two data frames by matching keys from both data frames.", 
+                  "Returns rows from the left data frame that have no match in the right data frame.", 
+                  "Returns rows from the left data frame that have at least one match in the right data frame.", 
+                  "Selects rows by position.", "Returns unique rows in a data frame.", "Renames columns in a data frame.", 
+                  "Transforms and selects columns simultaneously.", "Counts the number of rows by group.", 
+                  "Filters rows based on conditions applied to selected columns.", 
+                  "Returns the grouping variables in a data frame.", "Randomly samples a specified number of rows.", 
+                  "Applies a function to all columns in a data frame."),
+  ExampleFunction = c("df %>% select(col1, col2)", "df %>% filter(col1 > 5)", "df %>% mutate(new_col = col1 * 2)", "df %>% group_by(group_var)",
+                      "df %>% summarize(mean_col = mean(col1))", "df %>% arrange(col1)", "df %>% pivot_longer(cols = c(col1, col2))",
+                      "df %>% pivot_wider(names_from = key, values_from = value)", "left_join(df1, df2, by = 'key')",
+                      "inner_join(df1, df2, by = 'key')", "anti_join(df1, df2, by = 'key')", "semi_join(df1, df2, by = 'key')",
+                      "df %>% slice(1:5)", "df %>% distinct(col1, col2)", "df %>% rename(new_col = old_col)",
+                      "df %>% transmute(new_col = col1 * 2)", "df %>% count(group_var)",
+                      "df %>% filter_at(vars(col1, col2), all_vars(. > 5))", "group_vars(df)", "df %>% sample_n(size = 10)",
+                      "df %>% mutate_all(funs(log(.)))")
+)
+
+# Create data frame for census data analysis packages and their descriptions
+census_packages_data <- data.frame(
+  Package = c("tidycensus", "censusapi", "acs", "janitor", "dplyr", "tidyr", "stringr", "forcats", "leaflet", "sf",
+              "rvest", "janitor", "data.table", "ggplot2", "tm", "dtplyr", "shiny", "RODBC", "lubridate", "plotly", "caret"),
+  Description = c("Retrieves U.S. Census American Community Survey data.",
+                  "Accesses Census Bureau's API for data retrieval.",
+                  "Retrieves American Community Survey data.",
+                  "Cleans column names and removes empty rows/columns.",
+                  "Provides a set of functions for data manipulation and transformation.",
+                  "Helps in tidying data by converting between wide and long formats.",
+                  "Offers tools for working with strings.",
+                  "Specializes in working with categorical (factor) data.",
+                  "Creates interactive maps for data visualization.",
+                  "Provides tools for working with spatial data.",
+                  "A web scraping package for data extraction.",
+                  "Identifies and handles duplicate data and empty rows.",
+                  "Efficiently manipulates large data sets.",
+                  "Creates data visualizations using the Grammar of Graphics.",
+                  "A package for text mining and natural language processing.",
+                  "Combines the efficiency of data.table with the ease of dplyr.",
+                  "Creates interactive web applications.",
+                  "Provides a connection to relational databases.",
+                  "Helps with handling date-time data.",
+                  "Offers interactive and dynamic data visualization capabilities.",
+                  "Aids in building and evaluating predictive models."),
+  ExampleFunction = c("tidycensus::get_acs()",
+                      "censusapi::getCensus()",
+                      "acs::acs.fetch()",
+                      "janitor::clean_names()",
+                      "dplyr::filter()",
+                      "tidyr::pivot_longer()",
+                      "stringr::str_detect()",
+                      "forcats::fct_reorder()",
+                      "leaflet::addPolygons()",
+                      "sf::st_read()",
+                      "rvest::html_nodes()",
+                      "janitor::get_dupes()",
+                      "data.table::setcolorder()",
+                      "ggplot2::ggplot()",
+                      "tm::Corpus()",
+                      "dtplyr::fread()",
+                      "shiny::shinyApp()",
+                      "RODBC::odbcConnect()",
+                      "lubridate::ymd()",
+                      "plotly::plot_ly()",
+                      "caret::train()")
+)
+
+# Create data frame for sports data packages and their descriptions
+sports_packages_data <- data.frame(
+  Package = c("sportsanalytics", "nflscrapR", "NBAloveR", "soccermatics", "MLBstats", "hockey", "espnscrapeR", "sports", "NHLscrapr", "cricsheet"),
+  Description = c("Provides functions for sports analytics and data visualization.",
+                  "Accesses NFL data from various sources for analysis.",
+                  "Retrieves NBA data, including game statistics and player information.",
+                  "Analyzes soccer match data and provides tools for soccer analytics.",
+                  "Accesses MLB statistics and game data.",
+                  "Analyzes and visualizes hockey data, including player and team statistics.",
+                  "Scrapes sports data from ESPN for analysis and visualization.",
+                  "Provides tools for analyzing sports data, including player and team statistics.",
+                  "Accesses NHL data, including player and team statistics.",
+                  "Accesses cricket data from Cricsheet for analysis and visualization."),
+  ExampleFunction = c("sportsanalytics::get_sports_data()",
+                      "nflscrapR::scrape_play_by_play()",
+                      "NBAloveR::get_nba_players()",
+                      "soccermatics::analyze_soccer_match()",
+                      "MLBstats::get_mlb_player_stats()",
+                      "hockey::get_hockey_stats()",
+                      "espnscrapeR::get_espn_data()",
+                      "sports::get_sports_stats()",
+                      "NHLscrapr::get_nhl_stats()",
+                      "cricsheet::get_cric_data()")
+)
+
+# Export the data frames to CSV files
+write.csv(r_packages_data, "R_packages_description.csv", row.names = FALSE)
+write.csv(tidyverse_functions_data, "Tidyverse_functions_description.csv", row.names = FALSE)
+write.csv(census_packages_data, "Census_packages_description.csv", row.names = FALSE)
+write.csv(sports_packages_data, "Sports_packages_description.csv", row.names = FALSE)
+
+
+
+```
+

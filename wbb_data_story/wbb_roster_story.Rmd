@@ -493,7 +493,7 @@ D1 from Maryland counts
 How many D1 players are from Maryland?
 114 Division 1 players are from Maryland.
 
-Reason could be because of graduation
+Reason could be because of graduation or expired eligibility
 ```{r}
 division_one_md_23_24 <- wbb_rosters_23_24 %>% 
 filter(cleaned_state == "MD", division == "I")
@@ -501,13 +501,17 @@ filter(cleaned_state == "MD", division == "I")
 
 
 
-
-
-
-
 ```{r}
-#removing form enviornment
-rm(list= "wbb_rosters_23_24_with_divisions")
+high_schools_23_24 <- division_one_md_23_24 %>% 
+group_by(high_school) %>%
+count() %>% 
+arrange(desc(n))
+
+view(high_schools_23_24)
+```
+
+
+
 
 ```
 
