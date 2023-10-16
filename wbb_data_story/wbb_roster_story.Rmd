@@ -74,11 +74,16 @@ conference_md <- from_maryland_p5 %>%
   group_by(conference) %>%
   count() %>%
   rename(players_from_md = n)
+
+#Showing Division One from Maryland
+division_one_md <- wbb_rosters_22_23 %>% 
+  filter(state_clean == "MD", division == "I")
+
 ```
 
 Showing number of power 5 vs Mid-Major
 ```{r}
-division_one_md <- division_one_md %>%
+p5_vs_mm <- division_one_md %>%
   mutate(p5_or_mm = case_when(
     conference %in% power_five ~ "power_five",
     TRUE ~ "mid-major"
@@ -87,8 +92,8 @@ division_one_md <- division_one_md %>%
 
 Exploration: There are 109 players in Mid Major Programs from Maryland. 
 ```{r}
-p5_or_mm <- division_one_md %>% 
-count(p5_or_mm)
+p5_vs_mm %>%  
+  count(p5_or_mm)
 
 ```
 
@@ -97,7 +102,7 @@ cleaning high schools
 What I'm doing here is standardizing the HS's of Maryland players 
 ```{r}
 
-division_one_md <- division_one_md %>%  
+division_one_md_with_cleaned_high_school <- division_one_md %>%  
   mutate(hs_clean = case_when(
     hs_clean == "St. Frances Academy (Maryland)" ~ "St. Francis Academy",
     hs_clean == "Bishop McNamara High School" ~ "Bishop McNamara",
@@ -105,12 +110,12 @@ division_one_md <- division_one_md %>%
     hs_clean == "Baltimore Polytechnic Institute" ~ "Baltimore Poly Institute",
     hs_clean == "Eleanor Roosevelt H.S." ~ "Eleanor Roosevelt",
     hs_clean == "Frederick High School" ~ "Frederick HS",
-    hs_clean == "McDonogh High School|McDonogh School" ~ "McDonogh",
+    hs_clean == "McDonogh High School" | hs_clean ==  "McDonogh School" ~ "McDonogh",
     hs_clean == "Paint Branch High School|Paintbranch" ~ "Paint Branch HS",
     hs_clean == "Riverdale Baptist School" ~ "Riverdale Baptist",
     hs_clean == "Roland Park County School" ~ "Roland Park Country School",
-    hs_clean == "Saint Frances Academy|St. Frances Academy|St. Francis Academy" ~ "St. Frances Academy",
-    hs_clean == "St. John's College|St. John's College High School" ~ "St. John's College HS",
+    hs_clean == "Saint Frances Academy" | hs_clean == "St. Frances Academy" | hs_clean == "St. Francis Academy" ~ "St. Frances Academy",
+    hs_clean == "St. John's College" | hs_clean == "St. John's College High School" ~ "St. John's College HS",
     hs_clean == "Western High School" ~ "Western HS",
     TRUE ~ hs_clean
   ))
@@ -122,7 +127,7 @@ division_one_md <- division_one_md %>%
 # Which high school has the most players? Is there a pipeline between any schools?
 #These highschools are mostly from Maryland but can also be in DC because players from Maryland 
 
-high_schools_22_23 <- division_one_md %>%
+high_schools_22_23 <- division_one_md_with_cleaned_high_school %>%
   group_by(hs_clean) %>%
   count() %>% 
   arrange(desc(n))
@@ -144,22 +149,6 @@ all_divison_md_players <- wbb_rosters_22_23 %>%
   filter(state_clean == "MD") %>%
   select(team, name, year_clean, position_clean, height_clean, hometown_clean, hs_clean, division, conference)
 ```
-
-
-Codeblock showing which County has the most D1 basektball players.
-```{r}
-#Maryland county numbers
-
-Sys.setenv(census_api_key = "5cb2b9c628a1d1329c5bf4d36fe4435c6501efc8", overwrite = TRUE)
-
-ACS_2022 <- load_variables(2021, "acs5")
-
-md <- get_acs(geography = "county",
-              variables = c(medincome = "B19013_001"),
-              state = "MD",
-              year = 2020)
-```
-
 
 section on 2023-2024 season.
 

@@ -1,0 +1,5 @@
+"0","p5_vs_mm <- division_one_md %>%"
+"0","  mutate(p5_or_mm = case_when("
+"0","    conference %in% power_five ~ ""power_five"","
+"0","    TRUE ~ ""mid-major"""
+"0","  ))"

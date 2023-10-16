@@ -1,0 +1,8 @@
+"0","# Division I state counts 2022-23"
+"0","d1_state_counts_22_23 <- wbb_rosters_22_23 %>%"
+"0","  filter(division == ""I"") %>%"
+"0","  group_by(state_clean) %>%"
+"0","  count() %>%"
+"0","  rename(number_of_players = n) %>%"
+"0","  arrange(desc(number_of_players))"
+"0",""

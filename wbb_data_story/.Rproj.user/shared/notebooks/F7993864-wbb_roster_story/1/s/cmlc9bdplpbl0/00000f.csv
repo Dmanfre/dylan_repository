@@ -1,0 +1,8 @@
+"0","# International Players 2022-23"
+"0","international_players <- wbb_rosters_22_23 %>%"
+"0","  filter(country_clean != ""USA"")"
+"0",""
+"0","countries <- international_players %>%"
+"0","  group_by(country_clean) %>%"
+"0","  count() %>%"
+"0","  arrange(desc(n))"
