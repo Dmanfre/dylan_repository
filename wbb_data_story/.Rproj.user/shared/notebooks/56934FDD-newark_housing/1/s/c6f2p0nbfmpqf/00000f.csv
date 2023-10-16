@@ -1,0 +1,8 @@
+"0","nj_cities <- get_acs(geography = ""place"",
+              variables = c(medi_house_income = ""B19013_001""),
+              state = ""NJ"")
+"
+"2","Getting data from the 2016-2020 5-year ACS
+"
+"2","Using FIPS code '34' for state 'NJ'
+"
