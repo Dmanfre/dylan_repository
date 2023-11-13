@@ -1,0 +1,43 @@
+```{r}
+library(tidyverse)
+library(wehoop)
+```
+
+
+```{r}
+
+logs23 <- load_wbb_team_box(2023, force_rebuild = TRUE) 
+
+```
+
+
+```{r}
+
+unique_team_names_list <- logs23 %>% 
+  distinct(team_display_name) %>%
+  pull(team_display_name) %>%
+  as.list()
+```
+
+```{r}
+# add all asts and all tos then divided to get ator. 
+
+for(team in teams){
+  team_away <- ator_only %>% 
+  filter(away_team_name == team)
+
+team_away_ast <- sum(team_away$opp_ast)
+team_away_turn <- sum(team_away$opp_tov)
+  
+team_home <- ator_only %>% 
+  filter(home_team_name == team)
+
+team_home_ast <- sum(team_home$ast)
+team_home_turn <- sum(team_home$tov)
+
+team_ator <-  (team_away_ast + team_home_ast)/(team_away_turn + team_home_turn)
+
+season_ator_list <- c(season_ator_list, team_ator)}
+
+```
+
