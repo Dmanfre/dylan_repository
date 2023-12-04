@@ -2,6 +2,7 @@
 library(tidyverse)
 library(janitor)
 library(rvest)
+library(wehoop)
 options(scipen = 999)
 ```
 
@@ -14,12 +15,14 @@ Getting all big ten players
 
 
 ```{r}
-library(wehoop)
+
 
 years<- c(2023, 2022, 2021, 2020, 2019, 2018, 2017)
 
 player_logs <- load_wbb_player_box(seasons = years)
-                            
+
+# confernece
+
 ```
 
 What I need to do
@@ -43,35 +46,41 @@ player_logs <- player_logs %>%
 
 big10 <- c("Nebraska Cornhuskers", "Iowa Hawkeyes", "Minnesota Golden Gophers", "Illinois Fighting Illini", "Northwestern Wildcats", "Wisconsin Badgers", "Indiana Hoosiers", "Purdue Boilermakers", "Ohio State Buckeyes", "Michigan Wolverines", "Michigan State Spartans", "Penn State Lady Lions", "Rutgers Scarlet Knights", "Maryland Terrapins")
 
-
-
-b10_players <- player_logs %>% 
+player_logs %>% 
   filter(team_display_name %in% big10) %>% 
   distinct(team_display_name)
-# Penn State missing
+
+# Make a conference column called Big Ten
+# Penn state is called Lady Lions
+
+player_logs <- player_logs %>%
+  mutate(conference = case_when(
+    team_display_name %in% big10 ~ "Big Ten"
+  ))
+
 
 ```
 
 
+filtering for players who played
 ```{r}
 # home stats
-home <- alexander_logs %>% 
-  filter(type != "NCAA" & home_away == "H") %>%
+player_logs %>% 
+  filter(team_display_name == "Maryland Terrapins" & did_not_play == "FALSE", home_away == "home") %>%
   group_by(season) %>% 
-  summarize(avg_pts_h = mean(pts),
-            avg_ast_h = mean(ast),
-            avg_steal_h = mean(stl),
-            avg_3pt_perc_h = mean(three_p_percent))
+   summarize(avg_pts_h = mean(points),
+            avg_ast_h = mean(assists),
+            avg_steal_h = mean(steals),
+            avg_3ptm_h = mean(three_point_field_goals_made))
 
 # away stats
-away <- alexander_logs %>% 
-  filter(type != "NCAA" & home_away == "@") %>%
+player_logs %>% 
+  filter(team_display_name == "Maryland Terrapins" & did_not_play == "FALSE", home_away == "away") %>%
   group_by(season) %>% 
-  summarize(avg_pts_a = mean(pts),
-            avg_ast_a = mean(ast),
-            avg_steal_a = mean(stl),
-            avg_3pt_perc_a = mean(three_p_percent))
-
+   summarize(avg_pts_h = mean(points),
+            avg_ast_h = mean(assists),
+            avg_steal_h = mean(steals),
+            avg_3ptm_h = mean(three_point_field_goals_made))
 home_away_combined <- inner_join(home, away, by = "season")
 ```
 
