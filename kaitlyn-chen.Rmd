@@ -1,0 +1,96 @@
+```{r}
+library(wehoop)
+library(tidyverse)
+```
+
+```{r}
+ncaa_ids <- read.csv("ncaa_ids.csv") 
+
+ivy_ids <- ncaa_ids %>% 
+  filter(Conference == "Ivy WBB")
+```
+
+
+```{r}
+
+ivy <- c("Princeton", "Harvard", "Cornell", "Dartmouth", "Yale", "Columbia", "Brown", "Penn")
+
+```
+
+```{r}
+years<- c(2023, 2022, 2021, 2020, 2019)
+
+player_logs <- load_wbb_player_box(seasons = years)
+
+#adding confernece and checking that it worked
+
+player_logs <- player_logs %>%
+  mutate(conference = case_when(
+    team_short_display_name %in% ivy ~ "Ivy"
+  ))
+
+```
+
+filter for Kaitlyn Chen
+
+```{r}
+princeton_logs <- player_logs %>% 
+  filter(team_display_name == "Princeton Tigers")
+```
+
+```{r}
+chen <- princeton_logs %>% 
+  filter(athlete_display_name == "Kaitlyn Chen") %>% 
+  group_by(season) %>% 
+  summarise(ator = sum(assists)/sum(turnovers))
+```
+
+Question I want to answer is how many games did Princeton win when Chen scores above her career average.
+
+```{r}
+chen %>% 
+  mutate(game_result = case_when(
+    team_winner == "TRUE" & points >= 20 ~ "win",
+    team_winner == "FALSE" & points >= 20 ~ "loss"
+  )) %>% 
+  group_by(game_result) %>% 
+  summarize(at_least_20p = n())
+```
+
+I want to see how Kaitlyn Chen compared among the conference
+
+```{r}
+
+player_logs %>% 
+  filter(season == "2023" & did_not_play == "FALSE", conference == "Ivy") %>%
+  group_by(athlete_display_name, team_short_display_name) %>% 
+  summarise(points = mean(points),
+            assists = mean(assists),
+            rebounds = mean(rebounds),
+            avg_fgm = mean(field_goals_made),
+            avg_fga = mean(field_goals_attempted),
+            avg_3pm = mean(three_point_field_goals_made),
+            avg_3pa = mean(three_point_field_goals_attempted))
+  arrange(desc(points))
+```
+
+```{r}
+
+
+
+```
+
+```{r}
+
+rider <- player_logs %>% 
+  filter(team_display_name == "Rider Broncs") %>% 
+  arrange(desc(points))
+
+ rider %>% 
+  filter(points >= 30) %>% 
+  group_by(athlete_display_name) %>% 
+  summarise(total_games = n())
+
+```
+
+
